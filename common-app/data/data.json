@@ -1,0 +1,413 @@
+{
+  "name": "GreenMarket",
+  "version": "1.0",
+  "data": {
+    "categories": [
+      {
+        "id": 1,
+        "name": "Fresh Meat",
+        "image_url": "img/categories/cat-1.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Vegetables",
+        "image_url": "img/categories/cat-2.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Fruit & Nut Gifts",
+        "image_url": "img/categories/cat-3.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Fresh Berries",
+        "image_url": "img/categories/cat-4.jpg"
+      },
+      {
+        "id": 5,
+        "name": "Ocean Foods",
+        "image_url": "img/categories/cat-5.jpg"
+      },
+      {
+        "id": 6,
+        "name": "Butter & Eggs",
+        "image_url": "img/categories/cat-6.jpg"
+      },
+      {
+        "id": 7,
+        "name": "Fastfood",
+        "image_url": "img/categories/cat-7.jpg"
+      }
+    ],
+    "products": [
+      {
+        "id": 1,
+        "name": "Vetgetable’s Package",
+        "price": 100.0,
+        "category_id": 1,
+        "weight": 200.0,
+        "description_short": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.",
+        "description": "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.",
+        "information": "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.",
+        "color": "Green",
+        "discount": 0,
+        "availability": true,
+        "main_image_url": "img/product/details/product-1.jpg",
+        "images_urls": [
+          "img/product/details/product-details-1.jpg",
+          "img/product/details/product-details-2.jpg",
+          "img/product/details/product-details-3.jpg",
+          "img/product/details/product-details-4.jpg",
+          "img/product/details/product-details-5.jpg"
+        ],
+        "is_featured": true,
+        "count": 20,
+        "is_latest": true,
+        "review_count": 10
+      },
+      {
+        "id": 2,
+        "name": "Vetgetable’s Package",
+        "price": 32.0,
+        "category_id": 1,
+        "weight": 1.5,
+        "description_short": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.",
+        "description": "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.",
+        "information": "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.",
+        "color": "Green",
+        "discount": 0,
+        "availability": true,
+        "main_image_url": "img/product/details/product-2.jpg",
+        "images_urls": [
+          "img/product/details/product-details-1.jpg",
+          "img/product/details/product-details-2.jpg",
+          "img/product/details/product-details-3.jpg",
+          "img/product/details/product-details-4.jpg",
+          "img/product/details/product-details-5.jpg"
+        ],
+        "is_featured": false,
+        "count": 20,
+        "is_latest": true,
+        "review_count": 2
+      },
+      {
+        "id": 3,
+        "name": "Vetgetable’s Package",
+        "price": 21.0,
+        "category_id": 1,
+        "weight": 200.0,
+        "description_short": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.",
+        "description": "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.",
+        "information": "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.",
+        "color": "Yellow",
+        "discount": 0,
+        "availability": true,
+        "main_image_url": "img/product/details/product-3.jpg",
+        "images_urls": [
+          "img/product/details/product-details-1.jpg",
+          "img/product/details/product-details-2.jpg",
+          "img/product/details/product-details-3.jpg",
+          "img/product/details/product-details-4.jpg",
+          "img/product/details/product-details-5.jpg"
+        ],
+        "is_featured": true,
+        "count": 21,
+        "is_latest": false,
+        "review_count": 5
+      },
+      {
+        "id": 4,
+        "name": "Vetgetable’s Package",
+        "price": 223.0,
+        "category_id": 1,
+        "weight": 223.0,
+        "description_short": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.",
+        "description": "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.",
+        "information": "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.",
+        "color": "Red",
+        "discount": 0,
+        "availability": true,
+        "main_image_url": "img/product/details/product-4.jpg",
+        "images_urls": [
+          "img/product/details/product-details-1.jpg",
+          "img/product/details/product-details-2.jpg",
+          "img/product/details/product-details-3.jpg",
+          "img/product/details/product-details-4.jpg",
+          "img/product/details/product-details-5.jpg"
+        ],
+        "is_featured": false,
+        "count": 21,
+        "is_latest": true,
+        "review_count": 123
+      },
+      {
+        "id": 5,
+        "name": "Vetgetable’s Package",
+        "price": 21.0,
+        "category_id": 1,
+        "weight": 12.0,
+        "description_short": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.",
+        "description": "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.",
+        "information": "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.",
+        "color": "Blue",
+        "discount": 0,
+        "availability": true,
+        "main_image_url": "img/product/details/product-5.jpg",
+        "images_urls": [
+          "img/product/details/product-details-1.jpg",
+          "img/product/details/product-details-2.jpg",
+          "img/product/details/product-details-3.jpg",
+          "img/product/details/product-details-4.jpg",
+          "img/product/details/product-details-5.jpg"
+        ],
+        "is_featured": true,
+        "count": 21,
+        "is_latest": true,
+        "review_count": 22
+      },
+      {
+        "id": 6,
+        "name": "Vetgetable’s Package",
+        "price": 21.0,
+        "category_id": 2,
+        "weight": 12.0,
+        "description_short": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.",
+        "description": "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.",
+        "information": "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.",
+        "color": "Blue",
+        "discount": 0,
+        "availability": true,
+        "main_image_url": "img/product/details/product-6.jpg",
+        "images_urls": [
+          "img/product/details/product-details-1.jpg",
+          "img/product/details/product-details-2.jpg",
+          "img/product/details/product-details-3.jpg",
+          "img/product/details/product-details-4.jpg",
+          "img/product/details/product-details-5.jpg"
+        ],
+        "is_featured": true,
+        "count": 21,
+        "is_latest": true,
+        "review_count": 22
+      },
+      {
+        "id": 7,
+        "name": "Vetgetable’s Package",
+        "price": 21.0,
+        "category_id": 2,
+        "weight": 12.0,
+        "description_short": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.",
+        "description": "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.",
+        "information": "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.",
+        "color": "Blue",
+        "discount": 0,
+        "availability": true,
+        "main_image_url": "img/product/details/product-7.jpg",
+        "images_urls": [
+          "img/product/details/product-details-1.jpg",
+          "img/product/details/product-details-2.jpg",
+          "img/product/details/product-details-3.jpg",
+          "img/product/details/product-details-4.jpg",
+          "img/product/details/product-details-5.jpg"
+        ],
+        "is_featured": true,
+        "count": 21,
+        "is_latest": true,
+        "review_count": 22
+      },
+      {
+        "id": 8,
+        "name": "Vetgetable’s Package",
+        "price": 21.0,
+        "category_id": 2,
+        "weight": 12.0,
+        "description_short": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.",
+        "description": "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.",
+        "information": "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.",
+        "color": "Blue",
+        "discount": 0,
+        "availability": true,
+        "main_image_url": "img/product/details/product-8.jpg",
+        "images_urls": [
+          "img/product/details/product-details-1.jpg",
+          "img/product/details/product-details-2.jpg",
+          "img/product/details/product-details-3.jpg",
+          "img/product/details/product-details-4.jpg",
+          "img/product/details/product-details-5.jpg"
+        ],
+        "is_featured": true,
+        "count": 21,
+        "is_latest": true,
+        "review_count": 22
+      },
+      {
+        "id": 9,
+        "name": "Vetgetable’s Package",
+        "price": 21.0,
+        "category_id": 1,
+        "weight": 12.0,
+        "description_short": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.",
+        "description": "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.",
+        "information": "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.",
+        "color": "Blue",
+        "discount": 0,
+        "availability": true,
+        "main_image_url": "img/product/details/product-9.jpg",
+        "images_urls": [
+          "img/product/details/product-details-1.jpg",
+          "img/product/details/product-details-2.jpg",
+          "img/product/details/product-details-3.jpg",
+          "img/product/details/product-details-4.jpg",
+          "img/product/details/product-details-5.jpg"
+        ],
+        "is_featured": true,
+        "count": 21,
+        "is_latest": true,
+        "review_count": 22
+      },
+      {
+        "id": 10,
+        "name": "Vetgetable’s Package",
+        "price": 21.0,
+        "category_id": 3,
+        "weight": 12.0,
+        "description_short": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.",
+        "description": "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.",
+        "information": "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.",
+        "color": "Blue",
+        "discount": 0,
+        "availability": true,
+        "main_image_url": "img/product/details/product-10.jpg",
+        "images_urls": [
+          "img/product/details/product-details-1.jpg",
+          "img/product/details/product-details-2.jpg",
+          "img/product/details/product-details-3.jpg",
+          "img/product/details/product-details-4.jpg",
+          "img/product/details/product-details-5.jpg"
+        ],
+        "is_featured": false,
+        "count": 21,
+        "is_latest": true,
+        "review_count": 22
+      },
+      {
+        "id": 11,
+        "name": "Vetgetable’s Package",
+        "price": 21.0,
+        "category_id": 3,
+        "weight": 12.0,
+        "description_short": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.",
+        "description": "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.",
+        "information": "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.",
+        "color": "Blue",
+        "discount": 0,
+        "availability": true,
+        "main_image_url": "img/product/details/product-11.jpg",
+        "images_urls": [
+          "img/product/details/product-details-1.jpg",
+          "img/product/details/product-details-2.jpg",
+          "img/product/details/product-details-3.jpg",
+          "img/product/details/product-details-4.jpg",
+          "img/product/details/product-details-5.jpg"
+        ],
+        "is_featured": true,
+        "count": 21,
+        "is_latest": false,
+        "review_count": 22
+      },
+      {
+        "id": 12,
+        "name": "Vetgetable’s Package",
+        "price": 21.0,
+        "category_id": 3,
+        "weight": 12.0,
+        "description_short": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.",
+        "description": "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.",
+        "information": "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.",
+        "color": "Blue",
+        "discount": 0,
+        "availability": true,
+        "main_image_url": "img/product/details/product-12.jpg",
+        "images_urls": [
+          "img/product/details/product-details-1.jpg",
+          "img/product/details/product-details-2.jpg",
+          "img/product/details/product-details-3.jpg",
+          "img/product/details/product-details-4.jpg",
+          "img/product/details/product-details-5.jpg"
+        ],
+        "is_featured": false,
+        "count": 21,
+        "is_latest": true,
+        "review_count": 22
+      }
+    ],
+    "blog": [
+      {
+        "id": 1,
+        "title": "Cooking tips make cooking simple",
+        "images_url": "img/blog/blog-1",
+        "description_short": "Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat",
+        "description": "Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.",
+        "created_by": "Michael Scofield",
+        "created_date": "05/04/2019",
+        "tags": "All, Trending, Cooking, Healthy Food, Life Style",
+        "comments_count": 5
+      },
+      {
+        "id": 2,
+        "title": "6 ways to prepare breakfast for 30",
+        "images_url": "img/blog/blog-2",
+        "description_short": "Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat",
+        "description": "Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.",
+        "created_by": "Michael Scofield",
+        "created_date": "05/10/2019",
+        "tags": "All, Trending, Cooking, Healthy Food, Life Style",
+        "comments_count": 8
+      },
+      {
+        "id": 3,
+        "title": "Visit the clean farm in the US",
+        "images_url": "img/blog/blog-3",
+        "description_short": "Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat",
+        "description": "Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.",
+        "created_by": "Michael Scofield",
+        "created_date": "06/12/2019",
+        "tags": "All, Trending, Cooking, Healthy Food, Life Style",
+        "comments_count": 15
+      },
+      {
+        "id": 4,
+        "title": "The Moment You Need To Remove Garlic From The Menu",
+        "images_url": "img/blog/blog-4",
+        "description_short": "Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat",
+        "description": "Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.",
+        "created_by": "Michael Scofield",
+        "created_date": "06/17/2019",
+        "tags": "All, Trending, Cooking, Healthy Food, Life Style",
+        "comments_count": 2
+      },
+      {
+        "id": 5,
+        "title": "Cooking tips make cooking simple",
+        "images_url": "img/blog/blog-5",
+        "description_short": "Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat",
+        "description": "Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.",
+        "created_by": "Michael Scofield",
+        "created_date": "04/05/2019",
+        "tags": "All, Trending, Cooking, Healthy Food, Life Style",
+        "comments_count": 22
+      },
+      {
+        "id": 6,
+        "title": "Cooking tips make cooking simple",
+        "images_url": "img/blog/blog-6",
+        "description_short": "Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat",
+        "description": "Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.",
+        "created_by": "Michael Scofield",
+        "created_date": "10/19/2019",
+        "tags": "All, Trending, Cooking, Healthy Food, Life Style",
+        "comments_count": 12
+      }
+    ]
+  }
+}
