@@ -1,0 +1,6 @@
+﻿{
+  "appName": "Common hero search app",
+  "api": {
+    "getCategories": "http://localhost:5000/data/data.json"
+  }
+}
