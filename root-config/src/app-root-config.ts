@@ -64,6 +64,19 @@ const applications = constructApplications({
 });
 const layoutEngine = constructLayoutEngine({ routes, applications });
 
+registerApplication({
+    name: "@app/react-apps/common-hero-search-app",
+    app:({}) => System.import("@app/react-apps/common-hero-search-app"),
+    activeWhen: () => true, // Show on all pages
+    customProps(appName, location) {
+        return {
+            domElement: document.getElementById('hero-search-container'),
+            location: location,
+            expandCategoriesOnPages: ["/"]
+        }
+    }
+});
+
 applications.forEach(registerApplication);
 layoutEngine.activate();
 start();
