@@ -1,7 +1,7 @@
 {
   "name": "@app/common-hero-search-app",
   "scripts": {
-    "start": "webpack serve --port 9001",
+    "start": "webpack serve --port 5003",
     "start:standalone": "webpack serve --env standalone",
     "build": "concurrently npm:build:*",
     "build:webpack": "webpack --mode=production",
