@@ -2,6 +2,7 @@
 import SlideToggle from "react-slide-toggle"
 import Styles from "../../root.module.css";
 import Configuration from "../../../app.configuration.json"
+import CategoryService from "../../services/CategoryService"
 
 export default function DepartmentsDropdown(props) {
     const [categories, setCategories] = useState<ICategory[]>([]);
@@ -10,16 +11,7 @@ export default function DepartmentsDropdown(props) {
     const isCollapseCategories: Boolean = !props.configs.expandCategoriesOnPages.includes(currentLocation.pathname);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const getCategories = await fetch(Configuration.api.getCategories);
-            const cats = await getCategories.json();
-
-            return cats.data.categories.map(
-                (category: ICategory[]) => category
-            );
-        };
-
-        fetchData()
+        CategoryService.getCategories()
             .then((data) => setCategories(data))
             .catch((exception) => {
                 console.error(`${Configuration.appName}: ${exception}`);
