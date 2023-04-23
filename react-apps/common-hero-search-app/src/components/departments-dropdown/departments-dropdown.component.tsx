@@ -4,7 +4,7 @@ import Styles from "../../root.module.css";
 import Configuration from "../../../app.configuration.json"
 
 export default function DepartmentsDropdown(props) {
-    const [categories, setCategories] = useState<string[]>([]);
+    const [categories, setCategories] = useState<ICategory[]>([]);
 
     const currentLocation: Location = props.configs.location;
     const isCollapseCategories: Boolean = !props.configs.expandCategoriesOnPages.includes(currentLocation.pathname);
@@ -15,7 +15,7 @@ export default function DepartmentsDropdown(props) {
             const cats = await getCategories.json();
 
             return cats.data.categories.map(
-                (cat: { name: string }) => cat.name
+                (category: ICategory[]) => category
             );
         };
 
@@ -34,9 +34,9 @@ export default function DepartmentsDropdown(props) {
                     <span>All departments</span>
                 </div>
                 <ul ref={setCollapsibleElement}>
-                    {categories.map((cat: string, index: number) => (
-                        <li data-cat-id={index} key={index}>
-                            <a href="#">{cat}</a>
+                    {categories.map((category: ICategory, index: number) => (
+                        <li key={index}>
+                            <a href={`/category/${category.id}`}>{category.name}</a>
                         </li>
                     ))}
                 </ul>
