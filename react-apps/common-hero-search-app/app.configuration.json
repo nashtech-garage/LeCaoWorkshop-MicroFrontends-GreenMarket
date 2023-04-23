@@ -2,5 +2,9 @@
   "appName": "Common hero search app",
   "api": {
     "getCategories": "http://localhost:5000/data/data.json"
+  },
+  "url": {
+    "rootConfig": "http://localhost:9000",
+    "commonHeroSearchApp": "http://localhost:5003"
   }
 }

@@ -72,7 +72,7 @@ registerApplication({
         return {
             domElement: document.getElementById('hero-search-container'),
             location: location,
-            expandCategoriesOnPages: ["/"]
+            expandCategoriesOnPages: ["/", "/index.html"]
         }
     }
 });
