@@ -1,0 +1,9 @@
+{
+    "appName": "Common hero footer",
+    "api": {
+    },
+    "url": {
+      "rootConfig": "http://localhost:9000",
+      "commonHeroFooterApp": "http://localhost:5010"
+    }
+  }
