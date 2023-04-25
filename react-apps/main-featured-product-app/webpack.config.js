@@ -14,6 +14,14 @@ module.exports = (webpackConfigEnv, argv) => {
     // modify the webpack config however you'd like to by adding to this object
     plugins: [
       new Dotenv()
-    ]
+    ],
+    module: {
+      rules: [
+        {
+          test: /\.(svg|gif|ico|eot|ttf|woff2?)(\?v=\d+\.\d+\.\d+)?$/i,
+          type: 'asset/resource',
+        },
+      ],
+    },
   });
 };

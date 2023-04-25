@@ -3,6 +3,10 @@ import ReactDOM from "react-dom";
 import singleSpaReact from "single-spa-react";
 import Root from "./root.component";
 
+import './styles/css/index.css';
+import './styles/css/font-awesome.min.css';
+import './styles/css/bootstrap.min.css';
+
 const lifecycles = singleSpaReact({
   React,
   ReactDOM,
