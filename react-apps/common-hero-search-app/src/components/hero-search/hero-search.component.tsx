@@ -22,9 +22,9 @@ export default function HeroSearch() {
     }, []);
     
     const onSubmit: SubmitHandler<ISearchFormInput> = formData => {
-        // Process parameters, security and handle call api here when search page available
+        // Process parameters, security and handle call api here when shop page available
         // For temporary, we will redirect by URL only
-        window.location.href = `${rootConfigUrl}/search?categoryId=${formData.categoryId}&keyword=${ encodeURIComponent(formData.keyword) }`
+        window.location.href = `${rootConfigUrl}/shop?id=${formData.categoryId}&keyword=${ encodeURIComponent(formData.keyword) }`
     };
     
     return (

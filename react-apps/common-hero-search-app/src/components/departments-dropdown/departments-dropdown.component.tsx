@@ -8,8 +8,7 @@ export default function DepartmentsDropdown(props) {
     const [categories, setCategories] = useState<ICategory[]>([]);
     const rootConfigUrl = Configuration.url.rootConfig;
     
-    const currentLocation: Location = props.configs.location;
-    const isCollapseCategories: Boolean = !props.configs.expandCategoriesOnPages.includes(currentLocation.pathname);
+    const isCollapseCategories: Boolean = !props.configs.expandCategoriesOnPages.includes(window.location.pathname);
 
     useEffect(() => {
         CategoryService.getCategories()
@@ -29,7 +28,7 @@ export default function DepartmentsDropdown(props) {
                 <ul ref={setCollapsibleElement}>
                     {categories.map((category: ICategory, index: number) => (
                         <li key={index}>
-                            <a href={`${rootConfigUrl}/category?id=${category.id}`}>{category.name}</a>
+                            <a href={`${rootConfigUrl}/shop?id=${category.id}`}>{category.name}</a>
                         </li>
                     ))}
                 </ul>
