@@ -3,7 +3,7 @@ import styles from "../../root.module.css";
 
 export default function HeroFooter() {
     return (
-        <footer className="footer spad">
+        <footer className="footer spad" id="hero-footer-container">
           <div className="container">
             <div className="row">
               <div className="col-lg-3 col-md-6 col-sm-6">
