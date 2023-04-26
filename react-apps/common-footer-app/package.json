@@ -1,7 +1,7 @@
 {
   "name": "@app/common-hero-footer-app",
   "scripts": {
-    "start": "webpack serve --port 5010",
+    "start": "webpack serve --port 5005",
     "start:standalone": "webpack serve --env standalone",
     "build": "concurrently npm:build:*",
     "build:webpack": "webpack --mode=production",

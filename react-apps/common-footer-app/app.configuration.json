@@ -4,6 +4,6 @@
     },
     "url": {
       "rootConfig": "http://localhost:9000",
-      "commonHeroFooterApp": "http://localhost:5010"
+      "commonHeroFooterApp": "http://localhost:5005"
     }
   }
