@@ -3,7 +3,6 @@ import styles from "../../root.module.css";
 
 export default function HeroFooter() {
     return (
-      <footer className={styles["footer"]}>
       <div className="container">
         <div className="row">
           <div className="col-lg-3 col-md-6 col-sm-6">
@@ -81,6 +80,5 @@ export default function HeroFooter() {
           </div>
         </div>
       </div>
-    </footer>
       );
 }
