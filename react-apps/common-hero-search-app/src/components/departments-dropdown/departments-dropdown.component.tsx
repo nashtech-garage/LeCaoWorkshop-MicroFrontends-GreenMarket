@@ -1,13 +1,12 @@
 ﻿import React, {useEffect, useState} from "react";
 import SlideToggle from "react-slide-toggle"
 import Styles from "../../root.module.css";
-import Configuration from "../../../app.configuration.json"
 import CategoryService from "../../services/CategoryService"
 import {Link} from "react-router-dom";
 
 export default function DepartmentsDropdown(props) {
     const [categories, setCategories] = useState<ICategory[]>([]);
-    const rootConfigUrl = Configuration.url.rootConfig;
+    const rootConfigUrl = process.env.URL_ROOT_CONFIG;
     
     let isCollapseCategories = !props.configs.expandCategoriesOnPages.includes(window.location.pathname);
     const [collapseRandId, setCollapseRandId] = useState(0); // Random number to trigger collapse event of SlideToggle component
@@ -16,7 +15,7 @@ export default function DepartmentsDropdown(props) {
         CategoryService.getCategories()
             .then((data) => setCategories(data))
             .catch((exception) => {
-                console.error(`${Configuration.appName}: ${exception}`);
+                console.error(`${process.env.APP_NAME}: ${exception}`);
             });
     }, []);
 

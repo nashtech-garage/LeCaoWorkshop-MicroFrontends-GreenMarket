@@ -2,12 +2,11 @@
 import styles from "../../root.module.css";
 import ContactPhone from "../contact-phone/contact-phone.component";
 import CategoryService from "../../services/CategoryService";
-import Configuration from "../../../app.configuration.json";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 export default function HeroSearch() {
     const [categories, setCategories] = useState<ICategory[]>([]);
-    const rootConfigUrl = Configuration.url.rootConfig;
+    const rootConfigUrl = process.env.URL_ROOT_CONFIG;
     const { 
         register, 
         handleSubmit 
@@ -17,7 +16,7 @@ export default function HeroSearch() {
         CategoryService.getCategories()
             .then((data) => setCategories(data))
             .catch((exception) => {
-                console.error(`${Configuration.appName}: ${exception}`);
+                console.error(`${process.env.APP_NAME}: ${exception}`);
             });
     }, []);
     

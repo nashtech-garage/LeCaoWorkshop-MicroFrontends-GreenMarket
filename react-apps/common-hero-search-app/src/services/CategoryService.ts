@@ -1,8 +1,7 @@
-﻿import Configuration from "../../app.configuration.json";
-
-const CategoryService = {
+﻿const CategoryService = {
     async getCategories() : Promise<ICategory[]> {
-        const getCategories = await fetch(Configuration.api.getCategories);
+        const apiGetCategories = `${process.env.API_ENDPOINT}/data/data.json`;
+        const getCategories = await fetch(apiGetCategories);
         const cats = await getCategories.json();
 
         return cats.data.categories.map(
