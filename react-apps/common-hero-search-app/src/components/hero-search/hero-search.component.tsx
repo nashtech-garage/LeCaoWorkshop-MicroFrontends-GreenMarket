@@ -3,10 +3,11 @@ import styles from "../../root.module.css";
 import ContactPhone from "../contact-phone/contact-phone.component";
 import CategoryService from "../../services/CategoryService";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroSearch() {
     const [categories, setCategories] = useState<ICategory[]>([]);
-    const rootConfigUrl = process.env.URL_ROOT_CONFIG;
+    const navigate = useNavigate();
     const { 
         register, 
         handleSubmit 
@@ -21,9 +22,7 @@ export default function HeroSearch() {
     }, []);
     
     const onSubmit: SubmitHandler<ISearchFormInput> = formData => {
-        // Process parameters, security and handle call api here when shop page available
-        // For temporary, we will redirect by URL only
-        window.location.href = `${rootConfigUrl}/shop?id=${formData.categoryId}&keyword=${ encodeURIComponent(formData.keyword) }`
+        navigate(`/shop?id=${formData.categoryId}&keyword=${ encodeURIComponent(formData.keyword) }`)
     };
     
     return (
