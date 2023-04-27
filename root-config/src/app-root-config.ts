@@ -64,6 +64,12 @@ const applications = constructApplications({
 });
 const layoutEngine = constructLayoutEngine({ routes, applications });
 
+// registerApplication({
+//   name: '@app/shop-grid-page-product',
+//   app: ({}) => System.import('@app/shop-grid-page-product'),
+//   activeWhen: '/shop',
+// });
+console.log('registerApplication', registerApplication);
 applications.forEach(registerApplication);
 layoutEngine.activate();
 start();
