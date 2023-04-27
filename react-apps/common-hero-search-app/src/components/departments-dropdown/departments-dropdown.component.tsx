@@ -1,15 +1,20 @@
-﻿import React, {useEffect, useState} from "react";
-import SlideToggle from "react-slide-toggle"
+﻿import React, {useEffect, useLayoutEffect, useState} from "react";
 import Styles from "../../root.module.css";
 import CategoryService from "../../services/CategoryService"
-import {Link} from "react-router-dom";
+import {Link, useLocation } from "react-router-dom";
 
 export default function DepartmentsDropdown(props) {
     const [categories, setCategories] = useState<ICategory[]>([]);
     const rootConfigUrl = process.env.URL_ROOT_CONFIG;
+    const location = useLocation();
+    const IsExpandCategoryMenu = (): Boolean => props.configs.expandCategoriesOnPages.includes(location.pathname);
     
-    let isCollapseCategories = !props.configs.expandCategoriesOnPages.includes(window.location.pathname);
-    const [collapseRandId, setCollapseRandId] = useState(0); // Random number to trigger collapse event of SlideToggle component
+    const [expanded, setExpanded] = useState(IsExpandCategoryMenu());
+
+    useLayoutEffect(() => {
+        // Refresh state toggle category menu whenever url change
+        setExpanded(IsExpandCategoryMenu());
+    }, [location])
     
     useEffect(() => {
         CategoryService.getCategories()
@@ -20,22 +25,24 @@ export default function DepartmentsDropdown(props) {
     }, []);
 
     return (
-        <SlideToggle collapsed={isCollapseCategories} collapseEvent={ collapseRandId }  duration={400} render={({toggle, setCollapsibleElement}) => (
-            <div className={Styles.hero__categories}>
-                <div className={Styles.hero__categories__all} onClick={toggle}>
-                    <i className="fa fa-bars"></i>
-                    <span>All departments</span>
-                </div>
-                <ul ref={setCollapsibleElement}>
+        <div className={Styles.hero__categories}>
+            <div className={Styles.hero__categories__all} onClick={() => setExpanded(!expanded)}>
+                <i className="fa fa-bars"></i>
+                <span>All departments</span>
+            </div>
+            {
+                <ul className={ expanded 
+                        ? `${Styles.hero__categories__menu__content} ${Styles.hero__categories__menu__content__show}` 
+                        : `${Styles.hero__categories__menu__content}`}>
                     {categories.map((category: ICategory, index: number) => (
                         <li key={index}>
-                            <Link onClick={() => setCollapseRandId(Date.now())} to={`${rootConfigUrl}/shop?id=${category.id}`}>
+                            <Link to={`${rootConfigUrl}/shop?id=${category.id}`}>
                                 {category.name}
                             </Link>
                         </li>
                     ))}
                 </ul>
-            </div>
-        )}/>
+            }
+        </div>
     );
 }

@@ -58,7 +58,6 @@
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.43.9",
     "react-router-dom": "^6.10.0",
-    "react-slide-toggle": "^0.3.5",
     "single-spa": "^5.9.3",
     "single-spa-react": "^4.3.1"
   },

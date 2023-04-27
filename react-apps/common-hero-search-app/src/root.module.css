@@ -2,6 +2,20 @@
     position: relative;
 }
 
+.hero__categories__menu__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.4s ease-out;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.hero__categories__menu__content__show {
+    max-height: 500px;
+    padding-top: 10px;
+    padding-bottom: 12px;
+}
+
 .hero__categories ul {
     position: absolute;
     left: 0;
