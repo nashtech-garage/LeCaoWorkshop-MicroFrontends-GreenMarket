@@ -210,6 +210,10 @@
         margin-bottom: 30px;
     }
 
+    .hero__categories ul {
+        position: initial;
+    }
+
     .hero__search__form {
         width: 485px;
     }
@@ -228,6 +232,10 @@
 @media only screen and (max-width: 767px) {
     .hero__categories {
         margin-bottom: 30px;
+    }
+
+    .hero__categories ul {
+        position: initial;
     }
 
     .hero__search {
@@ -257,5 +265,9 @@
 @media only screen and (max-width: 479px) {
     .hero__search__form form .hero__search__categories {
         display: none;
+    }
+
+    .hero__categories ul {
+        position: initial;
     }
 }
