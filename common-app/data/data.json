@@ -52,7 +52,7 @@
         "color": "Green",
         "discount": 0,
         "availability": true,
-        "main_image_url": "img/product/details/product-1.jpg",
+        "main_image_url": "img/product/product-1.jpg",
         "images_urls": [
           "img/product/details/product-details-1.jpg",
           "img/product/details/product-details-2.jpg",
@@ -77,7 +77,7 @@
         "color": "Green",
         "discount": 0,
         "availability": true,
-        "main_image_url": "img/product/details/product-2.jpg",
+        "main_image_url": "img/product/product-2.jpg",
         "images_urls": [
           "img/product/details/product-details-1.jpg",
           "img/product/details/product-details-2.jpg",
@@ -102,7 +102,7 @@
         "color": "Yellow",
         "discount": 0,
         "availability": true,
-        "main_image_url": "img/product/details/product-3.jpg",
+        "main_image_url": "img/product/product-3.jpg",
         "images_urls": [
           "img/product/details/product-details-1.jpg",
           "img/product/details/product-details-2.jpg",
@@ -127,7 +127,7 @@
         "color": "Red",
         "discount": 0,
         "availability": true,
-        "main_image_url": "img/product/details/product-4.jpg",
+        "main_image_url": "img/product/product-4.jpg",
         "images_urls": [
           "img/product/details/product-details-1.jpg",
           "img/product/details/product-details-2.jpg",
@@ -152,7 +152,7 @@
         "color": "Blue",
         "discount": 0,
         "availability": true,
-        "main_image_url": "img/product/details/product-5.jpg",
+        "main_image_url": "img/product/product-5.jpg",
         "images_urls": [
           "img/product/details/product-details-1.jpg",
           "img/product/details/product-details-2.jpg",
@@ -177,7 +177,7 @@
         "color": "Blue",
         "discount": 0,
         "availability": true,
-        "main_image_url": "img/product/details/product-6.jpg",
+        "main_image_url": "img/product/product-6.jpg",
         "images_urls": [
           "img/product/details/product-details-1.jpg",
           "img/product/details/product-details-2.jpg",
@@ -202,7 +202,7 @@
         "color": "Blue",
         "discount": 0,
         "availability": true,
-        "main_image_url": "img/product/details/product-7.jpg",
+        "main_image_url": "img/product/product-7.jpg",
         "images_urls": [
           "img/product/details/product-details-1.jpg",
           "img/product/details/product-details-2.jpg",
@@ -227,7 +227,7 @@
         "color": "Blue",
         "discount": 0,
         "availability": true,
-        "main_image_url": "img/product/details/product-8.jpg",
+        "main_image_url": "img/product/product-8.jpg",
         "images_urls": [
           "img/product/details/product-details-1.jpg",
           "img/product/details/product-details-2.jpg",
@@ -252,7 +252,7 @@
         "color": "Blue",
         "discount": 0,
         "availability": true,
-        "main_image_url": "img/product/details/product-9.jpg",
+        "main_image_url": "img/product/product-9.jpg",
         "images_urls": [
           "img/product/details/product-details-1.jpg",
           "img/product/details/product-details-2.jpg",
@@ -277,7 +277,7 @@
         "color": "Blue",
         "discount": 0,
         "availability": true,
-        "main_image_url": "img/product/details/product-10.jpg",
+        "main_image_url": "img/product/product-10.jpg",
         "images_urls": [
           "img/product/details/product-details-1.jpg",
           "img/product/details/product-details-2.jpg",
@@ -302,7 +302,7 @@
         "color": "Blue",
         "discount": 0,
         "availability": true,
-        "main_image_url": "img/product/details/product-11.jpg",
+        "main_image_url": "img/product/product-11.jpg",
         "images_urls": [
           "img/product/details/product-details-1.jpg",
           "img/product/details/product-details-2.jpg",
@@ -327,7 +327,7 @@
         "color": "Blue",
         "discount": 0,
         "availability": true,
-        "main_image_url": "img/product/details/product-12.jpg",
+        "main_image_url": "img/product/product-12.jpg",
         "images_urls": [
           "img/product/details/product-details-1.jpg",
           "img/product/details/product-details-2.jpg",

@@ -5,6 +5,7 @@ import {
   constructLayoutEngine,
 } from "single-spa-layout";
 import microfrontendLayout from "./microfrontend-layout.html";
+import "../assets/img/loading.gif";
 
 import "../assets/css/bootstrap.min.css";
 import "../assets/css/font-awesome.min.css";
@@ -55,7 +56,16 @@ import "../assets/img/blog/blog-1.jpg";
 import "../assets/img/blog/blog-2.jpg";
 import "../assets/img/blog/blog-3.jpg";
 
-const routes = constructRoutes(microfrontendLayout);
+const routes = constructRoutes(microfrontendLayout, {
+  errors: {
+    mfError: `<div class='mf-error h-100 d-flex align-items-center justify-content-center'>Oops! The micro-frontend isn't working right now</div>`
+  },
+  loaders: {
+    mfLoader: `<div class='h-100 d-flex align-items-center justify-content-center'><img class="h-90" src="../assets/img/loading.gif" /></div>`
+  },
+  props: {}
+});
+
 const applications = constructApplications({
   routes,
   loadApp({ name }) {
@@ -65,5 +75,6 @@ const applications = constructApplications({
 const layoutEngine = constructLayoutEngine({ routes, applications });
 
 applications.forEach(registerApplication);
-layoutEngine.activate();
-start();
+start({
+  urlRerouteOnly: true,
+});
