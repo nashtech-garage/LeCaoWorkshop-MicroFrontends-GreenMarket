@@ -248,10 +248,11 @@ ol {
 	}
 }
 
+
 /*---------------------
   Header
 -----------------------*/
-
+/*
 .header__top {
 	background: #f5f5f5;
 }
@@ -556,7 +557,7 @@ ol {
 
 .humberger__open {
 	display: none;
-}
+}*/
 
 /*---------------------
   Hero
@@ -3146,6 +3147,10 @@ ol {
 
 .mf-error {
 	background-color: #d0d0d5;
+}
+
+#single-spa-application\:\@app\/angular-apps\/common-header-app {
+	height: 158px;
 }
 
 #single-spa-application\:\@app\/react-apps\/common-hero-search-app {
