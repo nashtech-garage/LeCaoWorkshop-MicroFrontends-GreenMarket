@@ -480,9 +480,11 @@
     </route>
 
     <!-- Footer Section Begin -->
-    <route default>
-      <application name="@app/react-apps/common-hero-footer-app"></application>
-    </route>
+    <application
+      loader="mfLoader"
+      error="mfError"
+      name="@app/react-apps/common-footer-app"></application>
+    <!-- Footer Section End -->
 
   </main>
 </single-spa-router>
