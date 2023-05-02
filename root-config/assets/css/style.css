@@ -3270,3 +3270,11 @@ ol {
 		font-size: 24px;
 	}
 }
+
+.mf-error {
+	background-color: #d0d0d5;
+}
+
+#single-spa-application\:\@app\/react-apps\/common-hero-search-app {
+	height: 81px;
+}
