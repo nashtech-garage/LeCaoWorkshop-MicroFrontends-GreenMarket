@@ -39,19 +39,56 @@
     <div class="row">
       <div class="col-lg-3">
         <div class="header__logo">
-          <a href="./index.html"
-            ><img src="assets/img/logo.png" alt=""
-          /></a>
+          <a href="./index.html"><img src="assets/img/logo.png" alt="" /></a>
         </div>
       </div>
       <div class="col-lg-6">
         <nav class="header__menu">
           <ul>
-            <li><a routerLink="/shops" routerLinkActive="active-link">Shop</a></li>
-            <li><a routerLink="/cart" routerLinkActive="active-link">Cart</a></li>
-            <li><a routerLink="/checkout" routerLinkActive="active-link">Check Out</a></li>
-            <li><a routerLink="/contact" routerLinkActive="active-link">Contact</a></li>
-            <li><a routerLink="/blogs" routerLinkActive="active-link">Blog</a></li>
+            <li>
+              <a
+                aria-current="page"
+                routerLink="/"
+                routerLinkActive="active"
+                ariaCurrentWhenActive="page"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a
+                routerLink="/shops"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Shop</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/cart"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Cart</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/blogs"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Blog</a
+              >
+            </li>
+            <li>
+              <a
+                class="nav-link"
+                routerLink="/contact"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Contact</a
+              >
+            </li>
           </ul>
         </nav>
       </div>
@@ -62,9 +99,7 @@
               <a href="#"><i class="fa fa-heart"></i> <span>1</span></a>
             </li>
             <li>
-              <a href="#"
-                ><i class="fa fa-shopping-bag"></i> <span>3</span></a
-              >
+              <a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a>
             </li>
           </ul>
           <div class="header__cart__price">item: <span>$150.00</span></div>
