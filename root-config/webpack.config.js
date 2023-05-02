@@ -1,8 +1,6 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const miniCssExtractPlugin = require('mini-css-extract-plugin')
-const ExposeRuntimeCssAssetsPlugin = require("single-spa-css/ExposeRuntimeCssAssetsPlugin.cjs");
 
 module.exports = (webpackConfigEnv, argv) => {
   const orgName = "app";
@@ -11,10 +9,8 @@ module.exports = (webpackConfigEnv, argv) => {
     projectName: "root-config",
     webpackConfigEnv,
     argv,
-    disableHtmlGeneration: true
+    disableHtmlGeneration: true,
   });
-
-  // console.log(defaultConfig);
 
   return merge(defaultConfig, {
     // modify the webpack config however you'd like to by adding to this object
@@ -25,14 +21,14 @@ module.exports = (webpackConfigEnv, argv) => {
           use: ["style-loader", "css-loader"],
         },
         {
-          test: /\.(png|jpe?g|gif|svg)$/i,
+          test: /\.(png|jpg|gif)$/i,
           loader: 'file-loader',
           options: {
             name: '[path][name].[ext]',
           },
         },
         {
-          test: /\.(svg|gif|ico|eot|ttf|woff2?)(\?v=\d+\.\d+\.\d+)?$/i,
+          test: /\.(svg|ico|eot|ttf|woff2?)(\?v=\d+\.\d+\.\d+)?$/i,
           type: 'asset/resource',
         }
       ],
@@ -46,7 +42,6 @@ module.exports = (webpackConfigEnv, argv) => {
           orgName,
         },
       }),
-      // new miniCssExtractPlugin()
     ],
   });
 };

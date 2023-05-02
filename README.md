@@ -8,14 +8,21 @@ Move to root-config folder
 cd root-config
 ```
 
-Install libraries
+Install libraries for all projects
 
 ```
-npm install
+npm run install-all
 ```
+
+Build all projects
+
+```
+npm run build
+```
+
 
 Start project
 
 ```
-npm start
+npm run start
 ```
