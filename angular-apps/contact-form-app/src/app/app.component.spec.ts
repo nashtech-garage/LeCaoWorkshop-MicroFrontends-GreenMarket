@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'common-contact-form'`, () => {
+  it(`should have as title 'contact-form-app'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('common-contact-form');
+    expect(app.title).toEqual('contact-form-app');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('common-contact-form app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('contact-form-app app is running!');
   });
 });

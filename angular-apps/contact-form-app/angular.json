@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "common-contact-form": {
+    "contact-form-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "outputPath": "dist/common-contact-form",
+            "outputPath": "dist/contact-form-app",
             "index": "src/index.html",
             "main": "src/main.single-spa.ts",
             "polyfills": [
@@ -30,7 +30,7 @@
             "scripts": [],
             "customWebpackConfig": {
               "path": "extra-webpack.config.js",
-              "libraryName": "common-contact-form",
+              "libraryName": "contact-form-app",
               "libraryTarget": "umd"
             },
             "deployUrl": "http://localhost:6003/"
@@ -67,10 +67,10 @@
           "builder": "@angular-builders/custom-webpack:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "common-contact-form:build:production"
+              "browserTarget": "contact-form-app:build:production"
             },
             "development": {
-              "browserTarget": "common-contact-form:build:development"
+              "browserTarget": "contact-form-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "common-contact-form:build"
+            "browserTarget": "contact-form-app:build"
           }
         },
         "test": {
