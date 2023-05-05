@@ -1,0 +1,16 @@
+.form-content {
+    padding: 20px 30px;
+}
+
+.header-text {
+    font-weight: bold;
+}
+
+.btn-custom {
+    background-color: #7fad39;
+    color: #FFF;
+    font-weight: bold;
+    border: none;
+    padding: 10px 30px;
+    font-size: 1.5rem;
+}
