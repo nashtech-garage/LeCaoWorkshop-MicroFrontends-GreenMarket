@@ -602,7 +602,7 @@ ol {
   Categories
 -----------------------*/
 
-.categories__item {
+/* .categories__item {
 	height: 270px;
 	position: relative;
 }
@@ -649,7 +649,7 @@ ol {
 .categories__slider.owl-carousel .owl-nav button.owl-next {
 	left: auto;
 	right: -35px;
-}
+} */
 
 /*---------------------
   Featured
@@ -3102,7 +3102,7 @@ ol {
 }
 
 #single-spa-application\:\@app\/react-apps\/main-featured-product {
-	height: 1061px;
+	height: 100%;
 }
 
 #single-spa-application\:\@app\/react-apps\/common-footer-app {
@@ -3110,4 +3110,8 @@ ol {
 }
 #single-spa-application\:\@app\/angular-apps\/contact-form-app {
 	height: 500px;
+}
+
+#single-spa-application\:\@app\/angular-apps\/main-categories-app {
+	height: 100%;
 }
