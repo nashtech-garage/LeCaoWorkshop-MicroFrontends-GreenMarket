@@ -22,7 +22,7 @@ export default function HeroSearch() {
     }, []);
     
     const onSubmit: SubmitHandler<ISearchFormInput> = formData => {
-        navigate(`/shop?id=${formData.categoryId}&keyword=${ encodeURIComponent(formData.keyword) }`)
+        navigate(`/shops?id=${formData.categoryId}&keyword=${ encodeURIComponent(formData.keyword) }`)
     };
     
     return (

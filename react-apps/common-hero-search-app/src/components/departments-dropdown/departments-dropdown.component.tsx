@@ -36,7 +36,7 @@ export default function DepartmentsDropdown(props) {
                         : `${Styles.hero__categories__menu__content}`}>
                     {categories.map((category: ICategory, index: number) => (
                         <li key={index}>
-                            <Link to={`${rootConfigUrl}/shop?id=${category.id}`}>
+                            <Link to={`${rootConfigUrl}/shops?id=${category.id}`}>
                                 {category.name}
                             </Link>
                         </li>

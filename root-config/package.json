@@ -1,8 +1,8 @@
 {
   "name": "@app/root-config",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "scripts": {
-    "start": "concurrently --kill-others --kill-others-on-fail -p name --names \"common-app,contact-form-app,common-header-app,react-apps:common-hero-search-app,common-footer-app,main-featured-product-app,root-config\" \"npm run start:common-app\" \"npm run start:angular-apps:contact-form-app\" \"npm run start:angular-apps:common-header-app\" \"npm run start:react-apps:common-hero-search-app\" \"npm run start:react-apps:common-footer-app\" \"npm run start:react-apps:main-featured-product-app\" \"webpack serve --port 9000 --env isLocal\"",
+    "start": "concurrently --kill-others --kill-others-on-fail -p name --names \"common-app,contact-form-app,common-header-app,common-hero-search-app,common-footer-app,main-featured-product-app,root-config\" \"npm run start:common-app\" \"npm run start:angular-apps:contact-form-app\" \"npm run start:angular-apps:common-header-app\" \"npm run start:react-apps:common-hero-search-app\" \"npm run start:react-apps:common-footer-app\" \"npm run start:react-apps:main-featured-product-app\" \"webpack serve --port 9000 --env isLocal\"",
     "start:common-app": "cd ../common-app/ && npx http-server . --cors -p 5000",
     "start:angular-apps:contact-form-app": "cd ../angular-apps/contact-form-app/dist/contact-form-app && npx http-server . --cors -p 6003",
     "start:angular-apps:common-header-app": "cd ../angular-apps/common-header-app/dist/common-header-app && npx http-server . --cors -p 5001",
@@ -23,9 +23,9 @@
     "build": "npm run build:angular-apps:contact-form-app && npm run build:angular-apps:common-header-app && npm run build:react-apps:common-hero-search-app && npm run build:react-apps:common-footer-app && npm run build:react-apps:main-featured-product-app",
     "build:angular-apps:contact-form-app": "cd ../angular-apps/contact-form-app/ && npm run build:single-spa:contact-form-app",
     "build:angular-apps:common-header-app": "cd ../angular-apps/common-header-app/ && npm run build:single-spa:common-header-app",
-    "build:react-apps:common-hero-search-app": "cd ../react-apps/common-hero-search-app/ && webpack --config ./webpack.config.js",
+    "build:react-apps:common-hero-search-app": "cd ../react-apps/common-hero-search-app/ && copy .env.example .env && webpack --config ./webpack.config.js",
     "build:react-apps:common-footer-app": "cd ../react-apps/common-footer-app/ && webpack --config ./webpack.config.js",
-    "build:react-apps:main-featured-product-app": "cd ../react-apps/main-featured-product-app/ && webpack --config ./webpack.config.js",
+    "build:react-apps:main-featured-product-app": "cd ../react-apps/main-featured-product-app/ && copy .env.example .env && webpack --config ./webpack.config.js",
     "build:webpack": "webpack --mode=production",
     "build:types": "tsc"
   },
@@ -45,7 +45,6 @@
     "eslint-plugin-prettier": "^3.4.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
-    "husky": "^7.0.2",
     "jest": "^27.0.6",
     "jest-cli": "^27.0.6",
     "prettier": "^2.3.2",
