@@ -2562,6 +2562,13 @@ ol {
 	line-height: 26px;
 }
 
+/* SHOPPING CART */
+
+#shopping-cart {
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1200px) {
