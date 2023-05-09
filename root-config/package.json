@@ -1,6 +1,6 @@
 {
   "name": "@app/root-config",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "scripts": {
     "start": "concurrently --kill-others --kill-others-on-fail -p name --names \"common-app,contact-form-app,common-header-app,common-hero-search-app,common-footer-app,main-featured-product-app,root-config\" \"npm run start:common-app\" \"npm run start:angular-apps:contact-form-app\" \"npm run start:angular-apps:common-header-app\" \"npm run start:react-apps:common-hero-search-app\" \"npm run start:react-apps:common-footer-app\" \"npm run start:react-apps:main-featured-product-app\" \"webpack serve --port 9000 --env isLocal\"",
     "start:common-app": "cd ../common-app/ && npx http-server . --cors -p 5000",
