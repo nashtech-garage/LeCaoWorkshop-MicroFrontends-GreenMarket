@@ -1,5 +1,5 @@
 {
-  "name": "@app/common-contact-app",
+  "name": "@app/app-common-contact-app",
   "scripts": {
     "start": "webpack serve --port 5006",
     "start:standalone": "webpack serve --env standalone",
@@ -60,5 +60,5 @@
     "single-spa": "^5.9.3",
     "single-spa-react": "^4.3.1"
   },
-  "types": "dist/common-contact-app.d.ts"
+  "types": "dist/app-common-contact-app.d.ts"
 }
