@@ -1,0 +1,39 @@
+<div class="contact-form">
+    <h2 class="d-flex justify-content-center contact__form__title">Leave Message</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+        <div class="form-row">
+        <div class="col-6">
+            <label for="yourName">Your Name</label>
+            <input type="email" class="form-control" id="yourName" formControlName="yourName">
+            <span class="text-danger"
+            *ngIf="(contactFormControl.yourName.touched || submitted) && contactFormControl.yourName.errors?.['required']">
+            Your Name is required
+            </span>
+        </div>
+        <div class="col-6">
+            <label for="yourEmail">Your Email</label>
+            <input type="email" class="form-control" id="yourEmail" placeholder="name@example.com" formControlName="yourEmail">
+            <span class="text-danger"
+            *ngIf="(contactFormControl.yourEmail.touched || submitted) && contactFormControl.yourEmail.errors?.['required']">
+            Your Email is required
+            </span>
+            <span class="text-danger"
+            *ngIf="(contactFormControl.yourEmail.touched || submitted) && contactFormControl.yourEmail.errors?.['email']">
+            Your Email is incorrect format
+            </span>
+        </div>
+        </div>
+
+        <div class="form-group">
+        <label for="messageTextarea">Your Message</label>
+        <textarea class="form-control" id="yourMessage" rows="5" formControlName="yourMessage"></textarea>
+        <span class="text-danger"
+            *ngIf="(contactFormControl.yourMessage.touched || submitted) && contactFormControl.yourMessage.errors?.['required']">
+            Your Message is required
+            </span>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit">Send message</button>
+        </div>
+    </form>
+</div>

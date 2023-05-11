@@ -408,6 +408,12 @@
         "tags": "All, Trending, Cooking, Healthy Food, Life Style",
         "comments_count": 12
       }
-    ]
+    ],
+    "mainHeroBanner": {
+      "CategoryName": "FRUIT FRESH",
+      "Title": "Vegetable 100% Organic",
+      "Content": "Free Pickup and Delivery Available",
+      "ImageLink": "img/hero/banner.jpg"
+    }
   }
 }
