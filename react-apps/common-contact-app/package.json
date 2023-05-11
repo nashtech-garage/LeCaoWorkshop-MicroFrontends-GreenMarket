@@ -60,5 +60,5 @@
     "single-spa": "^5.9.3",
     "single-spa-react": "^4.3.1"
   },
-  "types": "dist/app-common-contact-app.d.ts"
+  "types": "dist/common-contact-app.d.ts"
 }
