@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { HttpClient } from '@angular/common/http';
 import { throwError } from 'rxjs';
+
 import { Category } from 'src/Types/Category';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-main-categories-root',
@@ -10,14 +13,13 @@ import { Category } from 'src/Types/Category';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  api = environment.apiUrl;
   title = 'main-categories-app';
   customOptions: OwlOptions = {
     loop: true,
     margin: 0,
     items: 4,
     dots: false,
-    // nav: true,
-    // navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
     animateOut: 'fadeOut',
     animateIn: 'fadeIn',
     smartSpeed: 1200,
@@ -53,8 +55,8 @@ export class AppComponent implements OnInit {
   }
 
   fetch() {
-    const api = `http://localhost:5000/data/data.json`;
-    const http$ = this.http.get<any>(api);
+    const apiData = `${environment.apiUrl}data/data.json`;
+    const http$ = this.http.get<any>(apiData);
 
     http$.subscribe(
       res => {
