@@ -224,6 +224,7 @@
 
 .header__menu ul li:hover>a {
 	color: #7fad39;
+  text-decoration: none;
 }
 
 .header__menu ul li:last-child {
