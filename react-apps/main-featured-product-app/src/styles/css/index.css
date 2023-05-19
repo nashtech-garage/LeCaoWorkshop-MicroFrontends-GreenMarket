@@ -194,6 +194,7 @@ ol {
 	-ms-transition: all, 0.5s;
 	-o-transition: all, 0.5s;
 	transition: all, 0.5s;
+	margin-bottom: unset;
 }
 
 .featured__item__pic__hover li {

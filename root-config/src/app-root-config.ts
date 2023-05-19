@@ -7,6 +7,7 @@ import {
 import microfrontendLayout from "./microfrontend-layout.html";
 import "../assets/img/loading.gif";
 
+import "../assets/css/style.css";
 import "../assets/css/bootstrap.min.css";
 import "../assets/css/font-awesome.min.css";
 import "../assets/css/elegant-icons.css";
@@ -14,7 +15,6 @@ import "../assets/css/nice-select.css";
 import "../assets/css/jquery-ui.min.css";
 import "../assets/css/owl.carousel.min.css";
 import "../assets/css/slicknav.min.css";
-import "../assets/css/style.css";
 
 import "../assets/js/jquery-3.3.1.min.js";
 import "../assets/js/bootstrap.min.js";
