@@ -15,6 +15,11 @@
     letter-spacing: 2px;
 }
 
+.primary__btn:hover {
+    text-decoration: none;
+    color: #ffffff;
+}
+
 .hero__item {
     height: 431px;
     display: flex;

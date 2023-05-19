@@ -10,6 +10,10 @@
 	padding: 10px 0 13px;
 }
 
+.header__top__left ul {
+  margin-bottom: unset;
+}
+
 .header__top__left ul li {
 	font-size: 14px;
 	color: #1c1c1c;
@@ -171,6 +175,10 @@
 	padding: 24px 0;
 }
 
+.header__menu ul {
+  margin-bottom: unset;
+}
+
 .header__menu ul li {
 	list-style: none;
 	display: inline-block;
@@ -254,6 +262,7 @@
 .header__cart ul {
 	display: inline-block;
 	margin-right: 25px;
+  margin-bottom: unset;
 }
 
 .header__cart ul li {
