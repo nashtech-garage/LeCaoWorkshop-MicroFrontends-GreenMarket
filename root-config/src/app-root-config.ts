@@ -72,6 +72,7 @@ const applications = constructApplications({
     return System.import(name);
   },
 });
+console.log(applications)
 const layoutEngine = constructLayoutEngine({ routes, applications });
 
 applications.forEach(registerApplication);
