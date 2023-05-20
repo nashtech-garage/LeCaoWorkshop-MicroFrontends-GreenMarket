@@ -36,6 +36,7 @@
     color: #1c1c1c;
     line-height: 39px;
     display: block;
+    text-decoration: none;
 }
 
 .hero__search {
