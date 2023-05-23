@@ -1,7 +1,14 @@
 import { h, createApp } from 'vue';
-import singleSpaVue from 'single-spa-vue';
 
+import singleSpaVue from 'single-spa-vue';
+import axiosPlugin from './plugins/axiosPlugin';
+import router from './router';
 import App from './App.vue';
+
+const axiosOptions = {
+  baseUrl: process.env.VUE_APP_API,
+  token: ''
+}
 
 const vueLifecycles = singleSpaVue({
   createApp,
@@ -18,6 +25,10 @@ const vueLifecycles = singleSpaVue({
         */
       });
     },
+  },
+  handleInstance(app) {
+    app.use(axiosPlugin, axiosOptions)
+    app.use(router)
   },
 });
 

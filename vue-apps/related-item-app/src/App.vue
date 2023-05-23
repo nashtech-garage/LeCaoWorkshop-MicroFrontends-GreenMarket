@@ -8,19 +8,24 @@
                 </div>
             </div>
         </div>
-        <product-grid />
+        <router-view/>
     </div>
   </section>
 </template>
 
 <script>
-import ProductGrid from './components/ProductGrid.vue';
 export default {
-  components: {
-    ProductGrid
-  }
+  
 }
 </script>
 
 <style>
+.related-product {
+	padding-bottom: 30px;
+}
+
+.related__product__title {
+	margin-bottom: 70px;
+}
+
 </style>
