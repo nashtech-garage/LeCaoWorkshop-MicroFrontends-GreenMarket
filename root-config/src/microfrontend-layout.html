@@ -345,7 +345,13 @@
       <!-- Blog Section End -->
     </route>
 
-    <route path="shops"> shop </route>
+    <route path="shops"> 
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/vue-apps/vue-shop-page-products-grid-app"
+      ></application> 
+    </route>
 
     <route path="cart"> cart </route>
 
