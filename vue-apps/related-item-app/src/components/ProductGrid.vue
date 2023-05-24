@@ -11,8 +11,9 @@ import ProductCard from './ProductCard.vue';
 import productsApi from '@/api/productsApi';
 
 export default {
-  
+
   components: { ProductCard },
+
   data(){
     return {
       relatedProducts: []
@@ -32,7 +33,6 @@ export default {
     async getRelatedProduct(){
       const productId = this.$route.query.id
       try{
-        console.log(productId)
         const {data} = await productsApi.getProducts(this.$axios)
         const { products } = data.data
 

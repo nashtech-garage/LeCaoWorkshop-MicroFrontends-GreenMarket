@@ -1,6 +1,6 @@
 <template>
     <div class="product__item">
-        <div class="product__item__pic set-bg" :style="{'background-image': 'url('+product.main_image_url+')'}">
+        <div class="product__item__pic set-bg abc" :style="{'background-image': 'url('+ commonApi + product.main_image_url+')'}">
             <ul class="product__item__pic__hover">
                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -25,8 +25,13 @@ export default ({
         product: {
             required: true,
             type: Object
-        }
-    }
+        },
+    },
+	computed: {
+		commonApi() {
+			return process.env.VUE_APP_API;
+		}
+	}
 })
 </script>
 <style>
@@ -55,6 +60,7 @@ export default ({
 	-ms-transition: all, 0.5s;
 	-o-transition: all, 0.5s;
 	transition: all, 0.5s;
+	margin-bottom: unset;
 }
 
 .product__item__pic__hover li {
@@ -116,6 +122,12 @@ export default ({
 
 .product__item__text h6 a {
 	color: #252525;
+	text-decoration: none;
+}
+
+.product__item__text h6 a:hover {
+	color: #252525;
+	text-decoration: none;
 }
 
 .product__item__text h5 {
