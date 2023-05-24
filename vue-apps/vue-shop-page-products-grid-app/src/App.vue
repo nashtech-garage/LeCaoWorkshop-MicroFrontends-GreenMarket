@@ -5,9 +5,8 @@
       <div class="col-lg-9 col-md-7">
         <product-sale-off></product-sale-off>
         <product-filter-bar></product-filter-bar>
-        <product-grid></product-grid>
+        <product-grid ref="productGrid"></product-grid>
       </div>
-      <product-grid />
     </div>
   </div>
 </template>
@@ -19,7 +18,13 @@ import ProductSaleOff from './components/ProductSaleOff.vue'
 import ProductFilterBar from './components/ProductFilterBar.vue'
 export default {
   name: 'App',
-  components: {ProductGrid, ProductCategory, ProductSaleOff, ProductFilterBar}
+  components: {ProductGrid, ProductCategory, ProductSaleOff, ProductFilterBar},
+  methods: {
+    onProductFilter(category, color, size) {
+      console.log(category);
+      this.$refs.productGrid.onProductFilter(category, color, size);
+    }
+  }
 }
 </script>
 

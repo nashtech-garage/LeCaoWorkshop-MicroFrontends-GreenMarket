@@ -14,7 +14,7 @@
     components: { ProductCard },
     data(){
       return {
-        products: []
+        products: [],
       }
     },
     async created(){
@@ -26,6 +26,31 @@
             this.products = await productsApi.getProducts(this.$axios);
         }catch(err){
           console.log(err);
+        }
+      },
+      async onProductFilter(category, color, size) {
+        await this.getProducts();
+        if (category) {
+          this.products = this.products.filter(x => x.category_id == category);
+        }
+        if (color) {
+          this.products = this.products.filter(x => x.color == color);
+        }
+        if (size) {
+          switch (size) {
+            case 'Large':
+              this.products = this.products.filter(x => x.weight > 200);
+              break;
+            case 'Medium':
+              this.products = this.products.filter(x => x.weight > 100 && x.weight <= 200);
+              break;
+            case 'Small':
+              this.products = this.products.filter(x => x.weight > 10 && x.weight <= 100);
+              break;
+            case 'Tiny':
+              this.products = this.products.filter(x => x.weight <= 10);
+              break;
+          }
         }
       },
     }

@@ -4,7 +4,7 @@
           <div class="sidebar__item">
               <h4>Department</h4>
               <ul>
-                  <li v-for="(item, index) in categories" :key="index"><a href="#">{{ item.name }}</a></li>
+                  <li v-for="(item, index) in categories" :key="index" @click="categorySelected = item.id"><a href="#">{{ item.name }}</a></li>
               </ul>
           </div>
           <div class="sidebar__item">
@@ -26,132 +26,39 @@
           </div>
           <div class="sidebar__item sidebar__item__color--option">
               <h4>Colors</h4>
-              <div class="sidebar__item__color sidebar__item__color--white">
-                  <label for="white">
-                      White
-                      <input type="radio" id="white">
-                  </label>
-              </div>
-              <div class="sidebar__item__color sidebar__item__color--gray">
-                  <label for="gray">
-                      Gray
-                      <input type="radio" id="gray">
-                  </label>
-              </div>
-              <div class="sidebar__item__color sidebar__item__color--red">
-                  <label for="red">
-                      Red
-                      <input type="radio" id="red">
-                  </label>
-              </div>
-              <div class="sidebar__item__color sidebar__item__color--black">
-                  <label for="black">
-                      Black
-                      <input type="radio" id="black">
-                  </label>
-              </div>
-              <div class="sidebar__item__color sidebar__item__color--blue">
-                  <label for="blue">
-                      Blue
-                      <input type="radio" id="blue">
-                  </label>
-              </div>
-              <div class="sidebar__item__color sidebar__item__color--green">
-                  <label for="green">
-                      Green
-                      <input type="radio" id="green">
+              <div v-for="(color, index) in colors" :class="'sidebar__item__color sidebar__item__color--' + color.toLowerCase()"  :key="index" @click="colorSelected = color">
+                  <label :for="color.toLowerCase()">
+                      {{ color }}
+                      <input type="radio" :id="color.toLowerCase()">
                   </label>
               </div>
           </div>
           <div class="sidebar__item">
               <h4>Popular Size</h4>
-              <div class="sidebar__item__size">
-                  <label for="large">
-                      Large
-                      <input type="radio" id="large">
-                  </label>
-              </div>
-              <div class="sidebar__item__size">
-                  <label for="medium">
-                      Medium
-                      <input type="radio" id="medium">
-                  </label>
-              </div>
-              <div class="sidebar__item__size">
-                  <label for="small">
-                      Small
-                      <input type="radio" id="small">
-                  </label>
-              </div>
-              <div class="sidebar__item__size">
-                  <label for="tiny">
-                      Tiny
-                      <input type="radio" id="tiny">
+              <div class="sidebar__item__size" v-for="(size, index) in sizes" :key="index" @click="sizeSelected = size"> 
+                  <label :for="size.toLowerCase()">
+                      {{ size }}
+                      <input type="radio" :id="size.toLowerCase()">
                   </label>
               </div>
           </div>
           <div class="sidebar__item">
               <div class="latest-product__text">
                   <h4>Latest Products</h4>
-                  <div class="latest-product__slider owl-carousel">
-                      <div class="latest-prdouct__slider__item">
-                          <a href="#" class="latest-product__item">
+                  <div class="latest-product__slider">
+                    <Carousel :itemsToShow="1" :autoplay="2000" :wrap-around="true">
+                        <Slide v-for="(product, index) in latestProducts" :key="index">
+                            <a href="#" class="latest-product__item">
                               <div class="latest-product__item__pic">
-                                  <img src="img/latest-product/lp-1.jpg" alt="">
+                                  <img :src="imgHostUrl + product.main_image_url" alt="">
                               </div>
                               <div class="latest-product__item__text">
-                                  <h6>Crab Pool Security</h6>
-                                  <span>$30.00</span>
+                                  <h6>{{ product.name }}</h6>
+                                  <span>${{ product.price }}</span>
                               </div>
                           </a>
-                          <a href="#" class="latest-product__item">
-                              <div class="latest-product__item__pic">
-                                  <img src="img/latest-product/lp-2.jpg" alt="">
-                              </div>
-                              <div class="latest-product__item__text">
-                                  <h6>Crab Pool Security</h6>
-                                  <span>$30.00</span>
-                              </div>
-                          </a>
-                          <a href="#" class="latest-product__item">
-                              <div class="latest-product__item__pic">
-                                  <img src="img/latest-product/lp-3.jpg" alt="">
-                              </div>
-                              <div class="latest-product__item__text">
-                                  <h6>Crab Pool Security</h6>
-                                  <span>$30.00</span>
-                              </div>
-                          </a>
-                      </div>
-                      <div class="latest-prdouct__slider__item">
-                          <a href="#" class="latest-product__item">
-                              <div class="latest-product__item__pic">
-                                  <img src="img/latest-product/lp-1.jpg" alt="">
-                              </div>
-                              <div class="latest-product__item__text">
-                                  <h6>Crab Pool Security</h6>
-                                  <span>$30.00</span>
-                              </div>
-                          </a>
-                          <a href="#" class="latest-product__item">
-                              <div class="latest-product__item__pic">
-                                  <img src="img/latest-product/lp-2.jpg" alt="">
-                              </div>
-                              <div class="latest-product__item__text">
-                                  <h6>Crab Pool Security</h6>
-                                  <span>$30.00</span>
-                              </div>
-                          </a>
-                          <a href="#" class="latest-product__item">
-                              <div class="latest-product__item__pic">
-                                  <img src="img/latest-product/lp-3.jpg" alt="">
-                              </div>
-                              <div class="latest-product__item__text">
-                                  <h6>Crab Pool Security</h6>
-                                  <span>$30.00</span>
-                              </div>
-                          </a>
-                      </div>
+                        </Slide>
+                    </Carousel>
                   </div>
               </div>
           </div>
@@ -161,23 +68,57 @@
   
 <script>
   import productsApi from '@/api/productApi';
+  import { Carousel, Slide } from 'vue3-carousel'
   export default {
+    components: {
+		Carousel,
+		Slide,
+	},
     data(){
       return {
-        categories: []
+        categories: [],
+        categorySelected: null,
+        products: [],
+        latestProducts: [],
+        sizes: ['Large', 'Medium', 'Small', 'Tiny'],
+        sizeSelected: null,
+        colors: ['White', 'Gray', 'Red', 'Black', 'Blue', 'Green'],
+        colorSelected: null,
       }
     },
     async created(){
-      await this.getProductCategories();
+      await this.fetchData();
     },
     methods:{
-      async getProductCategories(){
+      async fetchData(){
         try{
             this.categories = await productsApi.getProductCategories(this.$axios);
+            this.products = await productsApi.getProducts(this.$axios);
+            this.latestProducts = this.products.filter(x => x.is_latest == true);
+            console.log(this.latestProducts);
         }catch(err){
           console.log(err);
         }
       },
+      onProductFilter(category, color, size) {
+        this.$parent.onProductFilter(category, color, size);
+      }
+    },
+    computed: {
+        imgHostUrl() {
+            return process.env.VUE_APP_COMMON_URL;
+        }
+    },
+    watch: {
+        categorySelected(newValue) {
+            this.onProductFilter(newValue, this.colorSelected, this.sizeSelected);
+        },
+        sizeSelected(newValue) {
+            this.onProductFilter(this.categorySelected, this.colorSelected, newValue);
+        },
+        colorSelected(newValue) {
+            this.onProductFilter(this.categorySelected, newValue, this.sizeSelected);
+        },
     }
   }
 </script>
