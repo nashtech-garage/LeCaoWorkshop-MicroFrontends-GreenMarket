@@ -1,7 +1,7 @@
 {
   "name": "@app/react-shop-page-product-detail-app",
   "scripts": {
-    "start": "webpack serve --port 9001",
+    "start": "webpack serve --port 9006",
     "start:standalone": "webpack serve --env standalone",
     "build": "concurrently npm:build:*",
     "build:webpack": "webpack --mode=production",
