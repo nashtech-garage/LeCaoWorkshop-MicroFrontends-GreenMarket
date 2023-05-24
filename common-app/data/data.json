@@ -414,6 +414,12 @@
       "Title": "Vegetable 100% Organic",
       "Content": "Free Pickup and Delivery Available",
       "ImageLink": "img/hero/banner.jpg"
+    },
+    "shopdetailPage": {
+      "CategoryName": "FRUIT FRESH",
+      "Title": "Vegetable 100% Organic",
+      "Content": "Free Pickup and Delivery Available",
+      "ImageLink": "img/hero/banner.jpg"
     }
   }
 }
