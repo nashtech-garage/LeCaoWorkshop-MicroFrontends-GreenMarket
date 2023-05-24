@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ProductGrid from '@/components/ProductGrid.vue'
 const routes = [
-    { path: '/detail-page', component: ProductGrid },
+    { path: '/shop-detail', component: ProductGrid },
 ]
 
 const router = createRouter({
