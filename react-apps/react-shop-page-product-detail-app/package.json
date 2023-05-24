@@ -61,5 +61,5 @@
     "single-spa": "^5.9.3",
     "single-spa-react": "^4.3.1"
   },
-  "types": "dist/app-react-main-page-hero-banner.d.ts"
+  "types": "dist/app-react-shop-page-product-detail.d.ts"
 }
