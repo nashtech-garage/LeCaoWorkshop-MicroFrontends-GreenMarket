@@ -1,10 +1,10 @@
 const ShopDetailService = {
     async getShopDetailInfo() : Promise<IShopDetailInfo> {
-        const apiGetBannerInfo = `${process.env.API_ENDPOINT}/data/data.json`;
-        const getBannerInfo = await fetch(apiGetBannerInfo);
-        const bannerInfo = await getBannerInfo.json();
+        const apiGetInfo = `${process.env.API_ENDPOINT}/data/data.json`;
+        const getShopDetailInfo = await fetch(apiGetInfo);
+        const shopDetailInfo = await getShopDetailInfo.json();
 
-        return bannerInfo.data.shopdetailPage;
+        return shopDetailInfo.data.shopdetailPage;
     }
 }
 
