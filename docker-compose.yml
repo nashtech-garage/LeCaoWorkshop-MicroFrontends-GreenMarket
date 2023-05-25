@@ -2,13 +2,21 @@ version: '3.8'
 
 services:
 
+  common-app:
+    image: mf-common-app
+    build:
+      context: ./common-app
+      dockerfile: Dockerfile
+    ports:
+      - '5000:80'
+
   angular-apps-common-header-app:
     image: mf-angular-apps-common-header-app
     build:
       context: ./angular-apps/common-header-app
       dockerfile: Dockerfile
     ports:
-      - '5001:5001'
+      - '5001:80'
 
   react-apps-common-footer-app:
     image: mf-react-apps-common-footer-app
@@ -16,7 +24,15 @@ services:
       context: ./react-apps/common-footer-app
       dockerfile: Dockerfile
     ports:
-      - '5005:5005'
+      - '5005:80'
+
+  react-apps-common-hero-search-app:
+    image: mf-react-apps-common-hero-search-app
+    build:
+      context: ./react-apps/common-hero-search-app
+      dockerfile: Dockerfile
+    ports:
+      - '5003:80'
 
   root-config:
     image: mf-root-config

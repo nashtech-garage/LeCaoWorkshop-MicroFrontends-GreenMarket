@@ -12,6 +12,8 @@ COPY . .
 
 RUN npm run build:single-spa:common-header-app
 
-EXPOSE 5001
+FROM nginx as runtime
 
-CMD ng serve --port 5001 --host 0.0.0.0 --disable-host-check
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=build /app/dist/common-header-app /usr/share/nginx/html

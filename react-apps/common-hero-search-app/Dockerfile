@@ -8,7 +8,11 @@ RUN npm ci
 
 COPY . .
 
+COPY copy_env.sh .
+
 ENV NODE_ENV production
+
+RUN ./copy_env.sh
 
 RUN npm run build
 
