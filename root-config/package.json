@@ -13,7 +13,7 @@
     "start:angular-apps:main-categories-app": "cd ../angular-apps/main-categories-app/dist/main-categories-app && http-server . --cors -p 9002",
     "start:react-apps:react-main-page-hero-banner-app": "cd ../react-apps/react-main-page-hero-banner-app/dist && http-server . --cors -p 9001",
     "start:vue-apps:related-item-app": "cd ../vue-apps/related-item-app/dist && http-server . --cors -p 2002",
-    "start:vue-apps:contact-map-app": "cd ../vue-apps/contact-map-app/dist && npx http-server . --cors -p 6002",
+    "start:vue-apps:contact-map-app": "cd ../vue-apps/contact-map-app/dist && http-server . --cors -p 6002",
     "lint": "eslint src --ext js,ts,tsx",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "format": "prettier --write .",
