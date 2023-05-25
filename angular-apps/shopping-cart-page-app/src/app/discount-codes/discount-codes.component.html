@@ -1,0 +1,11 @@
+<div class="shopping__continue">
+  <div class="shopping__discount">
+    <h5>Discount Codes</h5>
+    <div id="coupon__form">
+      <input type="text" placeholder="Enter your coupon code" [value]="this.coupons" #textCoupons/>
+      <a [routerLink]="" (click)="addCoupon(textCoupons.value)">APPLY COUPON</a>
+    </div>
+    <div *ngIf="hasInvalidCoupon" class="text-danger">{{this.invalidMessage}}</div>
+    <div *ngIf="isEmptyInput" class="text-danger">{{this.emptyInputMessage}}</div>
+  </div>
+</div>
