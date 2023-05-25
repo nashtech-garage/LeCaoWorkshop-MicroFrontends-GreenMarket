@@ -37,7 +37,7 @@
     "build:react-apps:common-footer-app": "cd ../react-apps/common-footer-app/ && webpack --config ./webpack.config.js",
     "build:react-apps:main-featured-product-app": "cd ../react-apps/main-featured-product-app/ && copy .env.example .env && webpack --config ./webpack.config.js",
     "build:react-apps:react-main-page-hero-banner-app": "cd ../react-apps/react-main-page-hero-banner-app/ && copy .env.example .env && webpack --config ./webpack.config.js",
-    "build:vue-apps:vue-shop-page-products-grid-app": "cd ../vue-apps/vue-shop-page-products-grid-app/ && npm run build ",
+    "build:vue-apps:vue-shop-page-products-grid-app": "cd ../vue-apps/vue-shop-page-products-grid-app/ && copy .env.example .env && npm run build",
     "build:webpack": "webpack --mode=production",
     "build:types": "tsc"
   },
