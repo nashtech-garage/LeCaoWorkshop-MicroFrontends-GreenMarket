@@ -1,33 +1,155 @@
-import React, {useEffect, useState} from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Styles from "../../root.module.css";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
+
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel';
+
 import ShopDetailService from "../../services/ShopDetailService"
 
 export default function ProductDetail() {
-    const [shopDetailInfo, setShopDetailInfo] = useState<IShopDetailInfo>({});
-    const bgStyleImage = {
-        backgroundImage: `url(${process.env.API_ENDPOINT}/${shopDetailInfo?.ImageLink})`
+    const [shopDetailInfo, setShopDetailInfo] = useState<IShopDetailInfo>({
+        images_urls: [],
+    });
+    const [activeImage, setActiveImage] = useState<string>();
+    const [activeTab, setActiveTab] = useState<string>('details');
+    const s1 = {
+        width: "123.75px",
+        right: "20px"
     }
-    const bgStyleColor = {
-        backgroundColor: "#f5f5f5"
+
+    const s2 = {
+        // transform: "translate3d(-1006px, 0px, 0px)",
+        transition: "all 1.2s ease 0s",
+        width: "1725px"
     }
-    
+    const queryParameters = new URLSearchParams(window.location.search)
+    const id = +queryParameters.get("id")
+
+    const imgSrc = (url) => `${process.env.API_ENDPOINT}/${url}`;
+
     useEffect(() => {
-        ShopDetailService.getShopDetailInfo()
-            .then((data) => setShopDetailInfo(data))
+        ShopDetailService.getProductById(id)
+            .then((data) => {
+                console.log(data)
+                setShopDetailInfo(data);
+                setActiveImage(data.images_urls[0]);
+            })
             .catch((exception) => {
                 console.error(`${process.env.APP_NAME}: ${exception}`);
             });
     }, []);
-    
+
     return (
-        <div className={`${Styles.hero__item} ${Styles.set__bg}`} style={shopDetailInfo?.ImageLink ? bgStyleImage : bgStyleColor}>
-            <div className={Styles.hero__text}>
-                <span>{shopDetailInfo?.CategoryName}</span>
-                <h2>{shopDetailInfo?.Title}</h2>
-                <p>{shopDetailInfo?.Content}</p>
-                <Link to={`/shops`} className={Styles.primary__btn}>SHOP NOW</Link>
+        <section>
+            <div className="product-details spad" >
+                <div className="row">
+                    <div className="col-lg-6 col-md-6">
+                        <div className="product__details__pic">
+                            <div className="product__details__pic__item">
+                                <img className="product__details__pic__item--large" src={imgSrc(activeImage)} alt="" />
+                            </div>
+                            <div className="product__details__pic__slider">
+                                {shopDetailInfo.images_urls?.length && (
+                                    <OwlCarousel className='owl-theme' loop margin={10} items={4}>
+                                        {shopDetailInfo.images_urls.map((url, index) => (
+                                            <div key={index} className="item" onClick={() => setActiveImage(url)} >
+                                                <img src={imgSrc(url)} />
+                                            </div>
+                                        ))}
+                                    </OwlCarousel>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-6 col-md-6">
+                        <div className="product__details__text">
+                            <h3>{shopDetailInfo.name}</h3>
+                            <div className="product__details__rating">
+                                <i className="fa fa-star"></i>
+                                <i className="fa fa-star"></i>
+                                <i className="fa fa-star"></i>
+                                <i className="fa fa-star"></i>
+                                <i className="fa fa-star-half-o"></i>
+                                <span>({shopDetailInfo.review_count} reviews)</span>
+                            </div>
+                            <div className="product__details__price">{shopDetailInfo.price}</div>
+                            <p>{shopDetailInfo.description_short}</p>
+                            <div className="product__details__quantity">
+                                <div className="quantity">
+                                    <div className="pro-qty"><span className="dec qtybtn">-</span>
+                                        <input type="text" value="1" />
+                                        <span className="inc qtybtn">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" className="primary-btn">ADD TO CARD</a>
+                            <a href="#" className="heart-icon"><span className="icon_heart_alt"></span></a>
+                            <ul>
+                                <li><b>Availability</b> <span>{shopDetailInfo.availability ? 'In Stock' : 'Unavailable'}</span></li>
+                                <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
+                                <li><b>Weight</b> <span>{shopDetailInfo.weight} kg</span></li>
+                                <li>
+                                    <b>Share on</b>
+                                    <div className="share">
+                                        <a href="#"><i className="fa fa-facebook"></i></a>
+                                        <a href="#"><i className="fa fa-twitter"></i></a>
+                                        <a href="#"><i className="fa fa-instagram"></i></a>
+                                        <a href="#"><i className="fa fa-pinterest"></i></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="col-lg-12">
+                        <div className="product__details__tab">
+                            <ul className="nav nav-tabs" role="tablist">
+                                <li className="nav-item">
+                                    <a className={`nav-link ${activeTab === 'details' ? 'active' : ''}`}
+                                        onClick={() => setActiveTab('details')}
+                                        role="button" aria-selected="true">Description</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className={`nav-link ${activeTab === 'information' ? 'active' : ''}`}
+                                        onClick={() => setActiveTab('information')}
+                                        role="button" aria-selected="false">Information</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className={`nav-link ${activeTab === 'review' ? 'active' : ''}`}
+                                        onClick={() => setActiveTab('review')}
+                                        role="button" aria-selected="false">Reviews <span>(1)</span></a>
+                                </li>
+                            </ul>
+                            <div className="tab-content">
+                                <div
+                                    className={`tab-pane ${activeTab === 'details' ? 'active' : ''}`}
+                                    id="tabs-1" role="tabpanel">
+                                    <div className="product__details__tab__desc">
+                                        <h6>Description</h6>
+                                        <p>{shopDetailInfo.description}</p>
+                                    </div>
+                                </div>
+                                <div
+                                    className={`tab-pane ${activeTab === 'information' ? 'active' : ''}`}
+                                    id="tabs-2" role="tabpanel">
+                                    <div className="product__details__tab__desc">
+                                        <h6>Products Infomation</h6>
+                                        <p>{shopDetailInfo.information}</p>
+                                    </div>
+                                </div>
+                                <div
+                                    className={`tab-pane ${activeTab === 'review' ? 'active' : ''}`}
+                                    id="tabs-3" role="tabpanel">
+                                    <div className="product__details__tab__desc">
+                                        <h6>Reviews ({shopDetailInfo.review_count})</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
     );
 }
