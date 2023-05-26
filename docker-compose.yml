@@ -74,6 +74,14 @@ services:
     ports:
       - '9001:80'
 
+  vue-apps-contact-map-app:
+    image: mf-vue-apps-contact-map-app
+    build:
+      context: ./vue-apps/contact-map-app
+      dockerfile: Dockerfile
+    ports:
+      - '6002:80'
+
   vue-apps-related-item-app:
     image: mf-vue-apps-related-item-app
     build:
