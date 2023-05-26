@@ -1,6 +1,6 @@
 {
   "name": "@app/root-config",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "scripts": {
     "start": "concurrently --kill-others --kill-others-on-fail -p name --names \"common-app,contact-form-app,checkout-app,common-header-app,common-hero-search-app,common-footer-app,main-featured-product-app,react-main-page-hero-banner-app,main-categories-app,related-item-app,contact-map-app,root-config\" \"npm run start:common-app\" \"npm run start:angular-apps:contact-form-app\" \"npm run start:angular-apps:checkout-app\" \"npm run start:angular-apps:common-header-app\" \"npm run start:react-apps:common-hero-search-app\" \"npm run start:react-apps:common-footer-app\" \"npm run start:react-apps:main-featured-product-app\" \"npm run start:react-apps:react-main-page-hero-banner-app\" \"npm run start:angular-apps:main-categories-app\" \"npm run start:vue-apps:related-item-app\" \"npm run start:vue-apps:contact-map-app\" \"webpack serve --port 9000 --env isLocal\"",
     "start:common-app": "cd ../common-app/ && http-server . --cors -p 5000",
@@ -41,7 +41,7 @@
     "build:react-apps:react-main-page-hero-banner-app": "cd ../react-apps/react-main-page-hero-banner-app/ && copy .env.example .env && webpack --config ./webpack.config.js",
     "build:vue-apps:related-item-app": "cd ../vue-apps/related-item-app/ && copy .env.example .env && npm run build",
     "build:vue-apps:contact-map-app": "cd ../vue-apps/contact-map-app/ && npm run build",
-    "build:webpack": "webpack --mode=production",
+    "build:webpack": "webpack --mode=production --env isLocal=true",
     "build:types": "tsc"
   },
   "devDependencies": {
