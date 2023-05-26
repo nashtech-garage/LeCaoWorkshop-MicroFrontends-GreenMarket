@@ -2173,3 +2173,9 @@ ol {
 #single-spa-application\:\@app\/react-apps\/react-main-page-hero-banner {
 	height: 431px;
 }
+
+#single-spa-application\:\@app\/angular-apps\/shopping-cart-page-app {
+	height: 1077px;
+	padding-top: 80px;
+    padding-bottom: 80px;
+}
