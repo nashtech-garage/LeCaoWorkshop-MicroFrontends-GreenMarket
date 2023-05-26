@@ -16,4 +16,4 @@ FROM nginx as runtime
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=build /app/dist/common-header-app /usr/share/nginx/html
+COPY --from=build /app/dist/checkout-app /usr/share/nginx/html

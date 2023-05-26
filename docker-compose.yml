@@ -18,6 +18,30 @@ services:
     ports:
       - '5001:80'
 
+  angular-apps-checkout-app:
+    image: mf-angular-apps-checkout-app
+    build:
+      context: ./angular-apps/checkout-app
+      dockerfile: Dockerfile
+    ports:
+      - '4001:80'
+
+  angular-apps-contact-form-app:
+    image: mf-angular-apps-contact-form-app
+    build:
+      context: ./angular-apps/contact-form-app
+      dockerfile: Dockerfile
+    ports:
+      - '6003:80'
+
+  angular-apps-main-categories-app:
+    image: mf-angular-apps-main-categories-app
+    build:
+      context: ./angular-apps/main-categories-app
+      dockerfile: Dockerfile
+    ports:
+      - '9002:80'
+
   react-apps-common-footer-app:
     image: mf-react-apps-common-footer-app
     build:
@@ -33,6 +57,30 @@ services:
       dockerfile: Dockerfile
     ports:
       - '5003:80'
+
+  react-apps-main-featured-product-app:
+    image: mf-react-apps-main-featured-product-app
+    build:
+      context: ./react-apps/main-featured-product-app
+      dockerfile: Dockerfile
+    ports:
+      - '9003:80'
+
+  react-apps-react-main-page-hero-banner-app:
+    image: mf-react-apps-react-main-page-hero-banner-app
+    build:
+      context: ./react-apps/react-main-page-hero-banner-app
+      dockerfile: Dockerfile
+    ports:
+      - '9001:80'
+
+  vue-apps-related-item-app:
+    image: mf-vue-apps-related-item-app
+    build:
+      context: ./vue-apps/related-item-app
+      dockerfile: Dockerfile
+    ports:
+      - '2002:80'
 
   root-config:
     image: mf-root-config
