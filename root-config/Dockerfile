@@ -1,15 +1,16 @@
-FROM node:16-alpine as builder
+FROM node:19-alpine as builder
 # Set the working directory to /app inside the container
 WORKDIR /app
+COPY package.json package-lock.json ./
 # Copy app files
 COPY . .
-# Install dependencies (npm ci makes sure the exact versions in the lockfile gets installed)
-RUN npm ci
+# Install dependencies (npm install makes sure the exact versions in the lockfile gets installed)
+RUN npm install
 # Build the app
 RUN npm run build:webpack
 
 # Bundle static assets with nginx
-FROM nginx:1.21.0-alpine as production
+FROM nginx as production
 ENV NODE_ENV production
 
 # Add your nginx.conf
