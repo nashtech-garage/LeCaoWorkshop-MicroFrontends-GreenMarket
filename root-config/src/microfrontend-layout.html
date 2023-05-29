@@ -346,15 +346,6 @@
     </route>
 
     <route path="shops">
-      <div class="container">
-        <div class="row">
-            <application
-            loader="mfLoader"
-            error="mfError"
-            name="@app/react-apps/react-shop-page-product-detail-app"
-            ></application>
-       </div>
-    </div>
     </route>
 
     <route path="cart">
@@ -395,11 +386,20 @@
     </route>
 
     <route path="shop-detail">
-      <application
-        loader="mfLoader"
-        error="mfError"
-        name="@app/vue-apps/related-item-app"
-      ></application>
+      <div class="container">
+        <div class="row">
+            <application
+            loader="mfLoader"
+            error="mfError"
+            name="@app/react-apps/react-shop-page-product-detail-app"
+            ></application>
+            <application
+            loader="mfLoader"
+            error="mfError"
+            name="@app/vue-apps/related-item-app"
+          ></application>
+      </div>
+      </div>
     </route>
 
     <!-- Footer Section Begin -->
