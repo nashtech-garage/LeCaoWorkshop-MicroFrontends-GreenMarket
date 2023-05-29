@@ -4,13 +4,7 @@
     "jsx": "react-jsx",
     "declarationDir": "dist"
   },
-  "files": [
-    "src/common-contact-app.tsx"
-  ],
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "src/**/*.test*"
-  ]
+  "files": ["src/app-common-contact-app.tsx"],
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test*"]
 }
