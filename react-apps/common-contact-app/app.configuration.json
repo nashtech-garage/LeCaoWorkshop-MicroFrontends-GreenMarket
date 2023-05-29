@@ -1,9 +1,0 @@
-{
-    "appName": "Common Contact App",
-    "api": {
-    },
-    "url": {
-      "rootConfig": "http://localhost:9000",
-      "commonContactApp": "http://localhost:5006"
-    }
-  }
