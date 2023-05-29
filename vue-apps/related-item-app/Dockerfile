@@ -2,11 +2,11 @@ FROM node:19-alpine as build
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-
-RUN npm install
+# COPY package.json package-lock.json ./
 
 COPY . .
+
+RUN npm install
 
 COPY .env.example .env
 

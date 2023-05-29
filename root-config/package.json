@@ -47,7 +47,7 @@
     "build:react-apps:common-contact-app": "cd ../react-apps/common-contact-app/ && webpack --config ./webpack.config.js",
     "build:vue-apps:related-item-app": "cd ../vue-apps/related-item-app/ && copy .env.example .env && npm run build",
     "build:vue-apps:contact-map-app": "cd ../vue-apps/contact-map-app/ && npm run build",
-    "build:webpack": "webpack --mode=production",
+    "build:webpack": "webpack --mode=production --env isLocal=true",
     "build:types": "tsc"
   },
   "devDependencies": {
