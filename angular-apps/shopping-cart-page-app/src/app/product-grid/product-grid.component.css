@@ -1,0 +1,27 @@
+.shopping__cart__table {
+  margin-bottom: 30px;
+}
+
+.shopping__cart__table table {
+  width: 100%;
+  text-align: center;
+}
+
+.shopping__cart__table table thead tr {
+  border-bottom: 1px solid #ebebeb;
+}
+
+.shopping__cart__table table thead th {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1c1c1c;
+  padding-bottom: 20px;
+}
+
+.shopping__cart__table table thead th.shopping__product {
+  text-align: left;
+}
+
+.shopping__cart__table table tbody tr td.nodata {
+  padding: 30px 0;
+}

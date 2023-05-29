@@ -414,6 +414,22 @@
       "Title": "Vegetable 100% Organic",
       "Content": "Free Pickup and Delivery Available",
       "ImageLink": "img/hero/banner.jpg"
-    }
+    },
+    "coupon": [
+      {
+        "code": "FREE10", 
+        "description": "10% discount", 
+        "discount_amount": "10",
+        "unit": "percentage",
+        "is_expired": false
+      },
+      {
+        "code": "FREE20",
+        "description": "20% discount",
+        "discount_amount": "20",
+        "unit": "percentage",
+        "is_expired": false
+      }
+    ]
   }
 }

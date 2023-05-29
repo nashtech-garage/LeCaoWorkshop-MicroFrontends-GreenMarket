@@ -347,7 +347,13 @@
 
     <route path="shops"> shop </route>
 
-    <route path="cart"> cart </route>
+    <route path="cart">
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/angular-apps/shopping-cart-page-app"
+      ></application>
+    </route>
 
     <route path="blogs"> blog </route>
 
