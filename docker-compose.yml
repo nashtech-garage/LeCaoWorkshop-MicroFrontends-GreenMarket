@@ -42,6 +42,22 @@ services:
     ports:
       - '9002:80'
 
+  angular-apps-shopping-cart-page-app:
+    image: mf-angular-shopping-cart-page-app
+    build:
+      context: ./angular-apps/shopping-cart-page-app
+      dockerfile: Dockerfile
+    ports:
+      - '3001:80'
+
+  react-apps-common-contact-app:
+    image: mf-react-apps-common-contact-app
+    build:
+      context: ./react-apps/common-contact-app
+      dockerfile: Dockerfile
+    ports:
+      - '6001:80'
+
   react-apps-common-footer-app:
     image: mf-react-apps-common-footer-app
     build:
@@ -66,8 +82,8 @@ services:
     ports:
       - '9003:80'
 
-  react-apps-react-main-page-hero-banner-app:
-    image: mf-react-apps-react-main-page-hero-banner-app
+  react-apps-main-page-hero-banner-app:
+    image: mf-react-apps-main-page-hero-banner-app
     build:
       context: ./react-apps/react-main-page-hero-banner-app
       dockerfile: Dockerfile

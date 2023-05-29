@@ -14,7 +14,7 @@ ENV NODE_ENV production
 
 RUN npm run build
 
-FROM nginx as runtime
+FROM nginx:alpine
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 

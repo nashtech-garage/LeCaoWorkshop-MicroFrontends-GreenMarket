@@ -10,7 +10,7 @@ RUN npm install
 RUN npm run build:webpack
 
 # Bundle static assets with nginx
-FROM nginx as production
+FROM nginx:alpine as production
 ENV NODE_ENV production
 
 # Add your nginx.conf

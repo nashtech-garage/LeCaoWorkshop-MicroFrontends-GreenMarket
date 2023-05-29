@@ -1,12 +1,8 @@
-FROM node:18-alpine as build
+FROM node:19-alpine as build
 
 WORKDIR /app
 
 # RUN npm install -g @angular/cli
-
-RUN npm install -g  @angular/cli@15.2.6
-
-# COPY ./package.json .
 
 COPY . .
 
@@ -18,4 +14,4 @@ FROM nginx:alpine
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=build /app/dist/common-header-app /usr/share/nginx/html
+COPY --from=build /app/dist/shopping-cart-page-app /usr/share/nginx/html

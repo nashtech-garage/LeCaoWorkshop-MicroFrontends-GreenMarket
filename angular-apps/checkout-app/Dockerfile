@@ -2,7 +2,7 @@ FROM node:19-alpine as build
 
 WORKDIR /app
 
-RUN npm install -g @angular/cli
+# RUN npm install -g @angular/cli
 
 # COPY ./package.json .
 
