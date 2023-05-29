@@ -24,7 +24,7 @@
                 <application
                   loader="mfLoader"
                   error="mfError"
-                  name="@app/react-apps/react-main-page-hero-banner"
+                  name="@app/react-apps/main-page-hero-banner"
                 ></application>
               </route>
             </div>
@@ -347,11 +347,23 @@
 
     <route path="shops"> shop </route>
 
-    <route path="cart"> cart </route>
+    <route path="cart">
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/angular-apps/shopping-cart-page-app"
+      ></application>
+    </route>
 
     <route path="blogs"> blog </route>
 
     <route path="contact">
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/react-apps/common-contact-app"
+      ></application>
+
       <application
         loader="mfLoader"
         error="mfError"

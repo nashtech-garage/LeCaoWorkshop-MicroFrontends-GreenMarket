@@ -1,0 +1,77 @@
+td {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+td.shopping__cart__item {
+  width: 630px;
+  text-align: left;
+}
+
+td.shopping__cart__item img {
+  display: inline-block;
+  margin-right: 25px;
+}
+
+td.shopping__cart__item h5 {
+  color: #1c1c1c;
+  display: inline-block;
+  font-size: 18px;
+}
+
+td.shopping__cart__price {
+  font-size: 18px;
+  color: #1c1c1c;
+  font-weight: 700;
+  width: 100px;
+}
+
+td.shopping__cart__total {
+  font-size: 18px;
+  color: #1c1c1c;
+  font-weight: 700;
+  width: 110px;
+}
+
+td.shopping__cart__item__close {
+  text-align: right;
+}
+
+td.shopping__cart__item__close span {
+  font-size: 24px;
+  color: #b2b2b2;
+  cursor: pointer;
+}
+
+td.shopping__cart__quantity {
+  width: 225px;
+}
+
+td.shopping__cart__quantity .pro-qty {
+  width: 120px;
+  height: 40px;
+}
+
+td.shopping__cart__quantity .pro-qty input {
+  color: #1c1c1c;
+}
+
+td.shopping__cart__quantity .pro-qty input::placeholder {
+  color: #1c1c1c;
+}
+
+td.shopping__cart__quantity .pro-qty .qtybtn {
+  width: 15px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+  -moz-appearance:textfield; /* Firefox */
+}
