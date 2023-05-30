@@ -3,7 +3,6 @@ import Styles from "../../root.module.css";
 import { Link } from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel';
-import { useLocation } from 'react-router-dom';
 import ShopDetailService from "../../services/ShopDetailService"
 
 export default function ProductDetail() {
@@ -11,19 +10,8 @@ export default function ProductDetail() {
         images_urls: [],
     });
 
-    let location = useLocation();
     const [activeImage, setActiveImage] = useState<string>();
     const [activeTab, setActiveTab] = useState<string>('details');
-    const s1 = {
-        width: "123.75px",
-        right: "20px"
-    }
-
-    const s2 = {
-        // transform: "translate3d(-1006px, 0px, 0px)",
-        transition: "all 1.2s ease 0s",
-        width: "1725px"
-    }
     const queryParameters = new URLSearchParams(window.location.search)
     const id = +queryParameters.get("id")
 
@@ -38,7 +26,7 @@ export default function ProductDetail() {
             .catch((exception) => {
                 console.error(`${process.env.APP_NAME}: ${exception}`);
             });
-    }, [location]);
+    }, [queryParameters]);
 
     return (
         <section>
