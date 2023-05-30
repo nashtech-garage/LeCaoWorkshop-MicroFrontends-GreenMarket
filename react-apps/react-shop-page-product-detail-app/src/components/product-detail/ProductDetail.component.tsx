@@ -105,7 +105,7 @@ export default function ProductDetail() {
                                 <li className="nav-item">
                                     <a className={`nav-link ${activeTab === 'review' ? 'active' : ''}`}
                                         onClick={() => setActiveTab('review')}
-                                        role="button" aria-selected="false">Reviews <span>(1)</span></a>
+                                        role="button" aria-selected="false">Reviews <span>({shopDetailInfo.review_count})</span></a>
                                 </li>
                             </ul>
                             <div className="tab-content">
