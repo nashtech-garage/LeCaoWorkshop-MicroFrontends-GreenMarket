@@ -1,16 +1,17 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Styles from "../../root.module.css";
 import { Link } from "react-router-dom";
-
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel';
-
+import { useLocation } from 'react-router-dom';
 import ShopDetailService from "../../services/ShopDetailService"
 
 export default function ProductDetail() {
     const [shopDetailInfo, setShopDetailInfo] = useState<IShopDetailInfo>({
         images_urls: [],
     });
+
+    let location = useLocation();
     const [activeImage, setActiveImage] = useState<string>();
     const [activeTab, setActiveTab] = useState<string>('details');
     const s1 = {
@@ -27,7 +28,6 @@ export default function ProductDetail() {
     const id = +queryParameters.get("id")
 
     const imgSrc = (url) => `${process.env.API_ENDPOINT}/${url}`;
-
     useEffect(() => {
         ShopDetailService.getProductById(id)
             .then((data) => {
@@ -38,7 +38,7 @@ export default function ProductDetail() {
             .catch((exception) => {
                 console.error(`${process.env.APP_NAME}: ${exception}`);
             });
-    }, []);
+    }, [location]);
 
     return (
         <section>
