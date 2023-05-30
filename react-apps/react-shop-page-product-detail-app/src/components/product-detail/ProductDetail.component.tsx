@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Styles from "../../root.module.css";
-import { Link } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel';
 import ShopDetailService from "../../services/ShopDetailService"
@@ -10,6 +10,7 @@ export default function ProductDetail() {
         images_urls: [],
     });
 
+    const [searchParams] = useSearchParams()
     const [activeImage, setActiveImage] = useState<string>();
     const [activeTab, setActiveTab] = useState<string>('details');
     const queryParameters = new URLSearchParams(window.location.search)
@@ -26,7 +27,7 @@ export default function ProductDetail() {
             .catch((exception) => {
                 console.error(`${process.env.APP_NAME}: ${exception}`);
             });
-    }, [queryParameters]);
+    }, [searchParams]);
 
     return (
         <section>
