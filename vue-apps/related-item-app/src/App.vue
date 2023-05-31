@@ -15,11 +15,12 @@
 
 <script>
 export default {
-  
+
 }
 </script>
 
 <style>
+
 .related-product {
 	padding-bottom: 30px;
 }
