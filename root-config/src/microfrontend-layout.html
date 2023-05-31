@@ -345,8 +345,7 @@
       <!-- Blog Section End -->
     </route>
 
-    <route path="shops">
-    </route>
+    <route path="shops"> </route>
 
     <route path="cart">
       <application
@@ -377,6 +376,7 @@
         name="@app/angular-apps/contact-form-app"
       ></application>
     </route>
+
     <route path="checkout">
       <application
         loader="mfLoader"
@@ -386,20 +386,17 @@
     </route>
 
     <route path="shop-detail">
-      <div class="container">
-        <div class="row">
-            <application
-            loader="mfLoader"
-            error="mfError"
-            name="@app/react-apps/react-shop-page-product-detail-app"
-            ></application>
-            <application
-            loader="mfLoader"
-            error="mfError"
-            name="@app/vue-apps/related-item-app"
-          ></application>
-      </div>
-      </div>
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/react-apps/shop-page-product-detail-app"
+      ></application>
+
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/vue-apps/related-item-app"
+      ></application>
     </route>
 
     <!-- Footer Section Begin -->
