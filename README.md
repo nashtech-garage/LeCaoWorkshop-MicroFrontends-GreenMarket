@@ -22,18 +22,28 @@ Build all projects
 npm run build
 ```
 
-
 Start project
 
 ```
-npm run start
+npm start
 ```
 
 ### Install, build, and run with Docker
 
+Build all projects
+
 ```powershell
 sudo docker compose build
+```
+
+Start all projects
+```
 sudo docker compose up
+```
+
+Stop all projects
+```
+sudo docker compose down
 ```
 
 ## Test on browser

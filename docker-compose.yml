@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.4'
 
 services:
 
@@ -81,6 +81,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - '9001:80'
+
+  react-apps-shop-page-product-detail-app:
+    image: mf-react-apps-shop-page-product-detail-app
+    build:
+      context: ./react-apps/react-shop-page-product-detail-app
+      dockerfile: Dockerfile
+    ports:
+      - '9006:80'
 
   vue-apps-contact-map-app:
     image: mf-vue-apps-contact-map-app
