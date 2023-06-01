@@ -1,6 +1,6 @@
 {
   "name": "@app/root-config",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "scripts": {
     "start": "concurrently --kill-others --kill-others-on-fail -p name --names \"common-app,contact-form-app,checkout-app,common-header-app,main-categories-app,shopping-cart-page-app,common-hero-search-app,common-footer-app,main-featured-product-app,main-page-hero-banner-app,react-shop-page-product-detail-app,common-contact-app,related-item-app,contact-map-app,root-config\" \"npm run start:common-app\" \"npm run start:angular-apps:contact-form-app\" \"npm run start:angular-apps:checkout-app\" \"npm run start:angular-apps:common-header-app\" \"npm run start:angular-apps:main-categories-app\" \"npm run start:angular-apps:shopping-cart-page-app\" \"npm run start:react-apps:common-hero-search-app\" \"npm run start:react-apps:common-footer-app\" \"npm run start:react-apps:main-featured-product-app\" \"npm run start:react-apps:main-page-hero-banner-app\" \"npm run start:react-apps:react-shop-page-product-detail-app\" \"npm run start:react-apps:common-contact-app\" \"npm run start:vue-apps:related-item-app\" \"npm run start:vue-apps:contact-map-app\" \"webpack serve --port 9000 --env isLocal\"",
     "start:common-app": "cd ../common-app/ && http-server . --cors -p 5000",
