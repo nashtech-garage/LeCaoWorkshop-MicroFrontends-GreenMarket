@@ -345,7 +345,7 @@
       <!-- Blog Section End -->
     </route>
 
-    <route path="shops"> shop </route>
+    <route path="shops"> </route>
 
     <route path="cart">
       <application
@@ -376,6 +376,7 @@
         name="@app/angular-apps/contact-form-app"
       ></application>
     </route>
+
     <route path="checkout">
       <application
         loader="mfLoader"
@@ -385,6 +386,12 @@
     </route>
 
     <route path="shop-detail">
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/react-apps/shop-page-product-detail-app"
+      ></application>
+
       <application
         loader="mfLoader"
         error="mfError"

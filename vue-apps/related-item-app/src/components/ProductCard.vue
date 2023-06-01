@@ -9,7 +9,7 @@
         </div>
         <div class="product__item__text">
             <h6>
-                <router-link :to="'/detail-page?id='+product.id">
+                <router-link :to="'/shop-detail?id='+product.id">
                     {{ product.name }}
                 </router-link>
             </h6>
