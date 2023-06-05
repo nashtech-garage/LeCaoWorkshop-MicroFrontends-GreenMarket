@@ -9,7 +9,7 @@
         </div>
         <div class="product__item__text">
             <h6>
-                {{ product.name }}
+				<router-link :to="productDetailLink">{{ product.name }}</router-link>
             </h6>
             <h5>
                 $ {{ product.price }}
@@ -28,7 +28,10 @@ export default ({
     computed: {
         productImage() {
             return process.env.VUE_APP_COMMON_URL + this.product.main_image_url;
-        }
+        },
+		productDetailLink() {
+			return `/shop-details?id=${this.product.id}`;
+		}
     }
 })
 </script>

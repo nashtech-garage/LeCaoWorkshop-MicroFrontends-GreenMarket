@@ -28,7 +28,7 @@
           console.log(err);
         }
       },
-      async onProductFilter(category, color, size) {
+      async onProductFilter(category, color, size, min, max) {
         await this.getProducts();
         if (category) {
           this.products = this.products.filter(x => x.category_id == category);
@@ -51,6 +51,12 @@
               this.products = this.products.filter(x => x.weight <= 10);
               break;
           }
+        }
+        if (min) {
+          this.products = this.products.filter(x => x.price >= min);
+        }
+        if (max) {
+          this.products = this.products.filter(x => x.price <= max);
         }
       },
     }

@@ -9,6 +9,7 @@
     "serve:standalone": "vue-cli-service serve --mode standalone"
   },
   "dependencies": {
+    "@vueform/slider": "^2.1.7",
     "axios": "^1.4.0",
     "core-js": "^3.8.3",
     "single-spa-vue": "^2.1.0",
@@ -38,7 +39,9 @@
     "parserOptions": {
       "parser": "@babel/eslint-parser"
     },
-    "rules": {}
+    "rules": {
+      "no-unused-vars": "off"
+    }
   },
   "browserslist": [
     "> 1%",

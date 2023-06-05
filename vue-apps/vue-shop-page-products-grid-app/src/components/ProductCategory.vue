@@ -10,18 +10,14 @@
           <div class="sidebar__item">
               <h4>Price</h4>
               <div class="price-range-wrap">
-                  <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                      data-min="10" data-max="540">
-                      <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                      <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                      <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                <vue-slider v-model="priceRange" :step="1" :min="priceMin" :max="priceMax" :tooltips="false" @update="onPriceUpdate"></vue-slider>
+                <div class="range-slider">
+                  <div class="price-input">
+                    <input type="text" id="minamount" v-model="priceMinDisplay">
+                    <input type="text" id="maxamount" v-model="priceMaxDisplay">
                   </div>
-                  <div class="range-slider">
-                      <div class="price-input">
-                          <input type="text" id="minamount">
-                          <input type="text" id="maxamount">
-                      </div>
-                  </div>
+                </div>
+                
               </div>
           </div>
           <div class="sidebar__item sidebar__item__color--option">
@@ -48,7 +44,7 @@
                   <div class="latest-product__slider">
                     <Carousel :itemsToShow="1" :autoplay="2000" :wrap-around="true">
                         <Slide v-for="(product, index) in latestProducts" :key="index">
-                            <a href="#" class="latest-product__item">
+                            <router-link :to="'/shop-details?id=' + product.id" class="latest-product__item">
                               <div class="latest-product__item__pic">
                                   <img :src="imgHostUrl + product.main_image_url" alt="">
                               </div>
@@ -56,7 +52,7 @@
                                   <h6>{{ product.name }}</h6>
                                   <span>${{ product.price }}</span>
                               </div>
-                          </a>
+                          </router-link>
                         </Slide>
                     </Carousel>
                   </div>
@@ -69,11 +65,13 @@
 <script>
   import productsApi from '@/api/productApi';
   import { Carousel, Slide } from 'vue3-carousel'
+  import VueSlider from '@vueform/slider'
   export default {
     components: {
-		Carousel,
-		Slide,
-	},
+      Carousel,
+      Slide,
+      VueSlider
+    },
     data(){
       return {
         categories: [],
@@ -84,6 +82,10 @@
         sizeSelected: null,
         colors: ['White', 'Gray', 'Red', 'Black', 'Blue', 'Green'],
         colorSelected: null,
+        priceRange: [10, 540],
+        priceMin: 10,
+        priceMax: 540,
+        
       }
     },
     async created(){
@@ -95,18 +97,30 @@
             this.categories = await productsApi.getProductCategories(this.$axios);
             this.products = await productsApi.getProducts(this.$axios);
             this.latestProducts = this.products.filter(x => x.is_latest == true);
-            console.log(this.latestProducts);
         }catch(err){
           console.log(err);
         }
       },
       onProductFilter(category, color, size) {
-        this.$parent.onProductFilter(category, color, size);
+        let params = {id: category, color: color, size: size, min: this.priceRange[0], max: this.priceRange[1]};
+        this.$router.push({name: 'shops', params: params});
+      },
+      onPriceChange() {
+        this.onProductFilter(this.categorySelected, this.colorSelected, this.sizeSelected);
+      },
+      onPriceUpdate() {
+        this.onProductFilter(this.categorySelected, this.colorSelected, this.sizeSelected);
       }
     },
     computed: {
         imgHostUrl() {
             return process.env.VUE_APP_COMMON_URL;
+        },
+        priceMinDisplay() {
+          return `$${this.priceRange[0]}`
+        },
+        priceMaxDisplay() {
+          return `$${this.priceRange[1]}`
         }
     },
     watch: {
@@ -124,7 +138,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<!-- <style scoped>
   h3 {
     margin: 40px 0 0;
   }
@@ -135,4 +149,5 @@
   a {
     color: #42b983;
   }
-</style>
+</style> -->
+<style src="@vueform/slider/themes/default.css"></style>

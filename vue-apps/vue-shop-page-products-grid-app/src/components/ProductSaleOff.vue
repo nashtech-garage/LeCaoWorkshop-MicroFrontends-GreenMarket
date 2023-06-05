@@ -6,7 +6,7 @@
 		<div class="row">
 			<Carousel :itemsToShow="3" :autoplay="2000" :wrap-around="true">
 				<Slide v-for="(product, index) in products" :key="index">
-					<div class="col-lg-4">
+					<div class="col-lg-10">
 						<div class="product__discount__item">
 							<div class="product__discount__item__pic set-bg"
 								:style="{'background-image': 'url(' + imgHostUrl + product.main_image_url}">
@@ -19,7 +19,7 @@
 							</div>
 							<div class="product__discount__item__text">
 								<span>{{product.name}}</span>
-								<h5><a href="#">Raisin’n’nuts</a></h5>
+								<h5><router-link :to="'/shop-details?id=' + product.id">{{ product.name }}</router-link></h5>
 								<div class="product__item__price">{{ product.price * (1 - product.discount / 100.0) }} <span>{{ product.price }}</span></div>
 							</div>
 						</div>
@@ -68,5 +68,6 @@ export default ({
     }
 })
 </script>
-<style>
+<style scoped>
+
 </style>
