@@ -1,0 +1,21 @@
+<div class="latest-product__text">
+  <h4>Top Rated Products</h4>
+  <owl-carousel-o
+    [options]="customOptions"
+    [class]="['owl-theme', 'latest-product__slider']"
+  >
+    <ng-container *ngFor="let product of TopRatedProducts">
+      <ng-template carouselSlide let-product>
+        <a href="#" class="latest-product__item">
+          <div class="latest-product__item__pic">
+            <img [src]="product.image" alt="" />
+          </div>
+          <div class="latest-product__item__text">
+            <h6>{{ product.name }}</h6>
+            <span>{{ product.price }}</span>
+          </div>
+        </a>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</div>
