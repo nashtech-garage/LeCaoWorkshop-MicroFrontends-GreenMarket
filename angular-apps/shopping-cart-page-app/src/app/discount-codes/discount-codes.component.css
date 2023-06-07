@@ -1,0 +1,40 @@
+.shopping__discount {
+  margin-top: 45px;
+}
+
+.shopping__discount h5 {
+  font-size: 20px;
+  color: #1c1c1c;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.shopping__discount .text-danger {
+  font-size: 10pt;
+  margin: 3px 0;
+}
+
+#coupon__form input {
+  width: 255px;
+  height: 46px;
+  border: 1px solid #cccccc;
+  font-size: 16px;
+  color: #b2b2b2;
+  text-align: center;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+#coupon__form input::placeholder {
+  color: #b2b2b2;
+}
+
+#coupon__form a {
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: 800;
+  padding: 13px 30px 10px;
+  font-size: 12px;
+  letter-spacing: 4px;
+  background: #6f6f6f;
+}

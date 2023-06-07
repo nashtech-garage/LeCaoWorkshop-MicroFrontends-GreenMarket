@@ -17,11 +17,12 @@
 
     <title>Ogani</title>
 
-    <!-- <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
-    /> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> -->
+    />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!--
     Remove this if you only support browsers that support async/await.
@@ -72,17 +73,22 @@
       {
         "imports": {
           "@app/root-config": "//localhost:9000/app-root-config.js",
-          "react": "https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js",
-          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js",
-          "@app/react-apps/common-hero-search-app": "//localhost:5003/app-common-hero-search-app.js",
-          "@app/react-apps/common-footer-app": "//localhost:5005/app-common-hero-footer-app.js",
-          "@app/react-apps/main-featured-product": "//localhost:9003/app-main-featured-product.js",
-          "@app/react-apps/react-main-page-hero-banner": "//localhost:9001/app-react-main-page-hero-banner.js",
+          "react": "https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.development.min.js",
+          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.development.min.js",
           "@app/angular-apps/common-header-app": "//localhost:5001/main.js",
+          "@app/angular-apps/contact-form-app": "//localhost:6003/main.js",
+          "@app/angular-apps/shopping-cart-page-app": "//localhost:3001/main.js",
           "@app/angular-apps/contact-form-app": "//localhost:6003/main.js",
           "@app/angular-apps/main-categories-app": "//localhost:9002/main.js",
           "@app/angular-apps/checkout-app": "//localhost:4001/main.js",
-          "@app/vue-apps/vue-shop-page-products-grid-app": "//localhost:1001/js/app.js"
+          "@app/react-apps/common-hero-search-app": "//localhost:5003/app-common-hero-search-app.js",
+          "@app/react-apps/common-footer-app": "//localhost:5005/app-common-hero-footer-app.js",
+          "@app/react-apps/main-featured-product": "//localhost:9003/app-main-featured-product.js",
+          "@app/react-apps/main-page-hero-banner": "//localhost:9001/app-react-main-page-hero-banner.js",
+          "@app/react-apps/shop-page-product-detail-app": "//localhost:9006/app-react-shop-page-product-detail.js",
+          "@app/react-apps/common-contact-app": "//localhost:6001/app-common-contact-app.js",
+          "@app/vue-apps/related-item-app": "//localhost:2002/js/app.js",
+          "@app/vue-apps/contact-map-app": "//localhost:6002/js/app.js"
         }
       }
     </script>

@@ -1,4 +1,3 @@
-
 /*---------------------
   Checkout
 -----------------------*/
@@ -26,10 +25,6 @@
 .checkout h6 a {
 	text-decoration: underline;
 	color: #999999;
-}
-
-.checkout__form {
-	padding: 15px 30px;
 }
 
 .checkout__form h4 {
