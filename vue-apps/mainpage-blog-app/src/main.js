@@ -1,6 +1,7 @@
 import { h, createApp } from 'vue';
 import singleSpaVue from 'single-spa-vue';
 import axiosPlugin from './plugins/axiosPlugin';
+import router from './router';
 import App from './App.vue';
 
 const axiosOptions = {
@@ -26,6 +27,7 @@ const vueLifecycles = singleSpaVue({
   },
   handleInstance(app) {
     app.use(axiosPlugin, axiosOptions)
+    app.use(router)
   },
 });
 
