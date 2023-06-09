@@ -104,6 +104,15 @@ services:
     ports:
       - "6002:80"
 
+  vue-apps-mainpage-blog-app:
+    image: mf-vue-apps-mainpage-blog-app
+    build:
+      context: .
+      dockerfile: ./vue-apps/mainpage-blog-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "9005:80"
+
   vue-apps-related-item-app:
     image: mf-vue-apps-related-item-app
     build:

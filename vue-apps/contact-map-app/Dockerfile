@@ -12,10 +12,6 @@ COPY vue-apps/contact-map-app /usr/src/app
 
 RUN npm run build
 
-RUN chown -R node /usr/src/app
-
-USER node
-
 FROM nginx:alpine
 
 ENV NODE_ENV production
