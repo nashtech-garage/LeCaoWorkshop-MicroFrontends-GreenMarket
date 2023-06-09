@@ -1,0 +1,24 @@
+<div class="shopping__cart__table">
+  <table>
+    <thead>
+    <tr>
+      <th class="shopping__product">Products</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <product-item [product]="product" style="display: contents" (remove)="removeItem($event)"></product-item>
+      </tr>
+      <tr *ngIf="products.length == 0">
+        <td colspan="5" class="nodata">
+          Your shopping cart is empty.<br/>
+          Please visit our online store to view our products and add items to your cart.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

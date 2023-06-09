@@ -4,16 +4,18 @@
     <application
       loader="mfLoader"
       error="mfError"
-      name="@app/angular-apps/common-header-app"></application>
+      name="@app/angular-apps/common-header-app"
+    ></application>
     <!-- Header Section End -->
-    
+
     <!-- Hero Section Begin -->
     <section class="hero">
       <div class="container">
         <application
           loader="mfLoader"
           error="mfError"
-          name="@app/react-apps/common-hero-search-app"></application>
+          name="@app/react-apps/common-hero-search-app"
+        ></application>
         <div id="hero-banner-container">
           <div class="row">
             <div class="col-lg-3"></div>
@@ -22,7 +24,8 @@
                 <application
                   loader="mfLoader"
                   error="mfError"
-                  name="@app/react-apps/react-main-page-hero-banner"></application>
+                  name="@app/react-apps/main-page-hero-banner"
+                ></application>
               </route>
             </div>
           </div>
@@ -33,61 +36,19 @@
 
     <route default>
       <!-- Categories Section Begin -->
-      <section class="categories">
-        <div class="container">
-          <div class="row">
-            <div class="categories__slider owl-carousel">
-              <div class="col-lg-3">
-                <div
-                  class="categories__item set-bg"
-                  data-setbg="assets/img/categories/cat-1.jpg"
-                >
-                  <h5><a href="#">Fresh Fruit</a></h5>
-                </div>
-              </div>
-              <div class="col-lg-3">
-                <div
-                  class="categories__item set-bg"
-                  data-setbg="assets/img/categories/cat-2.jpg"
-                >
-                  <h5><a href="#">Dried Fruit</a></h5>
-                </div>
-              </div>
-              <div class="col-lg-3">
-                <div
-                  class="categories__item set-bg"
-                  data-setbg="assets/img/categories/cat-3.jpg"
-                >
-                  <h5><a href="#">Vegetables</a></h5>
-                </div>
-              </div>
-              <div class="col-lg-3">
-                <div
-                  class="categories__item set-bg"
-                  data-setbg="assets/img/categories/cat-4.jpg"
-                >
-                  <h5><a href="#">drink fruits</a></h5>
-                </div>
-              </div>
-              <div class="col-lg-3">
-                <div
-                  class="categories__item set-bg"
-                  data-setbg="assets/img/categories/cat-5.jpg"
-                >
-                  <h5><a href="#">drink fruits</a></h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/angular-apps/main-categories-app"
+      ></application>
       <!-- Categories Section End -->
 
       <!-- Featured Section Begin -->
       <application
         loader="mfLoader"
         error="mfError"
-        name="@app/react-apps/main-featured-product"></application>
+        name="@app/react-apps/main-featured-product"
+      ></application>
       <!-- Featured Section End -->
 
       <!-- Banner Begin -->
@@ -322,30 +283,71 @@
     </route>
 
     <route path="shops">
-      shop
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/vue-apps/vue-shop-page-products-grid-app"
+      ></application>
     </route>
 
     <route path="cart">
-      cart
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/angular-apps/shopping-cart-page-app"
+      ></application>
     </route>
 
-    <route path="blogs">
-      blog
-    </route>
+    <route path="blogs"> blog </route>
 
     <route path="contact">
       <application
-      loader="mfLoader"
-      error="mfError"
-      name="@app/angular-apps/contact-form-app"></application>
+        loader="mfLoader"
+        error="mfError"
+        name="@app/react-apps/common-contact-app"
+      ></application>
+
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/vue-apps/contact-map-app"
+      ></application>
+
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/angular-apps/contact-form-app"
+      ></application>
+    </route>
+
+    <route path="checkout">
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/angular-apps/checkout-app"
+      ></application>
+    </route>
+
+    <route path="shop-detail">
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/react-apps/shop-page-product-detail-app"
+      ></application>
+
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/vue-apps/related-item-app"
+      ></application>
     </route>
 
     <!-- Footer Section Begin -->
     <application
       loader="mfLoader"
       error="mfError"
-      name="@app/react-apps/common-footer-app"></application>
+      name="@app/react-apps/common-footer-app"
+    ></application>
     <!-- Footer Section End -->
-
   </main>
 </single-spa-router>

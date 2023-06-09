@@ -8,11 +8,11 @@ import { useNavigate } from "react-router-dom";
 export default function HeroSearch() {
     const [categories, setCategories] = useState<ICategory[]>([]);
     const navigate = useNavigate();
-    const { 
-        register, 
-        handleSubmit 
+    const {
+        register,
+        handleSubmit
     } = useForm<ISearchFormInput>();
-    
+
     useEffect(() => {
         CategoryService.getCategories()
             .then((data) => setCategories(data))
@@ -20,11 +20,11 @@ export default function HeroSearch() {
                 console.error(`${process.env.APP_NAME}: ${exception}`);
             });
     }, []);
-    
+
     const onSubmit: SubmitHandler<ISearchFormInput> = formData => {
         navigate(`/shops?id=${formData.categoryId}&keyword=${ encodeURIComponent(formData.keyword) }`)
     };
-    
+
     return (
         <div className={styles.hero__search}>
             <div className={styles.hero__search__form}>
