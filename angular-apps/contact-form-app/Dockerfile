@@ -1,29 +1,27 @@
-# 1. Build our app
-FROM node:16.15-alpine as builder
+FROM node:16.15-alpine as build
 
-RUN npm install -g @angular/cli
+WORKDIR /usr/src/app
 
-COPY .npmrc ./
+RUN npm install --location=global @angular/cli
 
-COPY package.json ./
+COPY angular-apps/contact-form-app/.npmrc /usr/src/app/
 
-RUN npm i && mkdir /app && mv ./node_modules ./app
+COPY angular-apps/contact-form-app/package*.json /usr/src/app/
 
-RUN rm -f .npmrc
+RUN npm install --no-audit --maxsockets 1
 
-WORKDIR /app
+COPY angular-apps/contact-form-app /usr/src/app
 
-COPY . .
+RUN npm run build:single-spa:contact-form-app
 
-RUN npm run build
+RUN chown -R node /usr/src/app
 
-# 2. Deploy our app to NGINX
-FROM nginx:1.23.2-alpine
+USER node
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+FROM nginx:alpine
+
+COPY angular-apps/contact-form-app/nginx.conf /etc/nginx/conf.d/default.conf
 
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY --from=builder /app/dist/contact-form-app /usr/share/nginx/html
-
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+COPY --from=build /usr/src/app/dist/contact-form-app /usr/share/nginx/html

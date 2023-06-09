@@ -1,31 +1,21 @@
-# 1. Build our app
-FROM node:16.15-alpine as builder
+FROM node:16.15-alpine as build
 
-COPY .npmrc ./
+WORKDIR /usr/src/app
 
-COPY package.json ./
+COPY vue-apps/contact-map-app/.npmrc /usr/src/app/
 
-RUN npm i && mkdir /app && mv ./node_modules ./app
+COPY vue-apps/contact-map-app/package*.json /usr/src/app/
 
-RUN rm -f .npmrc
+RUN npm install --no-audit --maxsockets 1
 
-WORKDIR /app
-
-COPY . .
-
-COPY .env.example .env
+COPY vue-apps/contact-map-app /usr/src/app
 
 RUN npm run build
 
-# 2. Deploy our app to NGINX
-FROM nginx:1.23.2-alpine
+FROM nginx:alpine
 
 ENV NODE_ENV production
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY vue-apps/contact-map-app/nginx.conf /etc/nginx/conf.d/default.conf
 
-RUN rm -rf /usr/share/nginx/html/*
-
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+COPY --from=build /usr/src/app/dist /usr/share/nginx/html

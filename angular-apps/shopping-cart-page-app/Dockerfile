@@ -1,28 +1,27 @@
-# 1. Build our app
-FROM node:16.15-alpine as builder
+FROM node:16.15-alpine as build
 
-RUN npm install -g @angular/cli
+WORKDIR /usr/src/app
 
-COPY .npmrc ./
-COPY package.json ./
+RUN npm install --location=global @angular/cli
 
-RUN npm i && mkdir /app && mv ./node_modules ./app
+COPY angular-apps/shopping-cart-page-app/.npmrc /usr/src/app/
 
-RUN rm -f .npmrc
+COPY angular-apps/shopping-cart-page-app/package*.json /usr/src/app/
 
-WORKDIR /app
+RUN npm install --no-audit --maxsockets 1
 
-COPY . .
+COPY angular-apps/shopping-cart-page-app /usr/src/app
 
-RUN npm run build
+RUN npm run build:single-spa:shopping-cart-page-app
 
-# 2. Deploy our app to NGINX
-FROM nginx:1.23.2-alpine
+RUN chown -R node /usr/src/app
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+USER node
+
+FROM nginx:alpine
+
+COPY angular-apps/shopping-cart-page-app/nginx.conf /etc/nginx/conf.d/default.conf
 
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY --from=builder /app/dist/shopping-cart-page-app /usr/share/nginx/html
-
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+COPY --from=build /usr/src/app/dist/shopping-cart-page-app /usr/share/nginx/html
