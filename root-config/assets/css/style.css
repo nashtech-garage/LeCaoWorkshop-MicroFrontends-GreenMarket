@@ -343,7 +343,7 @@ ol {
   Form BLog
 -----------------------*/
 
-.from-blog {
+/* .from-blog {
 	padding-top: 50px;
 	padding-bottom: 50px;
 }
@@ -354,7 +354,7 @@ ol {
 
 .from-blog__title {
 	margin-bottom: 70px;
-}
+} */
 
 /*---------------------
   Breadcrumb
@@ -1211,7 +1211,7 @@ ol {
   Blog
 -----------------------*/
 
-.blog__item {
+/* .blog__item {
 	margin-bottom: 60px;
 }
 
@@ -1284,7 +1284,7 @@ ol {
 	background: #000000;
 	opacity: 0.1;
 	content: "";
-}
+} */
 
 /*---------------------
   Blog Sidebar
@@ -2192,6 +2192,10 @@ ol {
 
 #single-spa-application\:\@app\/vue-apps\/related-item-app {
 	height: 529px;
+}
+
+#single-spa-application\:\@app\/vue-apps\/mainpage-blog-app {
+	height: 654px;
 }
 
 /* #single-spa-application\:\@app\/react-apps\/common-footer-app {
