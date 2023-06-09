@@ -1,29 +1,23 @@
-# 1. Build our app
-FROM node:16.15-alpine as builder
-
-COPY .npmrc ./
-
-COPY package.json ./
-
-RUN npm i && mkdir /app && mv ./node_modules ./app
-
-RUN rm -f .npmrc
+FROM node:16.15-alpine as build
 
 WORKDIR /app
 
-COPY . .
+COPY react-apps/main-featured-product-app/.npmrc /app/
 
-COPY .env.example .env
+COPY react-apps/main-featured-product-app/package*.json /app/
 
-RUN npm run build
+RUN npm install --no-audit --maxsockets 1
 
-# 2. Deploy our app to NGINX
-FROM nginx:1.23.2-alpine
+COPY react-apps/main-featured-product-app /app
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY react-apps/main-featured-product-app/.env.example /app/.env
 
-RUN rm -rf /usr/share/nginx/html/*
+RUN npm run build:webpack
 
-COPY --from=builder /app/dist /usr/share/nginx/html
+FROM nginx:alpine
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+ENV NODE_ENV production
+
+COPY react-apps/main-featured-product-app/nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=build /app/dist /usr/share/nginx/html

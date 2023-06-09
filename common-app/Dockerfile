@@ -1,9 +1,7 @@
-FROM nginx:1.23.2-alpine
+FROM nginx:alpine
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY common-app/nginx.conf /etc/nginx/conf.d/default.conf
 
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY . /usr/share/nginx/html
-
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+COPY common-app /usr/share/nginx/html
