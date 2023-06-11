@@ -5,7 +5,7 @@
     class="['owl-theme', 'latest-product__slider']"
   >
     <ng-container *ngFor="let product of ReviewProducts">
-      <ng-template carouselSlide let-product>
+      <ng-template>
         <a href="#" class="latest-product__item">
           <div class="latest-product__item__pic">
             <img [src]="product.image" alt="" />
