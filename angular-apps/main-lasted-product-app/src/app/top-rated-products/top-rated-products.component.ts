@@ -28,7 +28,6 @@ export class TopRatedProductsComponent{
   customOptions: OwlOptions = {
     items: 1,
     dots: true,
-
     loop: true,
     autoplay: true,
     autoplayTimeout: 3000,
