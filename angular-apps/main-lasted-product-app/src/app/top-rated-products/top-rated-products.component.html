@@ -4,11 +4,11 @@
     [options]="customOptions"
     [class]="['owl-theme', 'latest-product__slider']"
   >
-    <ng-container *ngFor="let TopRatedProduct of TopRatedProducts">
+    <ng-container *ngFor="let TopRatedProduct of topProducts">
       <ng-template carouselSlide>
         <a href="#" class="latest-product__item">
           <div class="latest-product__item__pic">
-            <img [src]="TopRatedProduct.image" alt="" />
+            <img [src]="TopRatedProduct.image_url" alt="" />
           </div>
           <div class="latest-product__item__text">
             <h6>{{ TopRatedProduct.name }}</h6>

@@ -2,13 +2,19 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-md-6">
-        <app-latest-products></app-latest-products>
+        <app-latest-products
+          [lastedProducts]="lastedProducts"
+        ></app-latest-products>
       </div>
       <div class="col-lg-4 col-md-6">
-        <app-top-rated-products></app-top-rated-products>
+        <app-top-rated-products
+          [topProducts]="topProducts"
+        ></app-top-rated-products>
       </div>
       <div class="col-lg-4 col-md-6">
-        <app-review-products></app-review-products>
+        <app-review-products
+          [reviewProducts]="reviewProducts"
+        ></app-review-products>
       </div>
     </div>
   </div>

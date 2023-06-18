@@ -64,7 +64,7 @@
         "count": 20,
         "is_latest": true,
         "review_count": 10,
-        "is_reivew": true,
+        "is_review": true,
         "is_top_rate":true
       },
       {
@@ -91,7 +91,7 @@
         "count": 20,
         "is_latest": true,
         "review_count": 2,
-        "is_reivew": false,
+        "is_review": false,
         "is_top_rate":true
       },
       {
@@ -118,7 +118,7 @@
         "count": 21,
         "is_latest": false,
         "review_count": 5,
-        "is_reivew": true,
+        "is_review": true,
         "is_top_rate":false
       },
       {
@@ -145,7 +145,7 @@
         "count": 21,
         "is_latest": true,
         "review_count": 123,
-        "is_reivew": false,
+        "is_review": false,
         "is_top_rate":false
       },
       {
@@ -172,7 +172,7 @@
         "count": 21,
         "is_latest": true,
         "review_count": 22,
-        "is_reivew": true,
+        "is_review": true,
         "is_top_rate":true
       },
       {
@@ -199,7 +199,7 @@
         "count": 21,
         "is_latest": true,
         "review_count": 22,
-        "is_reivew": false,
+        "is_review": false,
         "is_top_rate":true
       },
       {
@@ -226,7 +226,7 @@
         "count": 21,
         "is_latest": true,
         "review_count": 22,
-        "is_reivew": true,
+        "is_review": true,
         "is_top_rate":false
       },
       {
@@ -254,7 +254,7 @@
         "is_latest": true,
         "review_count": 22
         ,
-        "is_reivew": true,
+        "is_review": true,
         "is_top_rate":true
       },
       {
@@ -281,7 +281,7 @@
         "count": 21,
         "is_latest": true,
         "review_count": 22,
-        "is_reivew": false,
+        "is_review": false,
         "is_top_rate":false
       },
       {
@@ -308,7 +308,7 @@
         "count": 21,
         "is_latest": true,
         "review_count": 22,
-        "is_reivew": true,
+        "is_review": true,
         "is_top_rate":true
       },
       {
@@ -335,7 +335,7 @@
         "count": 21,
         "is_latest": false,
         "review_count": 22,
-        "is_reivew": false,
+        "is_review": false,
         "is_top_rate":true
       },
       {
@@ -362,7 +362,7 @@
         "count": 21,
         "is_latest": true,
         "review_count": 22,
-        "is_reivew": true,
+        "is_review": true,
         "is_top_rate":false
       }
     ],

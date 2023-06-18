@@ -4,11 +4,11 @@
     [options]="customOptions"
     [class]="['owl-theme', 'latest-product__slider']"
   >
-    <ng-container *ngFor="let product of products">
+    <ng-container *ngFor="let product of lastedProducts">
       <ng-template carouselSlide>
         <a href="#" class="latest-product__item">
           <div class="latest-product__item__pic">
-            <img [src]="product.image" alt="" />
+            <img [src]="product.image_url" alt="" />
           </div>
           <div class="latest-product__item__text">
             <h6>{{ product.name }}</h6>
