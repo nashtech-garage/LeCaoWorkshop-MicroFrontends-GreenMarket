@@ -153,3 +153,32 @@ services:
     restart: on-failure
     ports:
       - "9000:80"
+
+  green-market-api:
+  image: green-market-api
+  build:
+    context: .
+    dockerfile: ./green-market-api/Dockerfile
+  restart: on-failure
+  ports:
+    - "8999:80"
+  networks:
+    - app-network
+
+  orderdb:
+    image: mysql:5.7.22
+    container_name: orderdb-green-market-api
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: greenmarket
+      MYSQL_ROOT_PASSWORD: 123456
+      SERVICE_NAME: mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
