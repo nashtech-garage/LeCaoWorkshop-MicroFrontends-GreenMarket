@@ -24,6 +24,7 @@ export class ProductGridComponent {
 
         const channel = new BroadcastChannel('CART_HEADER_CHANNEL');
         channel.postMessage({ type: 'CART_UPDATED' });
+        channel.close();
       }
     }
   }

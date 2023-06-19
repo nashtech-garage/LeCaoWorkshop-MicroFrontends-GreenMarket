@@ -43,4 +43,5 @@ export default function addProductToShoppingCart(product) {
 
     const channel = new BroadcastChannel('CART_HEADER_CHANNEL');
     channel.postMessage({ type: 'ADD_CART_ITEM' });
+    channel.close();
 }

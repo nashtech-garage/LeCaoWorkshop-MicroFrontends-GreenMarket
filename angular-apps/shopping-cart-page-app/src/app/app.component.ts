@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
 
       const channel = new BroadcastChannel('CART_HEADER_CHANNEL');
       channel.postMessage({ type: 'CART_UPDATED' });
+      channel.close();
     }
   }
 
