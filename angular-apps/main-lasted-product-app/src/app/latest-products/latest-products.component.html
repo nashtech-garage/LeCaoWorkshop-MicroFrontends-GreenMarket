@@ -4,17 +4,23 @@
     [options]="customOptions"
     [class]="['owl-theme', 'latest-product__slider']"
   >
-    <ng-container *ngFor="let product of lastedProducts">
+    <ng-container *ngFor="let groupProduct of latestGroupProducts">
       <ng-template carouselSlide>
-        <a href="#" class="latest-product__item">
-          <div class="latest-product__item__pic">
-            <img [src]="product.image_url" alt="" />
-          </div>
-          <div class="latest-product__item__text">
-            <h6>{{ product.name }}</h6>
-            <span>{{ product.price }}</span>
-          </div>
-        </a>
+        <div *ngFor="let product of groupProduct">
+          <a
+            [routerLink]="['/shop-detail']"
+            [queryParams]="{ id: product.id }"
+            class="latest-product__item"
+          >
+            <div class="latest-product__item__pic">
+              <img [src]="product.image_url" alt="" />
+            </div>
+            <div class="latest-product__item__text">
+              <h6>{{ product.name }}</h6>
+              <span>{{ product.price }}</span>
+            </div>
+          </a>
+        </div>
       </ng-template>
     </ng-container>
   </owl-carousel-o>

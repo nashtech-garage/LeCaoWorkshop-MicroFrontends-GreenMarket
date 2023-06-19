@@ -17,6 +17,12 @@ export class AppComponent implements OnInit {
   lastedProducts: Product[] = [];
   reviewProducts: Product[] = [];
   topProducts: Product[] = [];
+
+  latestGroupProducts: Product[][] = [];
+  reviewGroupProducts: Product[][] = [];
+  topGroupProducts: Product[][] = [];
+  size = 3;
+
   constructor(
     private readonly http: HttpClient,
   ) { };
@@ -65,11 +71,21 @@ export class AppComponent implements OnInit {
             }
           })
         }
-        console.log(this.reviewProducts);
-        console.log(this.lastedProducts);
-        console.log(this.topProducts);
+
+        this.latestGroupProducts = this.splitProductGroup(this.lastedProducts);
+        this.reviewGroupProducts = this.splitProductGroup(this.reviewProducts);
+        this.topGroupProducts = this.splitProductGroup(this.topProducts);
       },
       err => throwError(err)
     )
+  }
+
+  splitProductGroup(listProducts: Product[]) {
+    var result: Product[][] = [];
+    while (listProducts.length > 0) {
+      result.push(listProducts.splice(0, this.size));
+    }
+
+    return result;
   }
 }
