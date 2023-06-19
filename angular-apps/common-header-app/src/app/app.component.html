@@ -99,10 +99,10 @@
               <a href="#"><i class="fa fa-heart"></i> <span>1</span></a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a>
+              <a [routerLink]="['/cart']"><i class="fa fa-shopping-bag"></i> <span>{{ this.cartNumberProduct }}</span></a>
             </li>
           </ul>
-          <div class="header__cart__price">item: <span>$150.00</span></div>
+          <div class="header__cart__price">Total: <span>{{ this.cartTotal | currency:'USD':'symbol':'2.2-2' }}</span></div>
         </div>
       </div>
     </div>

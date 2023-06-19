@@ -21,6 +21,9 @@ export class AppComponent implements OnInit {
       curCartData.cart_data = this.cartItems.filter(p => p.quantity !== 0);
       this.cartService.updateCartData(curCartData);
       this.cartService.updateCartSummary();
+
+      const channel = new BroadcastChannel('CART_HEADER_CHANNEL');
+      channel.postMessage({ type: 'CART_UPDATED' });
     }
   }
 
@@ -35,6 +38,7 @@ export class AppComponent implements OnInit {
         if (product) {
           item.name = product.Name ?? item.name;
           item.price = this.getPriceWithDiscount(product.Price ?? 0, product.DiscountPercentage ?? 0);
+          item.priceOriginal = product.Price;
           item.image_link = product.ImageLink ?? item.image_link;
         }
         return item;

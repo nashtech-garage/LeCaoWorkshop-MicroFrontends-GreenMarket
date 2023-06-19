@@ -4,7 +4,7 @@
             <ul class="product__item__pic__hover">
                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                <li><a href="#" @click.prevent="addProductToShoppingCart(product)"><i class="fa fa-shopping-cart"></i></a></li>
             </ul>
         </div>
         <div class="product__item__text">
@@ -20,6 +20,7 @@
     </div>
 </template>
 <script>
+import addProductToShoppingCart from "@/services/common-functions";
 export default ({
     props: {
         product: {
@@ -31,7 +32,10 @@ export default ({
 		commonApi() {
 			return process.env.VUE_APP_API;
 		}
-	}
+	},
+    methods: {
+        addProductToShoppingCart,
+    }
 })
 </script>
 <style>
