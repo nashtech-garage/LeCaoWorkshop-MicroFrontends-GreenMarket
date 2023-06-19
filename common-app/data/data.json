@@ -63,7 +63,9 @@
         "is_featured": true,
         "count": 20,
         "is_latest": true,
-        "review_count": 10
+        "review_count": 10,
+        "is_review": true,
+        "is_top_rate":true
       },
       {
         "id": 2,
@@ -88,7 +90,9 @@
         "is_featured": false,
         "count": 20,
         "is_latest": true,
-        "review_count": 2
+        "review_count": 2,
+        "is_review": false,
+        "is_top_rate":true
       },
       {
         "id": 3,
@@ -113,7 +117,9 @@
         "is_featured": true,
         "count": 21,
         "is_latest": false,
-        "review_count": 5
+        "review_count": 5,
+        "is_review": true,
+        "is_top_rate":false
       },
       {
         "id": 4,
@@ -138,7 +144,9 @@
         "is_featured": false,
         "count": 21,
         "is_latest": true,
-        "review_count": 123
+        "review_count": 123,
+        "is_review": false,
+        "is_top_rate":false
       },
       {
         "id": 5,
@@ -163,7 +171,9 @@
         "is_featured": true,
         "count": 21,
         "is_latest": true,
-        "review_count": 22
+        "review_count": 22,
+        "is_review": true,
+        "is_top_rate":true
       },
       {
         "id": 6,
@@ -188,7 +198,9 @@
         "is_featured": true,
         "count": 21,
         "is_latest": true,
-        "review_count": 22
+        "review_count": 22,
+        "is_review": false,
+        "is_top_rate":true
       },
       {
         "id": 7,
@@ -213,7 +225,9 @@
         "is_featured": true,
         "count": 21,
         "is_latest": true,
-        "review_count": 22
+        "review_count": 22,
+        "is_review": true,
+        "is_top_rate":false
       },
       {
         "id": 8,
@@ -239,6 +253,9 @@
         "count": 21,
         "is_latest": true,
         "review_count": 22
+        ,
+        "is_review": true,
+        "is_top_rate":true
       },
       {
         "id": 9,
@@ -263,7 +280,9 @@
         "is_featured": true,
         "count": 21,
         "is_latest": true,
-        "review_count": 22
+        "review_count": 22,
+        "is_review": false,
+        "is_top_rate":false
       },
       {
         "id": 10,
@@ -288,7 +307,9 @@
         "is_featured": false,
         "count": 21,
         "is_latest": true,
-        "review_count": 22
+        "review_count": 22,
+        "is_review": true,
+        "is_top_rate":true
       },
       {
         "id": 11,
@@ -313,7 +334,9 @@
         "is_featured": true,
         "count": 21,
         "is_latest": false,
-        "review_count": 22
+        "review_count": 22,
+        "is_review": false,
+        "is_top_rate":true
       },
       {
         "id": 12,
@@ -338,7 +361,9 @@
         "is_featured": false,
         "count": 21,
         "is_latest": true,
-        "review_count": 22
+        "review_count": 22,
+        "is_review": true,
+        "is_top_rate":false
       }
     ],
     "blog": [

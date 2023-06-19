@@ -37,6 +37,15 @@ services:
     ports:
       - "9002:80"
 
+  angular-apps-main-lasted-product-app:
+    image: mf-angular-apps-main-lasted-product-app
+    build:
+      context: .
+      dockerfile: ./angular-apps/main-lasted-product-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "9004:80"
+
   angular-apps-shopping-cart-page-app:
     image: mf-angular-shopping-cart-page-app
     build:
