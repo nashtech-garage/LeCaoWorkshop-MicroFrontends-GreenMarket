@@ -23,6 +23,7 @@
 
 .blog__details__text img {
 	margin-bottom: 30px;
+	width: 100%;
 }
 
 .blog__details__text p {

@@ -58,7 +58,7 @@
     "build:vue-apps:contact-map-app": "cd ../vue-apps/contact-map-app/ && npm run build",
     "build:vue-apps:vue-shop-page-products-grid-app": "cd ../vue-apps/vue-shop-page-products-grid-app/ && copy .env.example .env && npm run build",
     "build:vue-apps:mainpage-blog-app": "cd ../vue-apps/mainpage-blog-app/ && copy .env.example .env && npm run build",
-    "build:react-apps:react-blog-detail-page-blog-info-app": "cd ../react-apps/react-blog-detail-page-blog-info-app/ && copy .env.example .env && webpack  --config ./webpack.config.js",
+    "build:react-apps:react-blog-detail-page-blog-info-app": "cd ../react-apps/react-blog-detail-page-blog-info-app/ && copy .env.example .env && webpack --config ./webpack.config.js",
     "build:webpack": "webpack --mode=production --env isLocal=true",
     "build:types": "tsc"
   },

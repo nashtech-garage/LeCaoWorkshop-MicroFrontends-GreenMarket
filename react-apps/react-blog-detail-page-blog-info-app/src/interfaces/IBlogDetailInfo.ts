@@ -6,6 +6,6 @@ interface IBlogDetailInfo {
     created_by?: string,
     created_date?: string,
     tags?: string,
-    images_urls?: Array<string>,
+    images_url?: string,
     comments_count?: number
 }
