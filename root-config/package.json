@@ -61,6 +61,7 @@
     "build:vue-apps:contact-map-app": "cd ../vue-apps/contact-map-app/ && npm run build",
     "build:vue-apps:vue-shop-page-products-grid-app": "cd ../vue-apps/vue-shop-page-products-grid-app/ && cp .env.example .env && npm run build",
     "build:vue-apps:mainpage-blog-app": "cd ../vue-apps/mainpage-blog-app/ && cp .env.example .env && npm run build",
+    "build:angular-apps:breadcrumb-app": "cd ../angular-apps/breadcrumb-app/ && npm run build:single-spa:breadcrumb-app",
     "build:webpack": "webpack --mode=production --env isLocal=true",
     "build:types": "tsc"
   },
