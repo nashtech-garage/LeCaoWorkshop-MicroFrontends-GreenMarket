@@ -8,6 +8,7 @@
 
 <script>
 import ProductCard from './ProductCard.vue';
+import productsApi from '@/api/productsApi';
 export default {
   components: { ProductCard },
   data(){
@@ -41,6 +42,17 @@ export default {
     }
   },
   methods:{
+    async getRelatedProduct(){
+      try{
+        const data = await productsApi.getProducts(this.$axios)
+        console.log(data)
+      }catch(err){
+        console.log(err)
+      }
+    }
+  },
+  async mounted(){
+    await this.getRelatedProduct()
   }
 }
 </script>
