@@ -2,8 +2,8 @@ import BlogDetailInfo from "./components/blog-detail-info/BlogDetailInfo.compone
 import {BrowserRouter} from "react-router-dom"
 export default function Root() {
   return (
-      <BrowserRouter>
-        <BlogDetailInfo />
-      </BrowserRouter>
+    <BrowserRouter>
+      <BlogDetailInfo />
+    </BrowserRouter>
   );
 }
