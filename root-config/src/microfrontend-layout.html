@@ -71,11 +71,11 @@
       <!-- Banner End -->
 
       <!-- Latest Product Section Begin -->
-    <application 
-        loader="mfLoader" 
-        error="mfError" 
+      <application
+        loader="mfLoader"
+        error="mfError"
         name="@app/angular-apps/main-lasted-product-app"
-    ></application>
+      ></application>
       <!-- Latest Product Section End -->
 
       <!-- Blog Section Begin -->
@@ -104,6 +104,14 @@
     </route>
 
     <route path="blogs"> blog </route>
+
+    <route path="blog-detail">
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/react-apps/react-blog-detail-page-blog-info-app"
+      ></application>
+    </route>
 
     <route path="contact">
       <application
