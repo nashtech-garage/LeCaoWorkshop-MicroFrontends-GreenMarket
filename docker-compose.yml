@@ -91,6 +91,15 @@ services:
     ports:
       - "9003:80"
 
+  react-apps-blog-detail-page-blog-info-app:
+    image: mf-react-apps-blog-detail-page-blog-info-app
+    build:
+      context: .
+      dockerfile: ./react-apps/react-blog-detail-page-blog-info-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "8001:80"
+
   react-apps-main-page-hero-banner-app:
     image: mf-react-apps-main-page-hero-banner-app
     build:
