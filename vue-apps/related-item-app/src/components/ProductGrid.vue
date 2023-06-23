@@ -9,10 +9,6 @@
 <script>
 import ProductCard from './ProductCard.vue';
 import productsApi from '@/api/productsApi';
-<<<<<<< HEAD
-
-=======
->>>>>>> features/breadcrumb-app
 export default {
 
   components: { ProductCard },
@@ -34,7 +30,6 @@ export default {
   },
   methods:{
     async getRelatedProduct(){
-<<<<<<< HEAD
       const productId = this.$route.query.id
       try{
         const {data} = await productsApi.getProducts(this.$axios)
@@ -57,18 +52,6 @@ export default {
       const products = data.filter(x => x.category_id == categoryId && x.id != id)
       return products.slice(0, 4);
     }
-=======
-      try{
-        const data = await productsApi.getProducts(this.$axios)
-        console.log(data)
-      }catch(err){
-        console.log(err)
-      }
-    }
-  },
-  async mounted(){
-    await this.getRelatedProduct()
->>>>>>> features/breadcrumb-app
   }
 }
 </script>

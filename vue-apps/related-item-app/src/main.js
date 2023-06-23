@@ -1,5 +1,4 @@
 import { h, createApp } from 'vue';
-<<<<<<< HEAD
 
 import singleSpaVue from 'single-spa-vue';
 import axiosPlugin from './plugins/axiosPlugin';
@@ -11,25 +10,8 @@ const axiosOptions = {
   token: ''
 }
 
-=======
-import singleSpaVue from 'single-spa-vue';
-import axiosPlugin from './plugins/axiosPlugin';
-import App from './App.vue';
-
-console.log(process.env.API)
-
-
-const axiosOptions = {
-  baseUrl: 'http://localhost:5000',
-  token: ''
-}
-
-const app = createApp({})
-app.use(axiosPlugin, axiosOptions)
-
->>>>>>> features/breadcrumb-app
 const vueLifecycles = singleSpaVue({
-  app,
+  createApp,
   appOptions: {
     render() {
       return h(App, {
