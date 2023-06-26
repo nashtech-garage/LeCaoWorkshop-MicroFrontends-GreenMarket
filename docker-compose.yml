@@ -1,6 +1,15 @@
 version: "3.4"
 
 services:
+  angular-apps-breadcrumb-app:
+    image: mf-angular-apps-breadcrumb-app
+    build:
+      context: .
+      dockerfile: ./angular-apps/breadcrumb-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "5004:80"
+
   angular-apps-checkout-app:
     image: mf-angular-apps-checkout-app
     build:
