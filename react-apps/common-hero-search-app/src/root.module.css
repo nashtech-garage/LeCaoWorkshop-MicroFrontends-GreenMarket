@@ -74,7 +74,7 @@
 
 .hero__search {
     overflow: hidden;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
 }
 
 .hero__search__form {
