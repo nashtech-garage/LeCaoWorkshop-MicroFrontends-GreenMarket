@@ -1,22 +1,33 @@
+import { BreadcrumbType } from './models/breadcrumb-enums.model';
 import { Component } from '@angular/core';
-import { NavigationItemModel } from './models/navigation-item.model';
 import { NavigationGroupModel } from './models/navigation-group.model';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-breadcrumb-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   title = 'breadcrumb-app';
+
+  private categoryData = [];
+  private productData = [];
+  private blogData = [];
+
+  public apiUrl = environment.apiUrl;
+  public isBlogDetail: boolean = false;
+
   public navigationGroup: NavigationGroupModel = {
     pageIndex: '',
     pageTitle: '',
     items: []
-  }
+  };
+
   public navigations: Array<NavigationGroupModel> = [
     {
       pageIndex: '/shops',
@@ -27,7 +38,7 @@ export class AppComponent {
           url: '/'
         },
         {
-          label: 'Shop',
+          label: 'Shops',
           url: '/shops'
         }
       ]
@@ -123,64 +134,146 @@ export class AppComponent {
     private http: HttpClient){
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        console.log(event.url);
-        this.loadData(event)
+        this.loadData(event.url)
       }});
   }
 
   ngOnInit() {
-    // this.loadData()
+
   }
 
-  loadData(event:NavigationEnd){
-    const path = window.location.pathname
-    const items = this.navigations.filter(x => x.pageIndex == path)
-
-    if(items && items.length == 1){
-      this.navigationGroup = items[0]
+  async loadData(url: string){
+    if (this.categoryData.length == 0 || this.productData.length == 0 || this.blogData.length == 0) {
+      await this.fetchData(url);
     }
 
-    if(path == '/shop-detail'){
-      const productId = this.route.snapshot.queryParamMap.get('id')
-      this.getData(productId!)
+    const currentId = this.route.snapshot.queryParamMap.get('id')!;
+    this.isBlogDetail = false;
+    this.resetNavigationGroup();
+    this.navigationGroup = this.getNavigationByPath(url)!;
+
+    if(url.includes("shops?id=")) {
+      this.navigationGroup = this.getNavigationByPath("/shops")!;
+      this.getBreadcrumbData(currentId, BreadcrumbType.Shop);
+    }
+
+    if(url.includes("/shop-detail?id=")){
+      this.navigationGroup = this.getNavigationByPath("/shop-detail")!;
+      this.getBreadcrumbData(currentId, BreadcrumbType.ShopDetail);
+    }
+
+    if(url.includes("/blog-detail?id=")){
+      this.isBlogDetail = true;
+      this.navigationGroup = this.getNavigationByPath("/blog-detail")!;
+      this.getBreadcrumbData(currentId, BreadcrumbType.BlogDetail);
     }
   }
 
-  getData(productId:string){
-    const apiData = `${environment.apiUrl}data/data.json`;
-    const http$ = this.http.get<any>(apiData);
+  async fetchData(url: string) {
+    const apiData = `${this.apiUrl}data/data.json`;
 
-    http$.subscribe({
-      next: (res) => {
-        const { products } = res.data
-        const product = this.getProductById(productId, products)
+    await lastValueFrom(this.http.get<any>(apiData))
+            .then((res) => {
+              const { categories, products, blogs } = res.data;
 
-        this.navigationGroup.pageTitle = product.name
-        if(this.navigationGroup.items.length == 2){
-          this.navigationGroup.items.push({
-            label: product.name,
-            url: '/shop-detail',
-            queryParams: {id:productId}
-          })
-        }else{
-          this.navigationGroup.items[2] = {
-            label: product.name,
-            url: '/shop-detail',
-            queryParams: {id:productId}
-          }
+              this.categoryData = categories;
+              this.productData = products;
+              this.blogData = blogs;
+            });
+  }
+
+  getBreadcrumbData(id: string, type: BreadcrumbType) {
+
+    switch (type) {
+      case BreadcrumbType.Shop:
+        const data = this.getDataById(id, this.categoryData);
+        this.navigationGroup.pageTitle = data.name;
+        if(this.navigationGroup.items.length == 2) {
+          this.navigationGroup.items[1].label = data.name;
         }
-      },
-      error: (e) => console.error(e),
-      complete: () => console.info('complete') 
-    })
-  }
+        break;
 
-  getProductById(id:string, data:Array<any>){
-    const product = data.filter(x => x.id == id)
-    if(!product || product.length === 0){
-      throw new TypeError("Product not found ")
+      case BreadcrumbType.ShopDetail:
+        const product = this.getDataById(id, this.productData);
+        const category = this.getDataById(product.category_id, this.categoryData);
+
+        this.navigationGroup.pageTitle = product.name;
+
+        const secondItem = {
+          label: category.name,
+          url: `/shops`,
+          queryParams: {id:category.id}
+        };
+
+        const lastItem = {
+          label: product.name,
+          url: `/shop-detail`,
+          queryParams: {id:id}
+        };
+
+        if(this.navigationGroup.items.length == 2) {
+          // update second item
+          this.navigationGroup.items[1] = secondItem;
+
+          // add last item is product
+          this.navigationGroup.items.push(lastItem);
+        }
+
+        if(this.navigationGroup.items.length == 3) {
+          // update second item
+          this.navigationGroup.items[1] = secondItem;
+
+          // update last item
+          this.navigationGroup.items[2] = lastItem;
+        }
+        break;
+
+      case BreadcrumbType.BlogDetail:
+        const blog = this.getDataById(id, this.blogData);
+        this.navigationGroup.pageTitle = blog.title;
+        if(this.navigationGroup.items.length == 2) {
+          this.navigationGroup.items = [];
+
+          const listInfo = [
+            `By ${blog.created_by}`,
+            blog.created_date,
+            `${blog.comments_count} Comments`
+          ];
+
+          listInfo.forEach(itemInfo => {
+            this.navigationGroup.items.push({
+              label: itemInfo,
+              url: '#'
+            });
+          });
+        }
+        break;
     }
-    return product[0]
   }
 
+  resetNavigationGroup() {
+    this.navigationGroup = {
+      pageIndex: '',
+      pageTitle: '',
+      items: []
+    };
+  }
+
+  getNavigationByPath(path: string) {
+    const items = this.navigations.filter(x => x.pageIndex == path)
+    if(items && items.length == 1){
+      return items[0]
+    }
+
+    return null;
+  }
+
+  getDataById(id:string, data:Array<any>) {
+    const result = data.filter(x => x.id == id);
+    if(!result || result.length === 0){
+      throw new TypeError("Item not found!");
+    }
+
+    return result[0];
+  }
 }

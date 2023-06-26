@@ -1,20 +1,45 @@
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" style="background-image:url(http://localhost:5000/img/breadcrumb.jpg)">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb__text">
-                    <h2>
-                        {{ navigationGroup.pageTitle }}
-                    </h2>
-                    <div class="breadcrumb__option">
-                        <a *ngFor="let item of navigationGroup.items" [routerLink]="item.url" [queryParams]="item.queryParams">
-                            {{item.label}}
-                        </a>
-                    </div>
-                </div>
-            </div>
+<section
+  class="breadcrumb-section set-bg"
+  [ngStyle]="{
+    'background-image': 'url(' + apiUrl + 'img/breadcrumb.jpg' + ')'
+  }"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="breadcrumb__text">
+          <h2>
+            {{ navigationGroup.pageTitle }}
+          </h2>
+          <div *ngIf="!isBlogDetail" class="breadcrumb__option">
+            <ng-container
+              *ngFor="let item of navigationGroup.items; last as isLast"
+            >
+              <a
+                *ngIf="!isLast"
+                [routerLink]="item.url"
+                [queryParams]="item.queryParams"
+              >
+                {{ item.label }}
+              </a>
+            </ng-container>
+            <span *ngIf="navigationGroup.items.length > 1">{{
+              navigationGroup.items[navigationGroup.items.length - 1].label
+            }}</span>
+          </div>
+          <div *ngIf="isBlogDetail" class="breadcrumb__option">
+            <ng-container>
+              <ul>
+                <li *ngFor="let item of navigationGroup.items">
+                  {{ item.label }}
+                </li>
+              </ul>
+            </ng-container>
+          </div>
         </div>
+      </div>
     </div>
-  </section>
-  <!-- Breadcrumb Section End -->
+  </div>
+</section>
+<!-- Breadcrumb Section End -->

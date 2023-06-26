@@ -65,7 +65,7 @@
         "is_latest": true,
         "review_count": 10,
         "is_review": true,
-        "is_top_rate":true
+        "is_top_rate": true
       },
       {
         "id": 2,
@@ -92,7 +92,7 @@
         "is_latest": true,
         "review_count": 2,
         "is_review": false,
-        "is_top_rate":true
+        "is_top_rate": true
       },
       {
         "id": 3,
@@ -119,7 +119,7 @@
         "is_latest": false,
         "review_count": 5,
         "is_review": true,
-        "is_top_rate":false
+        "is_top_rate": false
       },
       {
         "id": 4,
@@ -146,7 +146,7 @@
         "is_latest": true,
         "review_count": 123,
         "is_review": false,
-        "is_top_rate":false
+        "is_top_rate": false
       },
       {
         "id": 5,
@@ -173,7 +173,7 @@
         "is_latest": true,
         "review_count": 22,
         "is_review": true,
-        "is_top_rate":true
+        "is_top_rate": true
       },
       {
         "id": 6,
@@ -200,7 +200,7 @@
         "is_latest": true,
         "review_count": 22,
         "is_review": false,
-        "is_top_rate":true
+        "is_top_rate": true
       },
       {
         "id": 7,
@@ -227,7 +227,7 @@
         "is_latest": true,
         "review_count": 22,
         "is_review": true,
-        "is_top_rate":false
+        "is_top_rate": false
       },
       {
         "id": 8,
@@ -252,10 +252,9 @@
         "is_featured": true,
         "count": 21,
         "is_latest": true,
-        "review_count": 22
-        ,
+        "review_count": 22,
         "is_review": true,
-        "is_top_rate":true
+        "is_top_rate": true
       },
       {
         "id": 9,
@@ -282,7 +281,7 @@
         "is_latest": true,
         "review_count": 22,
         "is_review": false,
-        "is_top_rate":false
+        "is_top_rate": false
       },
       {
         "id": 10,
@@ -309,7 +308,7 @@
         "is_latest": true,
         "review_count": 22,
         "is_review": true,
-        "is_top_rate":true
+        "is_top_rate": true
       },
       {
         "id": 11,
@@ -336,7 +335,7 @@
         "is_latest": false,
         "review_count": 22,
         "is_review": false,
-        "is_top_rate":true
+        "is_top_rate": true
       },
       {
         "id": 12,
@@ -363,10 +362,10 @@
         "is_latest": true,
         "review_count": 22,
         "is_review": true,
-        "is_top_rate":false
+        "is_top_rate": false
       }
     ],
-    "blog": [
+    "blogs": [
       {
         "id": 1,
         "title": "Cooking tips make cooking simple",
@@ -442,8 +441,8 @@
     },
     "coupon": [
       {
-        "code": "FREE10", 
-        "description": "10% discount", 
+        "code": "FREE10",
+        "description": "10% discount",
         "discount_amount": "10",
         "unit": "percentage",
         "is_expired": false

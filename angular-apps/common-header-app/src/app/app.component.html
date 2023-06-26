@@ -39,7 +39,15 @@
     <div class="row">
       <div class="col-lg-3">
         <div class="header__logo">
-          <a href="./index.html"><img src="assets/img/logo.png" alt="" /></a>
+          <a
+            aria-current="page"
+            routerLink="/"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <img src="assets/img/logo.png" alt="" />
+          </a>
         </div>
       </div>
       <div class="col-lg-6">

@@ -38,3 +38,27 @@
 	font-size: 16px;
 	color: #ffffff;
 }
+
+.breadcrumb__option ul li {
+	font-size: 16px;
+	color: #ffffff;
+	list-style: none;
+	display: inline-block;
+	margin-right: 45px;
+	position: relative;
+}
+
+.breadcrumb__option ul li:after {
+	position: absolute;
+	right: -26px;
+	top: 0;
+	content: "|";
+}
+
+.breadcrumb__option ul li:last-child {
+	margin-right: 0;
+}
+
+.breadcrumb__option ul li:last-child:after {
+	display: none;
+}
