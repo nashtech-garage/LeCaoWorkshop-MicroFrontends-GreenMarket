@@ -1,6 +1,30 @@
 version: "3.4"
 
 services:
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "5433:1433"
+    volumes:
+      - mf-sqldata:/var/opt/mssql
+
+  api-apps-identity-app:
+    image: mf-api-apps-identity-app
+    build:
+      context: .
+      dockerfile: ./api-apps/identity-app/IdentityServer.Core/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - PORT=80
+    depends_on:
+      - sqldata
+    ports:
+      - "5050:80"
+
   angular-apps-breadcrumb-app:
     image: mf-angular-apps-breadcrumb-app
     build:
@@ -180,3 +204,7 @@ services:
     restart: on-failure
     ports:
       - "9000:80"
+
+volumes:
+  mf-sqldata:
+    external: false
