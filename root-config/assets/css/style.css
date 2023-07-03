@@ -113,9 +113,9 @@ ol {
 	margin: 0;
 }
 
-.hero {
-	padding-bottom: 50px;
-}
+/* .hero {
+	padding-bottom: 30px;
+} */
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
@@ -2155,54 +2155,64 @@ ol {
 }
 
 #single-spa-application\:\@app\/angular-apps\/common-header-app {
-	height: 127px;
+	/* height: 127px; */
 }
 
 #single-spa-application\:\@app\/react-apps\/common-hero-search-app {
-	height: 81px;
+	/*height: 81px;*/
+	margin-bottom: 30px;
 }
 
 #single-spa-application\:\@app\/react-apps\/main-page-hero-banner {
-	height: 431px;
+	/* height: 431px; */
 }
 
 #single-spa-application\:\@app\/angular-apps\/main-categories-app {
-	height: 270px;
+	/* height: 270px; */
+	margin-top: 30px;
 }
 
 #single-spa-application\:\@app\/react-apps\/main-featured-product {
-	height: 1061px;
+	/* height: 1061px; */
 }
 
 #single-spa-application\:\@app\/react-apps\/common-contact-app {
-	height: 279px;
+	/* height: 279px; */
 }
 
 #single-spa-application\:\@app\/vue-apps\/contact-map-app {
-	height: 500px;
+	/* height: 500px; */
 }
 
 #single-spa-application\:\@app\/angular-apps\/contact-form-app {
-	height: 565px;
+	/* height: 565px; */
 }
 
 #single-spa-application\:\@app\/angular-apps\/shopping-cart-page-app {
-	height: 1000px;
+	/* height: 1000px; */
 }
 
 #single-spa-application\:\@app\/vue-apps\/related-item-app {
-	height: 529px;
+	/* height: 529px; */
 }
 
 #single-spa-application\:\@app\/vue-apps\/mainpage-blog-app {
-	height: 654px;
+	/* height: 654px; */
 }
 
-/* #single-spa-application\:\@app\/react-apps\/common-footer-app {
-	height: 430px;
+#single-spa-application\:\@app\/vue-apps\/vue-shop-page-products-grid-app {
+	/*padding-top: 80px;*/
 }
 
-#single-spa-application\:\@app\/angular-apps\/contact-form-app {
+#single-spa-application\:\@app\/angular-apps\/breadcrumb-app {
+	padding-bottom: 80px;
+}
+
+#single-spa-application\:\@app\/react-apps\/common-footer-app {
+	padding-top: 70px;
+}
+
+/*#single-spa-application\:\@app\/angular-apps\/contact-form-app {
 	height: 500px;
 }
 

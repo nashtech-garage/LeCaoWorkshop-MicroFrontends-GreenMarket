@@ -9,7 +9,6 @@
 <script>
 import ProductCard from './ProductCard.vue';
 import productsApi from '@/api/productsApi';
-
 export default {
 
   components: { ProductCard },
