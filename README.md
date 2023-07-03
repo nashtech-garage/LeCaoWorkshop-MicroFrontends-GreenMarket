@@ -2,7 +2,9 @@
 
 ## Getting Started
 
-### Install, build, and run on local
+### On local
+
+#### Install, build, and run micro-frontend projects
 
 Move to root-config folder
 
@@ -28,7 +30,26 @@ Start project
 npm start
 ```
 
-### Install, build, and run with Docker
+#### Build, and run identity server project
+
+Build project
+
+```
+dotnet build api-apps/identity-app/IdentityServer.Core
+```
+
+Run project
+```
+dotnet run api-apps/identity-app/IdentityServer.Core --environment Development --urls=http://localhost:5050
+```
+
+### On Docker
+
+Remove all dist, node_modules folder before run docker command
+
+```powershell
+remove_folders.bat
+```
 
 Build all projects
 
