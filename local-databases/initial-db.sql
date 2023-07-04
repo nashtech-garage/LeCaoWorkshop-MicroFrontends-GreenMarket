@@ -1,4 +1,10 @@
 
+CREATE DATABASE GreenMarket;
+
+GO
+USE GreenMarket;
+GO
+
 CREATE TABLE categories (
     id INT PRIMARY KEY IDENTITY (1, 1),
     name NVARCHAR (255) NOT NULL,
