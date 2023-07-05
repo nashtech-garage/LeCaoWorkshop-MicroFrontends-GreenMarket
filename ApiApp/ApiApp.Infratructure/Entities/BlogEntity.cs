@@ -6,9 +6,9 @@ namespace ApiApp.Infratructure.Entities;
 public class BlogEntity : BaseEntity
 {
     public string Title { get; set; } = string.Empty;
-    public string ImagesUrl { get; set; } = string.Empty;
+    public string Images_Url { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
-    public string DescriptionShort { get; set; } = string.Empty;
+    public string Description_Short { get; set; } = string.Empty;
     public string Tags { get; set; } = string.Empty;
-    public int CommentsCount { get; set; }
+    public int Comments_Count { get; set; }
 }

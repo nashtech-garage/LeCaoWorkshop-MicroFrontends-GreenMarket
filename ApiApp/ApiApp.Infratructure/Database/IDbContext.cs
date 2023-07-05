@@ -1,12 +1,8 @@
 
-using ApiApp.Infratructure.Entities;
-using ApiApp.Infratructure.Repositories;
-
+using System.Data;
 namespace ApiApp.Infratructure.Database;
 
 public interface IDbContext
 {
-    void Commit();
-    void Rollback();
-    Task<IRepository<T>> GetRepository<T>() where T : BaseEntity;
+    Task<IDbConnection> OpenConnectionAsync(CancellationToken cancellationToken = default);
 }

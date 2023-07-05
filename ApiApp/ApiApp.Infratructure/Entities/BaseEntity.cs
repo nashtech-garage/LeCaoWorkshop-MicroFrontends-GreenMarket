@@ -1,15 +1,17 @@
 
+using System.ComponentModel.DataAnnotations.Schema;
 using Dapper.Contrib.Extensions;
 
 namespace ApiApp.Infratructure.Entities;
 
 public class BaseEntity
 {
-    [ExplicitKey]
+    [Key]
+    [Computed]
     public int Id { get; set; }
     
-    public string CreatedBy { get; set; } = string.Empty;
-    public DateTime CreatedDate { get; set; }
-    public string ModifiedBy { get; set; } = string.Empty;
-    public DateTime ModifiedDate { get; set; }
+    public string Created_By { get; set; } = "Phuc Hoang";
+    public DateTime? Created_Date { get; set; }
+    public string? Modified_By { get; set; }
+    public DateTime? Modified_Date { get; set; }
 }

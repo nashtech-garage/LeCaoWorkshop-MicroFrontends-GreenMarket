@@ -7,7 +7,7 @@ public class CouponEntity : BaseEntity
 {
     public string Code { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
-    public int DiscountAmount { get; set; }
+    public int Discount_Amount { get; set; }
     public string Unit { get; set; } = string.Empty;
-    public Boolean IsExpired { get;set; }
+    public Boolean Is_Expired { get;set; }
 }

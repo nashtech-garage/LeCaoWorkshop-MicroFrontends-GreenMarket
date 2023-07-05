@@ -1,8 +1,9 @@
+using ApiApp.API.Models;
 using ApiApp.Infratructure.Entities;
 using ApiApp.Infratructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace api_apps.API.Controllers;
+namespace ApiApp.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -29,17 +30,38 @@ public class ProductController : ControllerBase
         return await _productService.GetAllProductsAsync();
     }
 
-    [HttpPost()]
-    public async Task<ActionResult> AddProductsAsync()
+    [HttpPost]
+    public async Task<ActionResult> AddProductsAsync([FromBody] AddProductRequest request)
     {
-        await _productService.AddProductAsync(new ProductEntity());
+        await _productService.AddProductAsync(new () {
+            Category_Id = 2,
+            Created_By = "Phuc Hoang",
+            Name = request.Name,
+            Price = request.Price,
+            Description = request.Description,
+            Description_Short = request.DescriptionShort,
+            Discount = request.Discount,
+            Availability = request.Availability,
+            //Color = request.Color,
+        });
+
         return Ok();
     }
 
     [HttpPut("{id}/update")]
-    public async Task<ActionResult> UpdateProductsAsync(int id)
+    public async Task<ActionResult> UpdateProductsAsync(int id, [FromBody] UpdateProductRequest request)
     {
-        await _productService.UpdateProductAsync(new ProductEntity());
+        var entity = await _productService.GetProductAsync(id);
+
+        entity.Name = request.Name;
+        entity.Price = request.Price;
+        entity.Description = request.Description;
+        entity.Description_Short = request.DescriptionShort;
+        entity.Discount = request.Discount;
+        entity.Availability = request.Availability;
+
+        await _productService.UpdateProductAsync(entity);
+
         return Ok();
     }
 }
