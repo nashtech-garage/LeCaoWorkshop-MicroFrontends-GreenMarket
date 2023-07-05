@@ -39,9 +39,18 @@ type Data = {
 }
 
 export const addProductToShoppingCart = (product: any) => {
-  // Todo: Handle get current user_id, user_name
-  let currentUserId = 'user_id'; 
-  let currentUserName = '';
+  const currentUser = JSON.parse(localStorage.getItem('auth-user') ?? "{}");
+  
+  let currentUserId = currentUser.sub; 
+  let currentUserName = currentUser.email;
+
+  const channel = new BroadcastChannel('CART_HEADER_CHANNEL');
+
+  if (!currentUserId) {
+    channel.postMessage({});
+    channel.close();
+    return;
+  }
   
   const localStorageKey = currentUserId;
   const discount = product.discount;
@@ -80,8 +89,9 @@ export const addProductToShoppingCart = (product: any) => {
   }, 0);
 
   localStorage.setItem(localStorageKey, JSON.stringify(shoppingCart));
-  
-  const channel = new BroadcastChannel('CART_HEADER_CHANNEL');
-  channel.postMessage({ type: 'ADD_CART_ITEM' });
+
+  channel.postMessage({
+    type: 'ADD_CART_ITEM', path: window.location.href
+  });
   channel.close();
 }
