@@ -79,3 +79,7 @@ ApiApp/ApiApp.Infratructure/obj/Debug/
 ApiApp/ApiApp.Infratructure/obj/
 ApiApp/ApiApp.Infratructure/bin/Debug/
 ApiApp/ApiApp.API/obj/
+common-app/ApiApp/ApiApp.Infratructure/obj/
+common-app/ApiApp/ApiApp.Infratructure/bin/
+common-app/ApiApp/ApiApp.API/bin/
+common-app/ApiApp/ApiApp.API/obj/

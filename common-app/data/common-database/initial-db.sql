@@ -1,7 +1,12 @@
+USE [master]
+GO
+
+IF DB_ID('GreenMarket') IS NOT NULL
+  set noexec on 
 
 CREATE DATABASE GreenMarket;
-
 GO
+
 USE GreenMarket;
 GO
 
@@ -15,6 +20,8 @@ CREATE TABLE categories (
     modified_by NVARCHAR(255),
     modified_date DATETIME
 );
+
+GO
 
 CREATE TABLE products (
     id INT PRIMARY KEY IDENTITY (1, 1),
@@ -43,6 +50,8 @@ CREATE TABLE products (
     FOREIGN KEY (category_id) REFERENCES categories (id)
 );
 
+GO
+
 CREATE TABLE blog (
     id INT PRIMARY KEY IDENTITY (1, 1),
     title NVARCHAR (255) NOT NULL,
@@ -58,6 +67,8 @@ CREATE TABLE blog (
     modified_date DATETIME
 );
 
+GO
+
 CREATE TABLE main_hero_banner (
     id INT PRIMARY KEY IDENTITY (1, 1),
     category_name NVARCHAR (255) NOT NULL,
@@ -70,6 +81,8 @@ CREATE TABLE main_hero_banner (
     modified_by NVARCHAR(255),
     modified_date DATETIME
 );
+
+GO
 
 CREATE TABLE coupon (
     id INT PRIMARY KEY IDENTITY (1, 1),
@@ -85,6 +98,7 @@ CREATE TABLE coupon (
     modified_date DATETIME
 );
 
+GO
 
 /*INSERT VALUES*/
 INSERT INTO [dbo].[categories] ([name] ,[image_url] ,[created_by])
@@ -113,7 +127,7 @@ INSERT INTO [dbo].[products]
 			  "img/product/details/product-details-4.jpg",
 			  "img/product/details/product-details-5.jpg"
 			]'
-           ,1, 20, 1, 10, 'Phuc Hoang', 8),
+           ,1, 20, 1, 10, 'Phuc Hoang', 1),
 
 		   ('Vetgetable’s Package', 32.0, 1.5
            ,'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.'
@@ -128,7 +142,7 @@ INSERT INTO [dbo].[products]
 			  "img/product/details/product-details-4.jpg",
 			  "img/product/details/product-details-5.jpg"
 			]'
-           ,1, 21, 1, 2, 'Phuc Hoang', 8),
+           ,1, 21, 1, 2, 'Phuc Hoang', 2),
 
 			('Vetgetable’s Package', 223.0, 223.0
            ,'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.'
@@ -143,7 +157,7 @@ INSERT INTO [dbo].[products]
 			  "img/product/details/product-details-4.jpg",
 			  "img/product/details/product-details-5.jpg"
 			]'
-           ,1, 20, 0, 123, 'Phuc Hoang', 8),
+           ,1, 20, 0, 123, 'Phuc Hoang', 3),
 
 		   ('Vetgetable’s Package', 223.0, 223.0
            ,'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.'
@@ -158,7 +172,7 @@ INSERT INTO [dbo].[products]
 			  "img/product/details/product-details-4.jpg",
 			  "img/product/details/product-details-5.jpg"
 			]'
-           ,1, 20, 0, 123, 'Phuc Hoang', 8),
+           ,1, 20, 0, 123, 'Phuc Hoang', 4),
 
 		   ('Vetgetable’s Package', 223.0, 223.0
            ,'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.'
@@ -173,7 +187,7 @@ INSERT INTO [dbo].[products]
 			  "img/product/details/product-details-4.jpg",
 			  "img/product/details/product-details-5.jpg"
 			]'
-           ,1, 20, 0, 123, 'Phuc Hoang', 12),
+           ,1, 20, 0, 123, 'Phuc Hoang', 5),
 
 		   ('Vetgetable’s Package', 223.0, 223.0
            ,'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.'
@@ -188,7 +202,7 @@ INSERT INTO [dbo].[products]
 			  "img/product/details/product-details-4.jpg",
 			  "img/product/details/product-details-5.jpg"
 			]'
-           ,1, 20, 0, 123, 'Phuc Hoang', 11),
+           ,1, 20, 0, 123, 'Phuc Hoang', 6),
 
 		   ('Vetgetable’s Package', 223.0, 223.0
            ,'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.'
@@ -203,7 +217,7 @@ INSERT INTO [dbo].[products]
 			  "img/product/details/product-details-4.jpg",
 			  "img/product/details/product-details-5.jpg"
 			]'
-           ,1, 20, 0, 123, 'Phuc Hoang', 9),
+           ,1, 20, 0, 123, 'Phuc Hoang', 7),
 
 		   ('Vetgetable’s Package', 223.0, 223.0
            ,'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.'
@@ -218,7 +232,7 @@ INSERT INTO [dbo].[products]
 			  "img/product/details/product-details-4.jpg",
 			  "img/product/details/product-details-5.jpg"
 			]'
-           ,1, 20, 0, 123, 'Phuc Hoang', 10),
+           ,1, 20, 0, 123, 'Phuc Hoang', 6),
 
 		   ('Vetgetable’s Package', 223.0, 223.0
            ,'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Proin eget tortor risus.'
@@ -233,7 +247,9 @@ INSERT INTO [dbo].[products]
 			  "img/product/details/product-details-4.jpg",
 			  "img/product/details/product-details-5.jpg"
 			]'
-           ,1, 20, 0, 123, 'Phuc Hoang', 10);
+           ,1, 20, 0, 123, 'Phuc Hoang', 7);
+
+GO
 
 INSERT INTO [dbo].[blog]
            ([title]
@@ -274,12 +290,15 @@ INSERT INTO [dbo].[blog]
            ,'Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.'
            ,'All, Trending, Cooking, Healthy Food, Life Style' ,12, 'Phuc Hoang');
 
+GO
 
 INSERT INTO [dbo].[coupon]
            ([code],[description],[discount_amount] ,[unit] ,[is_expired] ,[created_by])
      VALUES
            ('FREE10' , '10% discount', 10 , 'percentage', 0 ,'Phuc Hoang'),
 		   ('FREE20' , '20% discount', 20 , 'percentage', 0 ,'Phuc Hoang');
+
+GO
 
 INSERT INTO [dbo].[main_hero_banner]
            ([category_name], [title], [content], [image_link], [created_by])
