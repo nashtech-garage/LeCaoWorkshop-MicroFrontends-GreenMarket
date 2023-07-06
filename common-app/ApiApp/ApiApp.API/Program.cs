@@ -12,7 +12,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Green Market API", Version = "v1" }));
 
-// Add binding config
 builder.Services.Configure<DatabaseConfig>(builder.Configuration.GetSection(nameof(DatabaseConfig)));
 
 // Add binding service
@@ -24,6 +23,10 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    //Create SQLite database
+    var databaseConfig = builder.Configuration.GetSection(nameof(DatabaseConfig)).Get<DatabaseConfig>();
+    SqLiteDataMigration.InitialSQLiteDatabase(databaseConfig.ConnectionString);
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }

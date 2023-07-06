@@ -2,12 +2,13 @@ using System.Data;
 using Microsoft.Extensions.Options;
 using ApiApp.Infratructure.Configs;
 using Microsoft.Data.SqlClient;
+using System.Data.SQLite;
 
 namespace ApiApp.Infratructure.Database;
 
 public class DbContext : IDbContext
 {
-    private DatabaseConfig _databaseConfig;
+    private readonly DatabaseConfig _databaseConfig;
 
     public DbContext(IOptions<DatabaseConfig> databaseConfig)
     {
@@ -16,9 +17,30 @@ public class DbContext : IDbContext
 
     public async Task<IDbConnection> OpenConnectionAsync(CancellationToken cancellationToken = default)
     {
-        var connection = new SqlConnection(_databaseConfig.ConnectionString);
-        await connection.OpenAsync(cancellationToken);
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        
+        //Use SQLite in Development environment
+        if (!string.IsNullOrEmpty(environment) && environment.Equals("Development", StringComparison.InvariantCultureIgnoreCase))
+        {
+            var connection = new SQLiteConnection(_databaseConfig.ConnectionString);
+            
+            if(connection.State == ConnectionState.Closed)
+            {
+                await connection.OpenAsync(cancellationToken);
+            }
 
-        return connection;
+            return connection;
+        }
+        else 
+        {
+            var connection = new SqlConnection(_databaseConfig.ConnectionString);
+            
+            if(connection.State == ConnectionState.Closed)
+            {
+                await connection.OpenAsync(cancellationToken);
+            }
+
+            return connection;
+        }
     }
 }
