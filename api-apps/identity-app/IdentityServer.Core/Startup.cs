@@ -36,6 +36,9 @@ namespace IdentityServer.Core
             var connectionString = Configuration.GetConnectionString("IdentityServerDatabase");
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
+            // services.AddDbContext<ApplicationDbContext>(options =>
+            //     options.UseSqlite(connectionString, x => x.MigrationsAssembly(migrationAssembly)));
+
             if (CurrentEnvironment.IsDevelopment())
             {
                 services.AddDbContext<ApplicationDbContext>(options =>
@@ -56,6 +59,9 @@ namespace IdentityServer.Core
                 .AddAspNetIdentity<ApplicationUser>()
                 .AddConfigurationStore(options =>
                 {
+                    // options.ConfigureDbContext = b =>
+                    //     b.UseSqlite(connectionString, x => x.MigrationsAssembly(migrationAssembly));
+
                     if (CurrentEnvironment.IsDevelopment())
                     {
                         options.ConfigureDbContext = b =>
@@ -63,11 +69,15 @@ namespace IdentityServer.Core
                     }
                     else
                     {
-                        options.ConfigureDbContext = b => b.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationAssembly));
+                        options.ConfigureDbContext = b =>
+                            b.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationAssembly));
                     }
                 })
                 .AddOperationalStore(options =>
                 {
+                    // options.ConfigureDbContext = b =>
+                    //     b.UseSqlite(connectionString, x => x.MigrationsAssembly(migrationAssembly));
+
                     if (CurrentEnvironment.IsDevelopment())
                     {
                         options.ConfigureDbContext = b =>
@@ -75,7 +85,8 @@ namespace IdentityServer.Core
                     }
                     else
                     {
-                        options.ConfigureDbContext = b => b.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationAssembly));
+                        options.ConfigureDbContext = b =>
+                            b.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationAssembly));
                     }
 
                     // this enables automatic token cleanup. this is optional.

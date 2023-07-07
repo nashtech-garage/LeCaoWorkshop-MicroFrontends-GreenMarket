@@ -3,12 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace IdentityServer.Core.SqliteMigrations.IdentityServer.ConfigurationDb
+namespace IdentityServer.SqliteMigrations.IdentityServer.ConfigurationDb
 {
-    /// <inheritdoc />
-    public partial class InitialIdentityServerConfigurationDbMigration : Migration
+    public partial class InitialSqliteIdentityServerConfigurationDbMigration : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -592,7 +590,6 @@ namespace IdentityServer.Core.SqliteMigrations.IdentityServer.ConfigurationDb
                 unique: true);
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

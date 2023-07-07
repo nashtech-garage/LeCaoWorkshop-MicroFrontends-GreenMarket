@@ -8,17 +8,16 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace IdentityServer.Core.SqliteMigrations.IdentityServer.ConfigurationDb
+namespace IdentityServer.SqliteMigrations.IdentityServer.ConfigurationDb
 {
     [DbContext(typeof(ConfigurationDbContext))]
-    [Migration("20230706033728_InitialIdentityServerConfigurationDbMigration")]
-    partial class InitialIdentityServerConfigurationDbMigration
+    [Migration("20230707074608_InitialSqliteIdentityServerConfigurationDbMigration")]
+    partial class InitialSqliteIdentityServerConfigurationDbMigration
     {
-        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.1");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.16");
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ApiResource", b =>
                 {

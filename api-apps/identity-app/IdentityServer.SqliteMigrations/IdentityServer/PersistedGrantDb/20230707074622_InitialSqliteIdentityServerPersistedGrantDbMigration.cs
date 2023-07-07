@@ -3,12 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace IdentityServer.Core.SqliteMigrations.IdentityServer.PersistedGrantDb
+namespace IdentityServer.SqliteMigrations.IdentityServer.PersistedGrantDb
 {
-    /// <inheritdoc />
-    public partial class InitialIdentityServerPersistedGrantDbMigration : Migration
+    public partial class InitialSqliteIdentityServerPersistedGrantDbMigration : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -77,7 +75,6 @@ namespace IdentityServer.Core.SqliteMigrations.IdentityServer.PersistedGrantDb
                 columns: new[] { "SubjectId", "SessionId", "Type" });
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

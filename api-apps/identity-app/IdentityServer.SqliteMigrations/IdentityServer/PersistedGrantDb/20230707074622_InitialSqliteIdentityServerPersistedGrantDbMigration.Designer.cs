@@ -8,17 +8,16 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace IdentityServer.Core.SqliteMigrations.IdentityServer.PersistedGrantDb
+namespace IdentityServer.SqliteMigrations.IdentityServer.PersistedGrantDb
 {
     [DbContext(typeof(PersistedGrantDbContext))]
-    [Migration("20230706033807_InitialIdentityServerPersistedGrantDbMigration")]
-    partial class InitialIdentityServerPersistedGrantDbMigration
+    [Migration("20230707074622_InitialSqliteIdentityServerPersistedGrantDbMigration")]
+    partial class InitialSqliteIdentityServerPersistedGrantDbMigration
     {
-        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.1");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.16");
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
                 {
