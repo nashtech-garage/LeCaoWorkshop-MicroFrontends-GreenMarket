@@ -27,11 +27,11 @@ dotnet ef migrations add InitialSqlServerMigration -c ApplicationDbContext -o Sq
 ```
 
 ```
-dotnet ef migrations add InitiallSqlServerIdentityServerConfigurationDbMigration -c ConfigurationDbContext -o SqlServerMigrations/IdentityServer/ConfigurationDb
+dotnet ef migrations add InitialSqlServerIdentityServerConfigurationDbMigration -c ConfigurationDbContext -o SqlServerMigrations/IdentityServer/ConfigurationDb
 ```
 
 ```
-dotnet ef migrations add InitiallSqlServerIdentityServerPersistedGrantDbMigration -c PersistedGrantDbContext -o SqlServerMigrations/IdentityServer/PersistedGrantDb
+dotnet ef migrations add InitialSqlServerIdentityServerPersistedGrantDbMigration -c PersistedGrantDbContext -o SqlServerMigrations/IdentityServer/PersistedGrantDb
 ```
 
 Copy all files to project IdentityServer.SqlServerMigrations
