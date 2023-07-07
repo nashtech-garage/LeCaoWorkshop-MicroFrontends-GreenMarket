@@ -11,6 +11,8 @@ using System.Reflection;
 using System;
 using IdentityServer.Data;
 using IdentityServer.Data.Models;
+using IdentityServer4.Services;
+using IdentityServer.Core.Services;
 
 namespace IdentityServer.Core
 {
@@ -56,7 +58,8 @@ namespace IdentityServer.Core
                 {
                     if (CurrentEnvironment.IsDevelopment())
                     {
-                        options.ConfigureDbContext = b => b.UseSqlite(connectionString);
+                        options.ConfigureDbContext = b =>
+                            b.UseSqlite(connectionString, x => x.MigrationsAssembly("IdentityServer.SqliteMigrations"));
                     }
                     else
                     {
@@ -67,17 +70,28 @@ namespace IdentityServer.Core
                 {
                     if (CurrentEnvironment.IsDevelopment())
                     {
-                        options.ConfigureDbContext = b => b.UseSqlite(connectionString);
+                        options.ConfigureDbContext = b =>
+                            b.UseSqlite(connectionString, x => x.MigrationsAssembly("IdentityServer.SqliteMigrations"));
                     }
                     else
                     {
                         options.ConfigureDbContext = b => b.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationAssembly));
                     }
+
+                    // this enables automatic token cleanup. this is optional.
+                    options.EnableTokenCleanup = true;
+                    options.TokenCleanupInterval = 30; // interval in seconds
                 })
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients())
                 .AddInMemoryApiScopes(Config.GetScopes());
+
+            services.AddTransient<IProfileService, IdentityClaimsProfileService>();
+
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,7 +110,7 @@ namespace IdentityServer.Core
 
             context.Database.Migrate();
 
-            // DatabaseInitializer.PopulateIdentityServer(app);
+            DatabaseInitializer.PopulateIdentityServer(app);
 
             app.UseHttpsRedirection();
 
@@ -113,6 +127,7 @@ namespace IdentityServer.Core
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            app.UseCors("AllowAll");
             app.UseIdentityServer();
         }
     }
