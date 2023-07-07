@@ -40,7 +40,7 @@ dotnet build api-apps/identity-app/IdentityServer.Core
 
 Run project
 ```
-dotnet run api-apps/identity-app/IdentityServer.Core --environment Development --urls=http://localhost:5050
+dotnet run --project api-apps/identity-app/IdentityServer.Core --environment Development --urls=http://localhost:5050
 ```
 
 ### On Docker
