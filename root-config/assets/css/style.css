@@ -2226,3 +2226,10 @@ ol {
 	padding-top: 80px;
     padding-bottom: 80px;
 } */
+
+.toast {
+	position: absolute;
+	top: 50px;
+	right: 20px;
+	z-index: 50;
+}

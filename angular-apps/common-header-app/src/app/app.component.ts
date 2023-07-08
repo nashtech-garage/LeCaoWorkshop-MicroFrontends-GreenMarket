@@ -1,17 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import jwt_decode from "jwt-decode";
 import { TokenStorageService } from './services/token-storage.service';
 import {Router} from "@angular/router";
+import { Toast } from "../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 
 @Component({
   selector: 'common-header-app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit  {
   @ViewChild('closeLoginButton') closeLoginButton: any;
   @ViewChild('closeSignUpButton') closeSignUpButton: any;
+
+  toastEl:any;
+
+  toast:any;
 
   title = 'common-header-app';
 
@@ -40,7 +45,8 @@ export class AppComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
-    private router: Router
+    private router: Router,
+    private elRef: ElementRef
   ) { }
 
   private channel = new BroadcastChannel('CART_HEADER_CHANNEL');
@@ -57,6 +63,17 @@ export class AppComponent implements OnInit {
       this.handleCartUpdated(null, true);
     }
     this.channel.addEventListener('message', (e) => this.handleCartUpdated(e));
+  }
+
+  ngAfterViewInit() {
+    this.toastEl = this.elRef.nativeElement.parentElement.parentElement.querySelector('.toast');
+    this.toast = new Toast(this.toastEl,{})
+  }
+
+  showToast() {
+    this.toastEl.querySelector('.toast-title').textContent = "Success DEF";
+    this.toastEl.querySelector('.toast-body').textContent = "You added a item to cart successfully. !BC";
+    this.toast.show();
   }
 
   onLoginSubmit(): void {
@@ -128,7 +145,7 @@ export class AppComponent implements OnInit {
         // Show alert for current page trigger action add item to cart.
         // If user open multiple tabs in browser, show alert on tabs with path is the same.
         if (event && event.data.type === 'ADD_CART_ITEM' && event.data.path == window.location.href) {
-          // Todo: Implement a notify feature or toast message instead of use alert  
+          // Todo: Implement a notify feature or toast message instead of use alert
           alert("Product added to cart successfully");
         }
       }
