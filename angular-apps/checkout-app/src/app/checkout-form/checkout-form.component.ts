@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ProductModel } from '../model/product-model';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-checkout-form',
@@ -30,20 +30,12 @@ export class CheckoutFormComponent implements OnInit{
     paypal: []
   });
 
-  products: ProductModel[] =  [
-    { name: "Vegetable's Package", price: 10.00 },
-    { name: "Fresh Vegatable", price: 20.00 },
-    { name: "Organic Bananas", price: 30.00 },
-  ];
+  curCartData: any;
 
-  subTotal: number = 0;
-  total: number = 0;
+  constructor(private formBuilder: FormBuilder, private cartService: ShoppingCartService) { }
 
-  constructor(private formBuilder: FormBuilder) { }
-  
   ngOnInit(): void {
-    this.subTotal = this.products.reduce((sum, current) => sum + current.price, 0);
-    this.total = this.products.reduce((sum, current) => sum + current.price, 0)
+    this.curCartData = this.cartService.getCartData();
   }
 
   onSubmit() {

@@ -1,4 +1,4 @@
-import { registerApplication, start } from "single-spa";
+import {LifeCycles, registerApplication, start} from "single-spa";
 import {
   constructApplications,
   constructRoutes,
@@ -56,6 +56,8 @@ import "../assets/img/blog/blog-1.jpg";
 import "../assets/img/blog/blog-2.jpg";
 import "../assets/img/blog/blog-3.jpg";
 
+import ToastService from "./share-services/toast.service";
+
 const routes = constructRoutes(microfrontendLayout, {
   errors: {
     mfError: `<div class='mf-error h-100 d-flex align-items-center justify-content-center'>Oops! The micro-frontend isn't working right now</div>`
@@ -74,6 +76,14 @@ const applications = constructApplications({
 });
 
 const layoutEngine = constructLayoutEngine({ routes, applications });
+
+/* Register custom services application */
+// Toast service
+registerApplication<LifeCycles>({
+  name: 'toast-service',
+  app: () => Promise.resolve(new ToastService()),
+  activeWhen: () => true // Inject this service on all pages
+});
 
 applications.forEach(registerApplication);
 start({

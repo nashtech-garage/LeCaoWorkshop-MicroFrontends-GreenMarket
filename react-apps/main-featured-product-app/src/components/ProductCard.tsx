@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Product } from "../types/Product";
-import { getFeaturedProductAsync } from "../services/getData";
+import {addProductToShoppingCart, getFeaturedProductAsync} from "../services/getData";
 import { Link } from "react-router-dom";
 
 export type ProductCardProps = {
@@ -37,7 +37,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ categoryId }) => {
                   <a href="#"><i className="fa fa-retweet"></i></a>
                 </li>
                 <li>
-                  <a href="#"><i className="fa fa-shopping-cart"></i></a>
+                  <a href="#" onClick={(e) => {e.preventDefault(); addProductToShoppingCart(p)}}>
+                    <i className="fa fa-shopping-cart"></i>
+                  </a>
                 </li>
               </ul>
             </div>

@@ -8,10 +8,14 @@ import { TokenStorageService } from './services/token-storage.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  title = 'common-header-app';
+export class AppComponent implements OnInit  {
   @ViewChild('closeLoginButton') closeLoginButton: any;
   @ViewChild('closeSignUpButton') closeSignUpButton: any;
+  
+  title = 'common-header-app';
+
+  cartNumberProduct:number = 0;
+  cartTotal:number = 0;
 
   loginForm: any = {
     email: null,
@@ -37,11 +41,22 @@ export class AppComponent implements OnInit {
     private tokenStorage: TokenStorageService
   ) { }
 
+  private cartHeaderChannel = new BroadcastChannel('CART_HEADER_CHANNEL');
+  private toastChannel = new BroadcastChannel('TOAST_CHANNEL');
+
+  destroy() {
+    this.cartHeaderChannel.removeEventListener('message', (e) => this.handleCartUpdated(e));
+    this.cartHeaderChannel.close();
+    this.toastChannel.close();
+  }
+
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
+    if (this.tokenStorage.isValidToken()) {
       this.isLoggedIn = true;
       this.currentUsername = this.tokenStorage.getUser().email;
+      this.handleCartUpdated(null, true);
     }
+    this.cartHeaderChannel.addEventListener('message', (e) => this.handleCartUpdated(e));
   }
 
   onLoginSubmit(): void {
@@ -85,8 +100,48 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
+    const currentUserId = this.tokenStorage.getUser().sub;
+    if (currentUserId) {
+      localStorage.removeItem(currentUserId);
+    }
     this.isLoggedIn = false;
     this.currentUsername = '';
+    this.cartNumberProduct = 0;
+    this.cartTotal = 0;
+
     this.tokenStorage.logout();
+  }
+
+  handleCartUpdated(event?:any, isForceUpdate?:boolean) {
+    if (!this.tokenStorage.isValidToken()) {
+      this.handleSessionExpired();
+      return;
+    }
+    if (isForceUpdate || (event && (event.data.type === 'CART_UPDATED' || event.data.type === 'ADD_CART_ITEM'))) {
+      let currentUserId = this.tokenStorage.getUser().sub;
+
+      const shoppingCart = JSON.parse(localStorage.getItem(currentUserId) ?? "{}");
+      if (Object.keys(shoppingCart).length !== 0) {
+        this.cartNumberProduct = shoppingCart.cart_data.length;
+        this.cartTotal = shoppingCart.total;
+
+        // Show alert for current page trigger action add item to cart.
+        // If user open multiple tabs in browser, show alert on tabs with path is the same.
+        if (event && event.data.type === 'ADD_CART_ITEM' && event.data.path == window.location.href) {
+          this.toastChannel.postMessage({
+            type: "success", 
+            message: "Product added to cart successfully"
+          });
+        }
+      }
+    }
+  }
+
+  private handleSessionExpired() {
+    this.toastChannel.postMessage({
+      type: "error",
+      message: "You are either not logged in or your session has expired. Please log in again to continue."
+    });
+    this.logout();
   }
 }

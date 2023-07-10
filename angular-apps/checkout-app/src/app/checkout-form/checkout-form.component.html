@@ -258,17 +258,14 @@
                 Products
                 <span>Total</span>
               </div>
-              <ul class="col-12" *ngFor="let product of products">
+              <ul class="col-12" *ngFor="let product of curCartData.cart_data">
                 <li>
                   {{ product.name }}
-                  <span>{{ product.price }}</span>
+                  <span>{{ product.price * product.quantity }}</span>
                 </li>
               </ul>
-              <div class="col-12 checkout__order__subtotal">
-                Subtotal <span>{{ subTotal }}</span>
-              </div>
               <div class="col-12 checkout__order__total">
-                Total <span>{{ total }}</span>
+                Total <span>{{ curCartData.total }}</span>
               </div>
             </div>
 

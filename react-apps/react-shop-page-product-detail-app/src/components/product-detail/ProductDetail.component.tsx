@@ -16,6 +16,8 @@ export default function ProductDetail() {
     const queryParameters = new URLSearchParams(window.location.search)
     const id = +queryParameters.get("id")
 
+    const [quantity, setQuantity] = useState(1);
+
     const imgSrc = (url) => `${process.env.API_ENDPOINT}/${url}`;
     useEffect(() => {
         ShopDetailService.getProductById(id)
@@ -28,6 +30,16 @@ export default function ProductDetail() {
                 console.error(`${process.env.APP_NAME}: ${exception}`);
             });
     }, [searchParams]);
+
+    const increaseQuantity = () => {
+        setQuantity(quantity + 1);
+    }
+
+    const decreaseQuantity = () => {
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
+        }
+    }
 
     return (
         <section>
@@ -67,13 +79,16 @@ export default function ProductDetail() {
                                 <p>{shopDetailInfo.description_short}</p>
                                 <div className={Styles.product__details__quantity}>
                                     <div className={Styles.quantity}>
-                                        <div className={Styles.pro_qty}><span className={Styles.qtybtn + " dec"} >-</span>
-                                            <input type="text" value="1" />
-                                            <span className={"inc " + Styles.qtybtn}>+</span>
+                                        <div className={Styles.pro_qty}>
+                                            <span className={Styles.qtybtn + " dec"} onClick={() => decreaseQuantity()}>-</span>
+                                            <input type="number" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))} />
+                                            <span className={"inc " + Styles.qtybtn} onClick={() => increaseQuantity()}>+</span>
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#" className={"primary-btn " + Styles["primary-btn"]}>ADD TO CARD</a>
+                                <a href="#" onClick={(e) => {e.preventDefault();ShopDetailService.addProductToShoppingCart(shopDetailInfo, quantity)}} 
+                                   className={"primary-btn " + Styles["primary-btn"]}>ADD TO CARD
+                                </a>
                                 <a href="#" className={Styles["heart-icon"]}><span className="icon_heart_alt"></span></a>
                                 <ul>
                                     <li><b>Availability</b> <span>{shopDetailInfo.availability ? 'In Stock' : 'Unavailable'}</span></li>
