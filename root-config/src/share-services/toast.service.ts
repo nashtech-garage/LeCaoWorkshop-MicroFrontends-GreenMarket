@@ -24,7 +24,7 @@ class ToastService implements LifeCycles {
       }
     };
   }
-  
+
   bootstrap(): Promise<void> { return Promise.resolve(); }
 
   mount(): Promise<void> {
@@ -39,7 +39,7 @@ class ToastService implements LifeCycles {
     toastContainer.remove();
     return Promise.resolve();
   }
-  
+
   showSuccess(message: string) { this.showMessage(message, 'success'); }
 
   showError(message: string) { this.showMessage(message, 'error'); }
@@ -53,7 +53,7 @@ class ToastService implements LifeCycles {
     const toastElement = document.createElement('div');
 
     toastElement.classList.add('toast-message');
-    
+
     let toastTypeIcon = '';
     switch (type) {
       case 'success':
@@ -75,10 +75,10 @@ class ToastService implements LifeCycles {
     }
 
     toastElement.innerHTML = `<i class="fa ${toastTypeIcon}" aria-hidden="true"></i> ${message}`;
-    
+
     toastContainer.appendChild(toastElement);
     toastElement.classList.add('toast-message-show');
-    
+
     setTimeout(() => { toastElement.classList.add('toast-message-show'); }, 10);
     setTimeout(() => {
       toastElement.classList.remove('toast-message-show');
