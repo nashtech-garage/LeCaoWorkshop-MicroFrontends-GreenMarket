@@ -1,6 +1,39 @@
 version: "3.4"
 
 services:
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "5433:1433"
+    volumes:
+      - mf-sqldata:/var/opt/mssql
+
+  api-apps-identity-app:
+    image: mf-api-apps-identity-app
+    build:
+      context: .
+      dockerfile: ./api-apps/identity-app/IdentityServer.Core/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - PORT=80
+    depends_on:
+      - sqldata
+    ports:
+      - "5050:80"
+
+  angular-apps-breadcrumb-app:
+    image: mf-angular-apps-breadcrumb-app
+    build:
+      context: .
+      dockerfile: ./angular-apps/breadcrumb-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "5004:80"
+
   angular-apps-checkout-app:
     image: mf-angular-apps-checkout-app
     build:
@@ -36,6 +69,15 @@ services:
     restart: on-failure
     ports:
       - "9002:80"
+
+  angular-apps-main-lasted-product-app:
+    image: mf-angular-apps-main-lasted-product-app
+    build:
+      context: .
+      dockerfile: ./angular-apps/main-lasted-product-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "9004:80"
 
   angular-apps-shopping-cart-page-app:
     image: mf-angular-shopping-cart-page-app
@@ -81,6 +123,15 @@ services:
     restart: on-failure
     ports:
       - "9003:80"
+
+  react-apps-blog-detail-page-blog-info-app:
+    image: mf-react-apps-blog-detail-page-blog-info-app
+    build:
+      context: .
+      dockerfile: ./react-apps/react-blog-detail-page-blog-info-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "8001:80"
 
   react-apps-main-page-hero-banner-app:
     image: mf-react-apps-main-page-hero-banner-app
@@ -154,31 +205,6 @@ services:
     ports:
       - "9000:80"
 
-  green-market-api:
-  image: green-market-api
-  build:
-    context: .
-    dockerfile: ./green-market-api/Dockerfile
-  restart: on-failure
-  ports:
-    - "8999:80"
-  networks:
-    - app-network
-
-  orderdb:
-    image: mysql:5.7.22
-    container_name: orderdb-green-market-api
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: greenmarket
-      MYSQL_ROOT_PASSWORD: 123456
-      SERVICE_NAME: mysql
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+volumes:
+  mf-sqldata:
+    external: false

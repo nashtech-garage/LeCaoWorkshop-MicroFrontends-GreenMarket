@@ -21,6 +21,10 @@ export class ProductGridComponent {
         currentCartData.cart_data = currentCartData.cart_data.filter(p => p.id != product.id);
         this.cartService.updateCartData(currentCartData);
         this.cartService.updateCartSummary();
+
+        const channel = new BroadcastChannel('CART_HEADER_CHANNEL');
+        channel.postMessage({ type: 'CART_UPDATED' });
+        channel.close();
       }
     }
   }
