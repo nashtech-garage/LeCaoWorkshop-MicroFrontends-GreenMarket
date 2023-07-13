@@ -8,8 +8,12 @@ services:
       - ACCEPT_EULA=Y
     ports:
       - "5433:1433"
+    command: /bin/bash ./entrypoint.sh
     volumes:
       - mf-sqldata:/var/opt/mssql
+      - ./common-app/data/common-database/docker-entrypoint.sh:/entrypoint.sh
+      - ./common-app/data/common-database/docker-db-init.sh:/db-init.sh
+      - ./common-app/data/common-database/initial-db.sql:/initial-db.sql
 
   api-apps-identity-app:
     image: mf-api-apps-identity-app
