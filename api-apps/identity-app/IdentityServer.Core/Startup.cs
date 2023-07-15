@@ -91,9 +91,18 @@ namespace IdentityServer.Core
 
             services.AddTransient<IProfileService, IdentityClaimsProfileService>();
 
-            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader()));
+            // services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+            //    .AllowAnyMethod()
+            //    .AllowAnyHeader()));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowAll",
+                                builder =>
+                                {
+                                    builder.WithOrigins("http://localhost:9000", "http://localhost:5001");
+                                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

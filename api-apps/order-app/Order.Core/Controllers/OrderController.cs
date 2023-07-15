@@ -33,7 +33,7 @@ namespace Order.Core.Controllers
                 return BadRequest();
             }
 
-            var item = await _orderContext.orders.SingleOrDefaultAsync(ci => ci.Id == id);
+            var item = await _orderContext.Orders.SingleOrDefaultAsync(ci => ci.Id == id);
 
             return (item != null) ? item : NotFound();
         }
@@ -43,9 +43,12 @@ namespace Order.Core.Controllers
         public async Task<ActionResult> CreateProductAsync([FromBody] OrderDataRequest orderData)
         {
             string id = Guid.NewGuid().ToString();
-            var item = new OrderData
+            var newOrderData = new OrderData
             {
                 Id = id,
+                UserId = orderData.UserId,
+                UserName = orderData.UserName,
+                Total = orderData.Total,
                 FirstName = orderData.FirstName,
                 LastName = orderData.LastName,
                 Country = orderData.Country,
@@ -58,7 +61,23 @@ namespace Order.Core.Controllers
                 OrderNotes = orderData.OrderNotes
             };
 
-            _orderContext.orders.Add(item);
+            foreach (var item in orderData.OrderDetails)
+            {
+                var newOrderDetailData = new OrderDetailData
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    OrderDataId = id,
+                    ProductId = item.ProductId,
+                    Price = item.Price,
+                    PriceOriginal = item.PriceOriginal,
+                    Quantity = item.Quantity,
+                    ProductName = item.ProductName
+                };
+
+                _orderContext.OrderDetails.Add(newOrderDetailData);
+            }
+
+            _orderContext.Orders.Add(newOrderData);
 
             await _orderContext.SaveChangesAsync();
 
@@ -68,7 +87,10 @@ namespace Order.Core.Controllers
             // var routeValues = new { id = createdResource.id };
             // return CreatedAtAction(actionName, routeValues, createdResource);
 
-            return CreatedAtAction(nameof(ItemByIdAsync), new { id = item.Id }, item);
+            return CreatedAtAction(nameof(ItemByIdAsync), new
+            {
+                id = newOrderData.Id
+            }, newOrderData);
         }
     }
 }

@@ -17,8 +17,10 @@ namespace Order.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<OrderData>().HasKey(op => op.Id);
+            builder.Entity<OrderDetailData>().HasKey(op => op.Id);
         }
 
-        public DbSet<OrderData> orders { get; set; }
+        public DbSet<OrderData> Orders { get; set; }
+        public DbSet<OrderDetailData> OrderDetails { get; set; }
     }
 }

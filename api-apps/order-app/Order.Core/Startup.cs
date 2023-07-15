@@ -49,9 +49,18 @@ namespace Order.Core
                 //     options.UseSqlServer(connectionString, x => x.MigrationsAssembly("IdentityServer.SqlServerMigrations")));
             }
 
-            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader()));
+            // services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+            //    .AllowAnyMethod()
+            //    .AllowAnyHeader()));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowAll",
+                                builder =>
+                                {
+                                    builder.WithOrigins("http://localhost:9000", "http://localhost:4001");
+                                });
+            });
 
             services.AddSwaggerGen();
 

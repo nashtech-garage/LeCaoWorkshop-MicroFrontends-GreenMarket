@@ -6,7 +6,9 @@ import { environment } from 'src/environments/environment';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Accept': '*/*'
+    'Accept': '*/*',
+    'Access-Control-Allow-Origin':'*',
+    'Access-Control-Allow-Headers': 'Content-Type'
   })
 };
 

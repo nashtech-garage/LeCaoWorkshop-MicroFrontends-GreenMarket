@@ -10,7 +10,7 @@ using Order.Data;
 namespace Order.Core.SqliteMigrations
 {
     [DbContext(typeof(OrderDbContext))]
-    [Migration("20230711083247_InitialMigration")]
+    [Migration("20230715060500_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,9 +53,57 @@ namespace Order.Core.SqliteMigrations
                     b.Property<string>("State")
                         .HasColumnType("TEXT");
 
+                    b.Property<double>("Total")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
-                    b.ToTable("orders");
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Order.Data.Models.OrderDetailData", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OrderDataId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PriceOriginal")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderDataId");
+
+                    b.ToTable("OrderDetails");
+                });
+
+            modelBuilder.Entity("Order.Data.Models.OrderDetailData", b =>
+                {
+                    b.HasOne("Order.Data.Models.OrderData", "OrderData")
+                        .WithMany()
+                        .HasForeignKey("OrderDataId");
+
+                    b.Navigation("OrderData");
                 });
 #pragma warning restore 612, 618
         }
