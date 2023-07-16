@@ -12,6 +12,12 @@ using Microsoft.Extensions.Hosting;
 using System.Reflection;
 using System;
 using Order.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace Order.Core
 {
@@ -49,18 +55,24 @@ namespace Order.Core
                 //     options.UseSqlServer(connectionString, x => x.MigrationsAssembly("IdentityServer.SqlServerMigrations")));
             }
 
-            // services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
-            //    .AllowAnyMethod()
-            //    .AllowAnyHeader()));
+            services
+                .AddMvcCore(options =>
+                {
+                    options.Filters.Add(new AuthorizeFilter());
+                })
+                .AddAuthorization()
+                .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: "AllowAll",
-                                builder =>
-                                {
-                                    builder.WithOrigins("http://localhost:9000", "http://localhost:4001");
-                                });
-            });
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                    .AddIdentityServerAuthentication(options =>
+                    {
+                        options.Authority = "http://localhost:5050";
+                        options.RequireHttpsMetadata = false;
+
+                        options.ApiName = "orderAPI";
+                        options.ApiSecret = "secret";
+                        options.LegacyAudienceValidation = true;
+                    });
 
             services.AddSwaggerGen();
 
@@ -96,14 +108,15 @@ namespace Order.Core
 
             app.UseRouting();
 
+            app.UseCors("AllowAll");
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            app.UseCors("AllowAll");
         }
     }
 }

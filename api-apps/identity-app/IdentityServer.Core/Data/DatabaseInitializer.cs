@@ -18,7 +18,7 @@ namespace IdentityServer.Core.Data
 
             context.Database.Migrate();
 
-            foreach (var client in Config.GetClients())
+            foreach (var client in Config.GetClients)
             {
                 var item = context.Clients.SingleOrDefault(c => c.ClientId == client.ClientId);
 
@@ -28,7 +28,7 @@ namespace IdentityServer.Core.Data
                 }
             }
 
-            foreach (var resource in Config.GetApiResources())
+            foreach (var resource in Config.GetApiResources)
             {
                 var item = context.ApiResources.SingleOrDefault(c => c.Name == resource.Name);
 
@@ -38,7 +38,7 @@ namespace IdentityServer.Core.Data
                 }
             }
 
-            foreach (var scope in Config.GetScopes())
+            foreach (var scope in Config.GetScopes)
             {
                 var item = context.ApiScopes.SingleOrDefault(c => c.Name == scope.Name);
 

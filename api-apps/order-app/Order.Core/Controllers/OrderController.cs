@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Order.Data;
@@ -12,6 +13,7 @@ namespace Order.Core.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class OrderController : ControllerBase
     {
         private readonly OrderDbContext _orderContext;
@@ -22,7 +24,6 @@ namespace Order.Core.Controllers
         }
 
         [HttpGet("{id}")]
-        // [Route("{id}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(OrderData), (int)HttpStatusCode.OK)]
@@ -80,12 +81,6 @@ namespace Order.Core.Controllers
             _orderContext.Orders.Add(newOrderData);
 
             await _orderContext.SaveChangesAsync();
-
-            // return Ok();
-            // var createdResource = new { id = item.Id };
-            // var actionName = nameof(ItemByIdAsync);
-            // var routeValues = new { id = createdResource.id };
-            // return CreatedAtAction(actionName, routeValues, createdResource);
 
             return CreatedAtAction(nameof(ItemByIdAsync), new
             {

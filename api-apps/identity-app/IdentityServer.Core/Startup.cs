@@ -52,7 +52,6 @@ namespace IdentityServer.Core
                 .AddDefaultTokenProviders();
 
             services.AddIdentityServer()
-                .AddDeveloperSigningCredential()
                 .AddAspNetIdentity<ApplicationUser>()
                 .AddConfigurationStore(options =>
                 {
@@ -80,29 +79,22 @@ namespace IdentityServer.Core
                             b.UseSqlServer(connectionString, sql => sql.MigrationsAssembly("IdentityServer.SqlServerMigrations"));
                     }
 
-                    // this enables automatic token cleanup. this is optional.
                     options.EnableTokenCleanup = true;
                     options.TokenCleanupInterval = 30; // interval in seconds
                 })
+                .AddInMemoryClients(Config.GetClients)
+                .AddInMemoryApiScopes(Config.GetScopes)
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApiResources())
-                .AddInMemoryClients(Config.GetClients())
-                .AddInMemoryApiScopes(Config.GetScopes());
+                .AddInMemoryApiResources(Config.GetApiResources)
+                .AddJwtBearerClientAuthentication()
+                .AddDeveloperSigningCredential();
+
 
             services.AddTransient<IProfileService, IdentityClaimsProfileService>();
 
-            // services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
-            //    .AllowAnyMethod()
-            //    .AllowAnyHeader()));
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: "AllowAll",
-                                builder =>
-                                {
-                                    builder.WithOrigins("http://localhost:9000", "http://localhost:5001");
-                                });
-            });
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -129,6 +121,8 @@ namespace IdentityServer.Core
 
             app.UseRouting();
 
+            app.UseIdentityServer();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -139,7 +133,6 @@ namespace IdentityServer.Core
             });
 
             app.UseCors("AllowAll");
-            app.UseIdentityServer();
         }
     }
 }

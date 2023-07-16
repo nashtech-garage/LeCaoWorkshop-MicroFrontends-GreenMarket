@@ -3,15 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Order } from '../model/order.model';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Accept': '*/*',
-    'Access-Control-Allow-Origin':'*',
-    'Access-Control-Allow-Headers': 'Content-Type'
-  })
-};
+import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +11,22 @@ const httpOptions = {
 export class OrderService {
   public orderApiUrl = environment.orderApiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private tokenStorage: TokenStorageService
+  ) { }
 
   checkout(orderData: Order): Observable<any> {
+    var token = this.tokenStorage.getToken();
+    token = token === null ? "" : token;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
+
     return this.http.post(this.orderApiUrl + 'api/Order', orderData, httpOptions);
   }
-
 }

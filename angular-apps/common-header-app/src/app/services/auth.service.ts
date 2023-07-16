@@ -44,12 +44,13 @@ export class AuthService {
 
   getToken(username: string, password: string): Observable<any> {
     const user = new HttpParams()
-      .set('client_id', "microFE")
+      .set('client_id', "orderClient")
       .set('client_secret', "secret")
       .set('grant_type', 'password')
       .set('username', username)
       .set('password', password)
-      .set('scope', 'api.read');
+      .set('scope', 'orderAPI')
+      ;
 
     return this.http.post(this.identityApiUrl + 'connect/token', user, mediaHttpOptions);
   }
