@@ -4,46 +4,46 @@ using Dapper.Contrib.Extensions;
 
 namespace ApiApp.Infratructure.Services;
 
-public class ProductService : IProductService
+public class BlogService : IBlogService
 {
     private readonly IDbContext _dbContext;
-    public ProductService(IDbContext dbContext)
+    public BlogService(IDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task<ProductEntity> GetProductAsync(int id)
+    public async Task<BlogEntity> GetBlogAsync(int id)
     {
         using var connection = await _dbContext.OpenConnectionAsync();
-        return await connection.GetAsync<ProductEntity>(id);
+        return await connection.GetAsync<BlogEntity>(id);
     }
 
-    public async Task<IEnumerable<ProductEntity>> GetAllProductsAsync()
+    public async Task<IEnumerable<BlogEntity>> GetAllBlogsAsync()
     {
         using var connection = await _dbContext.OpenConnectionAsync();
-        return await connection.GetAllAsync<ProductEntity>();
+        return await connection.GetAllAsync<BlogEntity>();
     }
 
-    public async Task AddProductAsync(ProductEntity entity)
+    public async Task AddBlogAsync(BlogEntity entity)
     {
         entity.Created_Date = DateTime.UtcNow;
         entity.Modified_Date = DateTime.UtcNow;
         
         using var connection = await _dbContext.OpenConnectionAsync();
-        await connection.InsertAsync<ProductEntity>(entity);      
+        await connection.InsertAsync<BlogEntity>(entity); 
     }
 
-    public async Task UpdateProductAsync(ProductEntity entity)
+    public async Task UpdateBlogAsync(BlogEntity entity)
     {
         entity.Modified_Date = DateTime.UtcNow;
 
         using var connection = await _dbContext.OpenConnectionAsync();
-        await connection.UpdateAsync<ProductEntity>(entity);
+        await connection.UpdateAsync<BlogEntity>(entity);
     }
 
-    public async Task DeleteProductAsync(ProductEntity entity)
+    public async Task DeleteBlogAsync(BlogEntity entity)
     {
         using var connection = await _dbContext.OpenConnectionAsync();
-        await connection.DeleteAsync<ProductEntity>(entity);
+        await connection.DeleteAsync<BlogEntity>(entity);
     }
 }

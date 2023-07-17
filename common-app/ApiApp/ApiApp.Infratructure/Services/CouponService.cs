@@ -4,46 +4,46 @@ using Dapper.Contrib.Extensions;
 
 namespace ApiApp.Infratructure.Services;
 
-public class ProductService : IProductService
+public class CouponService : ICouponService
 {
     private readonly IDbContext _dbContext;
-    public ProductService(IDbContext dbContext)
+    public CouponService(IDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task<ProductEntity> GetProductAsync(int id)
+    public async Task<CouponEntity> GetCouponAsync(int id)
     {
         using var connection = await _dbContext.OpenConnectionAsync();
-        return await connection.GetAsync<ProductEntity>(id);
+        return await connection.GetAsync<CouponEntity>(id);
     }
 
-    public async Task<IEnumerable<ProductEntity>> GetAllProductsAsync()
+    public async Task<IEnumerable<CouponEntity>> GetAllCouponsAsync()
     {
         using var connection = await _dbContext.OpenConnectionAsync();
-        return await connection.GetAllAsync<ProductEntity>();
+        return await connection.GetAllAsync<CouponEntity>();
     }
 
-    public async Task AddProductAsync(ProductEntity entity)
+    public async Task AddCouponAsync(CouponEntity entity)
     {
         entity.Created_Date = DateTime.UtcNow;
         entity.Modified_Date = DateTime.UtcNow;
         
         using var connection = await _dbContext.OpenConnectionAsync();
-        await connection.InsertAsync<ProductEntity>(entity);      
+        await connection.InsertAsync<CouponEntity>(entity); 
     }
 
-    public async Task UpdateProductAsync(ProductEntity entity)
+    public async Task UpdateCouponAsync(CouponEntity entity)
     {
         entity.Modified_Date = DateTime.UtcNow;
 
         using var connection = await _dbContext.OpenConnectionAsync();
-        await connection.UpdateAsync<ProductEntity>(entity);
+        await connection.UpdateAsync<CouponEntity>(entity);
     }
 
-    public async Task DeleteProductAsync(ProductEntity entity)
+    public async Task DeleteCouponAsync(CouponEntity entity)
     {
         using var connection = await _dbContext.OpenConnectionAsync();
-        await connection.DeleteAsync<ProductEntity>(entity);
+        await connection.DeleteAsync<CouponEntity>(entity);
     }
 }

@@ -22,4 +22,6 @@ public class ProductEntity : BaseEntity
     public int? Count { get; set; }
     public Boolean? Is_Latest { get; set; }
     public int? Review_Count { get; set; }
+
+    public CategoryEntity Category { get; set; } = new ();
 }

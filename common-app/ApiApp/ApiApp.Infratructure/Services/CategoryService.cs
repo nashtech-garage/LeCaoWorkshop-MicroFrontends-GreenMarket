@@ -4,46 +4,46 @@ using Dapper.Contrib.Extensions;
 
 namespace ApiApp.Infratructure.Services;
 
-public class ProductService : IProductService
+public class CategoryService : ICategoryService
 {
     private readonly IDbContext _dbContext;
-    public ProductService(IDbContext dbContext)
+    public CategoryService(IDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task<ProductEntity> GetProductAsync(int id)
+    public async Task<CategoryEntity> GetCategoryAsync(int id)
     {
         using var connection = await _dbContext.OpenConnectionAsync();
-        return await connection.GetAsync<ProductEntity>(id);
+        return await connection.GetAsync<CategoryEntity>(id);
     }
 
-    public async Task<IEnumerable<ProductEntity>> GetAllProductsAsync()
+    public async Task<IEnumerable<CategoryEntity>> GetAllCategoriesAsync()
     {
         using var connection = await _dbContext.OpenConnectionAsync();
-        return await connection.GetAllAsync<ProductEntity>();
+        return await connection.GetAllAsync<CategoryEntity>();
     }
 
-    public async Task AddProductAsync(ProductEntity entity)
+    public async Task AddCategoryAsync(CategoryEntity entity)
     {
         entity.Created_Date = DateTime.UtcNow;
         entity.Modified_Date = DateTime.UtcNow;
         
         using var connection = await _dbContext.OpenConnectionAsync();
-        await connection.InsertAsync<ProductEntity>(entity);      
+        await connection.InsertAsync<CategoryEntity>(entity); 
     }
 
-    public async Task UpdateProductAsync(ProductEntity entity)
+    public async Task UpdateCategoryAsync(CategoryEntity entity)
     {
         entity.Modified_Date = DateTime.UtcNow;
 
         using var connection = await _dbContext.OpenConnectionAsync();
-        await connection.UpdateAsync<ProductEntity>(entity);
+        await connection.UpdateAsync<CategoryEntity>(entity);
     }
 
-    public async Task DeleteProductAsync(ProductEntity entity)
+    public async Task DeleteCategoryAsync(CategoryEntity entity)
     {
         using var connection = await _dbContext.OpenConnectionAsync();
-        await connection.DeleteAsync<ProductEntity>(entity);
+        await connection.DeleteAsync<CategoryEntity>(entity);
     }
 }

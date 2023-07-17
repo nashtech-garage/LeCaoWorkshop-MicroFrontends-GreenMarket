@@ -10,7 +10,7 @@ namespace ApiApp.API.Controllers;
 public class ProductController : ControllerBase
 {
     private readonly ILogger<ProductController> _logger;
-    private IProductService _productService;
+    private readonly IProductService _productService;
 
     public ProductController(IProductService productService, ILogger<ProductController> logger)
     {
@@ -24,13 +24,13 @@ public class ProductController : ControllerBase
         return await _productService.GetProductAsync(id);
     }
 
-    [HttpGet("/all")]
+    [HttpGet("all")]
     public async Task<IEnumerable<ProductEntity>> GetAllProductsAsync()
     {
         return await _productService.GetAllProductsAsync();
     }
 
-    [HttpPost]
+    [HttpPost("add")]
     public async Task<ActionResult> AddProductsAsync([FromBody] AddProductRequest request)
     {
         await _productService.AddProductAsync(new () {

@@ -17,6 +17,10 @@ builder.Services.Configure<DatabaseConfig>(builder.Configuration.GetSection(name
 // Add binding service
 builder.Services.AddScoped<IDbContext, DbContext>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<ICouponService, CouponService>();
+builder.Services.AddScoped<IMainHeroBannerService, MainHeroBannerService>();
 
 var app = builder.Build();
 
