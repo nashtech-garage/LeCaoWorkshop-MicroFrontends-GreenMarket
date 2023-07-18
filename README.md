@@ -30,17 +30,12 @@ Start project
 npm start
 ```
 
-#### Build, and run identity server project
+#### Build, and run identity and order API projects
 
-Build project
+Build projects
 
-```
-dotnet build api-apps/identity-app/IdentityServer.Core
-```
-
-Run project
-```
-dotnet run --project api-apps/identity-app/IdentityServer.Core --environment Development --urls=http://localhost:5050
+```powershell
+run_api_projects.bat
 ```
 
 ### On Docker

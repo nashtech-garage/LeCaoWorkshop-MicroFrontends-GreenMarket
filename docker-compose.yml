@@ -11,6 +11,14 @@ services:
     volumes:
       - mf-sqldata:/var/opt/mssql
 
+  mysqldb:
+    image: mysql:5.7.22
+    environment:
+      MYSQL_DATABASE: order
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+
   api-apps-identity-app:
     image: mf-api-apps-identity-app
     build:
@@ -24,6 +32,20 @@ services:
       - sqldata
     ports:
       - "5050:80"
+
+  api-apps-order-app:
+    image: mf-api-apps-order-app
+    build:
+      context: .
+      dockerfile: ./api-apps/order-app/Order.Core/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - PORT=80
+    depends_on:
+      - mysqldb
+    ports:
+      - "5060:80"
 
   angular-apps-breadcrumb-app:
     image: mf-angular-apps-breadcrumb-app

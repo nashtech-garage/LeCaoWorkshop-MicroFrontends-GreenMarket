@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Order.Core.SqliteMigrations
+namespace Order.SqliteMigrations
 {
     public partial class InitialMigration : Migration
     {

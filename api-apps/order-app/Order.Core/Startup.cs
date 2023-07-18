@@ -41,18 +41,21 @@ namespace Order.Core
             var connectionString = Configuration.GetConnectionString("OrderDatabase");
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
-            services.AddDbContext<OrderDbContext>(options =>
-                options.UseSqlite(connectionString, x => x.MigrationsAssembly(migrationAssembly)));
-
             if (CurrentEnvironment.IsDevelopment())
             {
-                // services.AddDbContext<ApplicationDbContext>(options =>
-                //     options.UseSqlite(connectionString, x => x.MigrationsAssembly("IdentityServer.SqliteMigrations")));
+                services.AddDbContext<OrderDbContext>(options =>
+                    options.UseSqlite(connectionString, x => x.MigrationsAssembly("Order.SqliteMigrations")));
             }
             else
             {
-                // services.AddDbContext<ApplicationDbContext>(options =>
-                //     options.UseSqlServer(connectionString, x => x.MigrationsAssembly("IdentityServer.SqlServerMigrations")));
+                services.AddDbContext<OrderDbContext>(options =>
+                    options.UseMySql(connectionString, new MySqlServerVersion(new Version(5, 7, build: 22)), x =>
+                    x.MigrationsAssembly("Order.MySqlMigrations")
+                        .EnableRetryOnFailure(
+                            maxRetryCount: 5,
+                            maxRetryDelay: System.TimeSpan.FromSeconds(30),
+                            errorNumbersToAdd: null
+                    )));
             }
 
             services
@@ -60,19 +63,29 @@ namespace Order.Core
                 {
                     options.Filters.Add(new AuthorizeFilter());
                 })
-                .AddAuthorization()
-                .SetCompatibilityVersion(CompatibilityVersion.Latest);
+                .AddAuthorization();
 
+            string identityApiUrl = this.Configuration.GetSection("IdentityApiUrl").Value;
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                     .AddIdentityServerAuthentication(options =>
                     {
-                        options.Authority = "http://localhost:5050";
+                        options.Authority = identityApiUrl;
                         options.RequireHttpsMetadata = false;
 
                         options.ApiName = "orderAPI";
                         options.ApiSecret = "secret";
                         options.LegacyAudienceValidation = true;
                     });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                     builder => builder
+                    .WithOrigins(Configuration.GetSection("Cors").Get<string[]>())
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
 
             services.AddSwaggerGen();
 
@@ -89,6 +102,8 @@ namespace Order.Core
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
             else
             {
@@ -96,9 +111,6 @@ namespace Order.Core
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
-            app.UseSwagger();
-            app.UseSwaggerUI();
 
             context.Database.Migrate();
 
@@ -108,7 +120,7 @@ namespace Order.Core
 
             app.UseRouting();
 
-            app.UseCors("AllowAll");
+            app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();

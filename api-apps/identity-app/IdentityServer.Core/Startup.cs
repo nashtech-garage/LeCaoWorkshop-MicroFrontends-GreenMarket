@@ -44,7 +44,13 @@ namespace IdentityServer.Core
             else
             {
                 services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(connectionString, x => x.MigrationsAssembly("IdentityServer.SqlServerMigrations")));
+                    options.UseSqlServer(connectionString, x =>
+                        x.MigrationsAssembly("IdentityServer.SqlServerMigrations")
+                        .EnableRetryOnFailure(
+                            maxRetryCount: 5,
+                            maxRetryDelay: System.TimeSpan.FromSeconds(30),
+                            errorNumbersToAdd: null
+                        )));
             }
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -92,9 +98,15 @@ namespace IdentityServer.Core
 
             services.AddTransient<IProfileService, IdentityClaimsProfileService>();
 
-            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader()));
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                     builder => builder
+                    .WithOrigins(Configuration.GetSection("Cors").Get<string[]>())
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -121,6 +133,8 @@ namespace IdentityServer.Core
 
             app.UseRouting();
 
+            app.UseCors("CorsPolicy");
+
             app.UseIdentityServer();
 
             app.UseAuthorization();
@@ -131,8 +145,6 @@ namespace IdentityServer.Core
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            app.UseCors("AllowAll");
         }
     }
 }
