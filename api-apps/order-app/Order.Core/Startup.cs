@@ -65,11 +65,12 @@ namespace Order.Core
                 })
                 .AddAuthorization();
 
-            string identityApiUrl = this.Configuration.GetSection("IdentityApiUrl").Value;
+            var IdentityApiUrl = Configuration.GetValue<string>("IdentityApiUrl");
+
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                     .AddIdentityServerAuthentication(options =>
                     {
-                        options.Authority = identityApiUrl;
+                        options.Authority = IdentityApiUrl;
                         options.RequireHttpsMetadata = false;
 
                         options.ApiName = "orderAPI";

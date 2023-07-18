@@ -32,7 +32,7 @@ npm start
 
 #### Build, and run identity and order API projects
 
-Build projects
+Run projects
 
 ```powershell
 run_api_projects.bat

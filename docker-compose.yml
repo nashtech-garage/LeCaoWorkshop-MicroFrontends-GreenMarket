@@ -44,8 +44,9 @@ services:
       - PORT=80
     depends_on:
       - mysqldb
+      - api-apps-identity-app
     ports:
-      - "5060:80"
+      - "5080:80"
 
   angular-apps-breadcrumb-app:
     image: mf-angular-apps-breadcrumb-app
