@@ -22,7 +22,7 @@
     "start:vue-apps:contact-map-app": "cd ../vue-apps/contact-map-app/dist && http-server . --cors -p 6002",
     "start:vue-apps:vue-shop-page-products-grid-app": "cd ../vue-apps/vue-shop-page-products-grid-app/dist && http-server . --cors -p 1001",
     "start:vue-apps:mainpage-blog-app": "cd ../vue-apps/mainpage-blog-app/dist && http-server . --cors -p 9005",
-    "start:vue-apps:mainpage-banner-app": "cd ../vue-apps/mainpage-banner-app/dist && http-server . --cors -p 9016",
+    "start:vue-apps:mainpage-banner-app": "cd ../vue-apps/mainpage-banner-app/dist && http-server . --cors -p 9007",
     "lint": "eslint src --ext js,ts,tsx",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "format": "prettier --write .",
