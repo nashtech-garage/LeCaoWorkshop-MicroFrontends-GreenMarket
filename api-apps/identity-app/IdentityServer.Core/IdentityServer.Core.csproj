@@ -33,8 +33,4 @@
     <ProjectReference Include="..\IdentityServer.SqlServerMigrations\IdentityServer.SqlServerMigrations.csproj" />
   </ItemGroup>
 
-  <!-- <ItemGroup>
-    <ProjectReference Include="..\IS.SqliteMigrations\IS.SqliteMigrations.csproj" />
-  </ItemGroup> -->
-
 </Project>
