@@ -48,7 +48,7 @@ remove_folders.bat
 
 Build all projects
 
-```powershell
+```
 sudo docker compose build
 ```
 
@@ -66,4 +66,11 @@ sudo docker compose down
 
 ```
 http://localhost:9000
+```
+
+## Default user and password for login
+
+```
+Username: admin@gmail.com
+Password: Iloveyou@123
 ```
