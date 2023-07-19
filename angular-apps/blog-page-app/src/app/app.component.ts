@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { throwError } from 'rxjs';
-import { Blog } from './models/blog.model';
 import { BlogService } from './services/blog.service';
+import { Category } from './models/category.model';
 
 @Component({
   selector: 'blog-page-root',
@@ -11,12 +8,10 @@ import { BlogService } from './services/blog.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'blog-page-app';
   blogs: any[] = [];
-  categories: string[] = [];
+  categories: Category[] = [];
 
   constructor(
-    private readonly http: HttpClient,
     private blogService: BlogService
   ) { };
 
@@ -27,18 +22,22 @@ export class AppComponent implements OnInit {
   fetch() {
     this.blogService.GetAllBlogs().subscribe((data) => {
       this.blogs = data;
-      const tags = [...new Set(this.blogs.map(category => category.Tags))];
+      let tags = [...new Set(this.blogs.map(category => category.Tags))];
       tags.forEach(element => {
-        this.categories = element.split(',').map((item: string) => item.trim())
+        tags = element.split(',').map((item: string) => item.trim());
+      });
+      tags.forEach(element => {
+        const countByTag = this.blogs.filter(x => x.Tags.includes(element)).length;
+        this.categories.push({categoryName: element, count: countByTag});
       })
     })
   }
 
   onSearch(event: any) {
-    this.blogs.filter(x => x.Title == event.target.value);
+    this.blogs = this.blogs.filter(x => x.Title.includes(event.target.value));
   }
 
-  searchByCategory(category: string) {
-    this.blogs.filter(x => x.Tags.contain(category));
+  searchByCategory(event: any) {
+    this.blogs = this.blogs.filter(x => x.Tags.includes(event.target.value));
   }
 }

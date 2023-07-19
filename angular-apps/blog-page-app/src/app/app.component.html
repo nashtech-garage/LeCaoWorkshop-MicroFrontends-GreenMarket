@@ -8,17 +8,25 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-2 col-md-4 col-sm-2">
-        <input type="search" class="form-control" width="20%" style="border-radius: 15px;" placeholder="SEARCH..." (keypress)="onSearch($event)"/>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <input type="search" class="form-control" width="60%" style="border-radius: 15px;" placeholder="SEARCH..." (keyup.enter)="onSearch($event)"/>
         <br/>
-        <header>Categories</header>
+        <header style="font-weight: bold; font-size: 30px;">Categories</header>
         <br/>
         <div *ngFor="let category of categories">
-          <a href="">{{category}} (10)</a><br/>
+          <div *ngIf="category.categoryName == 'All'">
+            <a style="color: gray; font-size: xx-large; margin-bottom: 10px;" href="" (click)="searchByCategory($event)">{{category.categoryName}}</a><br/>
+          </div>
+          <div *ngIf="category.categoryName != 'All'">
+            <a style="color: gray; font-size: xx-large; margin-bottom: 10px;" href="" (click)="searchByCategory($event)">{{category.categoryName}} ({{category.count}})</a><br/>
+          </div>
         </div>
+        <br/>
+        <br/>
+        <header style="font-weight: bold; font-size: 30px;">Recent News</header>
       </div>
-      <div class="col-lg-8 col-md-6 col-sm-8" *ngFor="let blog of blogs">
-        <div class="blog__item">
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="blog__item" *ngFor="let blog of blogs">
           <div class="blog__item__pic">
             <img src={{blog.ImageUrl}} alt="" />
           </div>
