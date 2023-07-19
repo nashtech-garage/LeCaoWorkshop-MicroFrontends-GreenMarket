@@ -1,0 +1,37 @@
+<section class="from-blog spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-title from-blog__title">
+          <h2>From The Blog</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-4 col-sm-2">
+        <input type="search" class="form-control" width="20%" style="border-radius: 15px;" placeholder="SEARCH..." (keypress)="onSearch($event)"/>
+        <br/>
+        <header>Categories</header>
+        <br/>
+        <div *ngFor="let category of categories">
+          <a href="">{{category}} (10)</a><br/>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-6 col-sm-8" *ngFor="let blog of blogs">
+        <div class="blog__item">
+          <div class="blog__item__pic">
+            <img src={{blog.ImageUrl}} alt="" />
+          </div>
+          <div class="blog__item__text">
+            <ul>
+              <li><i class="fa fa-calendar-o"></i>{{blog.CreatedDate}}</li>
+              <li><i class="fa fa-comment-o"></i>{{blog.CommentCount}}</li>
+            </ul>
+            <h5><a href="#">{{blog.Title}}</a></h5>
+            <p>{{blog.DescriptionShort}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

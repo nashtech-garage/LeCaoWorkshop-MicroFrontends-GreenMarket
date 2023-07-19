@@ -378,6 +378,9 @@ MigrationBackup/
 /angular-apps/shopping-cart-page-app/dist/
 /angular-apps/shopping-cart-page-app/node_modules/
 
+/angular-apps/blog-page-app/dist/
+/angular-apps/blog-page-app/node_modules/
+
 /react-apps/common-contact-app/dist/
 /react-apps/common-contact-app/node_modules/
 

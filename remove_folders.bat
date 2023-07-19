@@ -33,6 +33,10 @@ RMDIR /s /q angular-apps\shopping-cart-page-app\.angular
 RMDIR /s /q angular-apps\shopping-cart-page-app\dist
 RMDIR /s /q angular-apps\shopping-cart-page-app\node_modules
 
+RMDIR /s /q angular-apps\blog-page-app\.angular
+RMDIR /s /q angular-apps\blog-page-app\dist
+RMDIR /s /q angular-apps\blog-page-app\node_modules
+
 
 
 RMDIR /s /q react-apps\common-contact-app\dist

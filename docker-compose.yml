@@ -110,6 +110,15 @@ services:
     restart: on-failure
     ports:
       - "3001:80"
+      
+  angular-apps-blog-page-app:
+    image: mf-angular-blog-page-app
+    build:
+      context: .
+      dockerfile: ./angular-apps/blog-page-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "9008:80"
 
   react-apps-common-contact-app:
     image: mf-react-apps-common-contact-app
