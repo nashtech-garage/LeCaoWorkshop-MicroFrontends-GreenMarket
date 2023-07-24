@@ -2,7 +2,7 @@
   <div class="product__item">
     <div
       class="product__item__pic set-bg"
-      :style="{ 'background-image': 'url(' + productImage + ')' }"
+      :style="{ 'background-image': 'url(' + product.main_Image_Url + ')' }"
     >
       <ul class="product__item__pic__hover">
         <li>
@@ -33,9 +33,6 @@ export default {
     },
   },
   computed: {
-    productImage() {
-      return process.env.VUE_APP_COMMON_URL + this.product.main_image_url;
-    },
     productDetailLink() {
       return `/shop-detail?id=${this.product.id}`;
     },

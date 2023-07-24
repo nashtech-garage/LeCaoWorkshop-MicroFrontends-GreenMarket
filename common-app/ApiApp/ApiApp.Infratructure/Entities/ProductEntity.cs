@@ -18,10 +18,12 @@ public class ProductEntity : BaseEntity
     public Boolean? Availability { get; set; }
     public string? Main_Image_Url { get; set; }
     public string? Images_Urls { get; set; }
+    [NotMapped]
+    public List<string>? Images_Urls_Array { get; set; }
     public Boolean? Is_Featured { get; set; }
     public int? Count { get; set; }
     public Boolean? Is_Latest { get; set; }
     public int? Review_Count { get; set; }
 
-    public CategoryEntity Category { get; set; } = new ();
+    public CategoryEntity Category { get; set; } = new();
 }

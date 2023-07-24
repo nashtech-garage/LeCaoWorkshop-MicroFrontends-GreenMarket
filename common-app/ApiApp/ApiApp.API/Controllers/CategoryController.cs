@@ -9,10 +9,12 @@ namespace ApiApp.API.Controllers;
 public class CategoryController : ControllerBase
 {
     private readonly ICategoryService _categoryService;
+    private readonly IConfiguration _configuration;
 
-    public CategoryController(ICategoryService categoryService)
+    public CategoryController(ICategoryService categoryService, IConfiguration configuration)
     {
         _categoryService = categoryService;
+        _configuration = configuration;
     }
 
     [HttpGet()]
@@ -24,6 +26,11 @@ public class CategoryController : ControllerBase
     [HttpGet("all")]
     public async Task<IEnumerable<CategoryEntity>> GetAllCategoriesAsync()
     {
-        return await _categoryService.GetAllCategoriesAsync();
+        var imageServerUrl = _configuration.GetSection("ImageServerUrl").Value;
+        return (await _categoryService.GetAllCategoriesAsync()).Select(x =>
+        {
+            x.Image_Url = $"{imageServerUrl}/{x.Image_Url}";
+            return x;
+        });
     }
 }

@@ -57,12 +57,13 @@ export class AppComponent implements OnInit {
   }
 
   fetch() {
-    const apiData = `${environment.apiUrl}data/data.json`;
+    // const apiData = `${environment.apiUrl}data/data.json`;
+    const apiData = `${environment.commonApiUrl}api/Category/all`;
     const http$ = this.http.get<any>(apiData);
 
     http$.subscribe(
       res => {
-        this.categories = res.data.categories
+        this.categories = res;
       },
       err => throwError(err)
     )

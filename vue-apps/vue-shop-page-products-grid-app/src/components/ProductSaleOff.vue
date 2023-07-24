@@ -11,8 +11,7 @@
               <div
                 class="product__discount__item__pic set-bg"
                 :style="{
-                  'background-image':
-                    'url(' + imgHostUrl + product.main_image_url,
+                  'background-image': 'url(' + product.main_Image_Url,
                 }"
               >
                 <div class="product__discount__percent">

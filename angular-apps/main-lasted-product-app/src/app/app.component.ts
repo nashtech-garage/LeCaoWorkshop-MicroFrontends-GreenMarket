@@ -32,20 +32,21 @@ export class AppComponent implements OnInit {
   }
 
   fetch() {
-    const apiData = `${environment.apiUrl}data/data.json`;
+    const apiData = `${environment.commonApiUrl}api/Product/all`;
     const http$ = this.http.get<any>(apiData);
 
     http$.subscribe(
       res => {
-        if (res.data.products) {
-          res.data.products.map((product: { is_latest: any; id: any; main_image_url: any; name: any; price: any; is_review: any; is_top_rate: any; }) => {
+        console.log(res);
+        if (res) {
+          res.map((product: { is_Latest: any; id: any; main_Image_Url: any; name: any; price: any; is_review: any; is_top_rate: any; }) => {
             let lastedProduct: Product;
             let topProduct: Product
             let reviewProduct: Product
-            if (product.is_latest) {
+            if (product.is_Latest) {
               lastedProduct = {
                 id: product.id,
-                image_url: `${environment.apiUrl}${product.main_image_url}`,
+                image_url: `${product.main_Image_Url}`,
                 name: product.name,
                 price: product.price
               }
@@ -54,7 +55,7 @@ export class AppComponent implements OnInit {
             if (product.is_review) {
               reviewProduct = {
                 id: product.id,
-                image_url: `${environment.apiUrl}${product.main_image_url}`,
+                image_url: `${product.main_Image_Url}`,
                 name: product.name,
                 price: product.price
               }
@@ -63,7 +64,7 @@ export class AppComponent implements OnInit {
             if (product.is_top_rate) {
               topProduct = {
                 id: product.id,
-                image_url: `${environment.apiUrl}${product.main_image_url}`,
+                image_url: `${product.main_Image_Url}`,
                 name: product.name,
                 price: product.price
               }
@@ -79,6 +80,55 @@ export class AppComponent implements OnInit {
       err => throwError(err)
     )
   }
+
+  // fetch() {
+  //   const apiData = `${environment.apiUrl}data/data.json`;
+  //   const http$ = this.http.get<any>(apiData);
+
+  //   http$.subscribe(
+  //     res => {
+  //       if (res.data.products) {
+  //         res.data.products.map((product: { is_latest: any; id: any; main_image_url: any; name: any; price: any; is_review: any; is_top_rate: any; }) => {
+  //           let lastedProduct: Product;
+  //           let topProduct: Product
+  //           let reviewProduct: Product
+  //           if (product.is_latest) {
+  //             lastedProduct = {
+  //               id: product.id,
+  //               image_url: `${environment.apiUrl}${product.main_image_url}`,
+  //               name: product.name,
+  //               price: product.price
+  //             }
+  //             this.lastedProducts.push(lastedProduct)
+  //           }
+  //           if (product.is_review) {
+  //             reviewProduct = {
+  //               id: product.id,
+  //               image_url: `${environment.apiUrl}${product.main_image_url}`,
+  //               name: product.name,
+  //               price: product.price
+  //             }
+  //             this.reviewProducts.push(reviewProduct)
+  //           }
+  //           if (product.is_top_rate) {
+  //             topProduct = {
+  //               id: product.id,
+  //               image_url: `${environment.apiUrl}${product.main_image_url}`,
+  //               name: product.name,
+  //               price: product.price
+  //             }
+  //             this.topProducts.push(topProduct)
+  //           }
+  //         })
+  //       }
+
+  //       this.latestGroupProducts = this.splitProductGroup(this.lastedProducts);
+  //       this.reviewGroupProducts = this.splitProductGroup(this.reviewProducts);
+  //       this.topGroupProducts = this.splitProductGroup(this.topProducts);
+  //     },
+  //     err => throwError(err)
+  //   )
+  // }
 
   splitProductGroup(listProducts: Product[]) {
     var result: Product[][] = [];

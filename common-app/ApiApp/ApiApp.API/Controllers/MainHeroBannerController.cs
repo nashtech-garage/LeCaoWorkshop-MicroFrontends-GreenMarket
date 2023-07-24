@@ -10,9 +10,12 @@ public class MainHeroBannerController : ControllerBase
 {
     private readonly IMainHeroBannerService _mainHeroBannerService;
 
-    public MainHeroBannerController(IMainHeroBannerService mainHeroBannerService)
+    private readonly IConfiguration _configuration;
+
+    public MainHeroBannerController(IMainHeroBannerService mainHeroBannerService, IConfiguration configuration)
     {
         _mainHeroBannerService = mainHeroBannerService;
+        _configuration = configuration;
     }
 
     [HttpGet()]
@@ -24,6 +27,11 @@ public class MainHeroBannerController : ControllerBase
     [HttpGet("all")]
     public async Task<IEnumerable<MainHeroBannerEntity>> GetAllMainHeroBannersAsync()
     {
-        return await _mainHeroBannerService.GetAllMainHeroBannersAsync();
+        var imageServerUrl = _configuration.GetSection("ImageServerUrl").Value;
+        return (await _mainHeroBannerService.GetAllMainHeroBannersAsync()).Select(x =>
+        {
+            x.Image_Link = $"{imageServerUrl}/{x.Image_Link}";
+            return x;
+        });
     }
 }

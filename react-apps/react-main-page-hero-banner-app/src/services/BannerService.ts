@@ -1,10 +1,9 @@
 const BannerService = {
     async getBannerInfo() : Promise<IBannerInfo> {
-        const apiGetBannerInfo = `${process.env.API_ENDPOINT}/data/data.json`;
+        const apiGetBannerInfo = `${process.env.COMMON_API_URL}/api/MainHeroBanner/all`;
         const getBannerInfo = await fetch(apiGetBannerInfo);
         const bannerInfo = await getBannerInfo.json();
-
-        return bannerInfo.data.mainHeroBanner;
+        return bannerInfo.length > 0 ? bannerInfo[0] : bannerInfo;
     }
 }
 

@@ -1,12 +1,12 @@
 <template>
   <div class="blog__item">
     <div class="blog__item__pic">
-      <img :src="imgHostUrl + blog.images_url" alt="" />
+      <img :src="blog.images_Url" alt="" />
     </div>
     <div class="blog__item__text">
       <ul>
-        <li><i class="fa fa-calendar-o"></i> {{ blog.created_date }}</li>
-        <li><i class="fa fa-comment-o"></i> {{ blog.comments_count }}</li>
+        <li><i class="fa fa-calendar-o"></i> {{ blog.created_Date }}</li>
+        <li><i class="fa fa-comment-o"></i> {{ blog.comments_Count }}</li>
       </ul>
       <h5>
         <router-link :to="'/blog-detail?id=' + blog.id">
@@ -26,11 +26,7 @@ export default {
       type: Object,
     },
   },
-  computed: {
-    imgHostUrl() {
-      return process.env.VUE_APP_COMMON_URL;
-    },
-  },
+  computed: {},
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

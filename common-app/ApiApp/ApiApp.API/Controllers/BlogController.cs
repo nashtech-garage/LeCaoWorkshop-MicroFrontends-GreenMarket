@@ -10,9 +10,12 @@ public class BlogController : ControllerBase
 {
     private readonly IBlogService _blogService;
 
-    public BlogController(IBlogService blogService)
+    private readonly IConfiguration _configuration;
+
+    public BlogController(IBlogService blogService, IConfiguration configuration)
     {
         _blogService = blogService;
+        _configuration = configuration;
     }
 
     [HttpGet()]
@@ -24,6 +27,11 @@ public class BlogController : ControllerBase
     [HttpGet("all")]
     public async Task<IEnumerable<BlogEntity>> GetAllBlogsAsync()
     {
-        return await _blogService.GetAllBlogsAsync();
+        var imageServerUrl = _configuration.GetSection("ImageServerUrl").Value;
+        return (await _blogService.GetAllBlogsAsync()).Select(x =>
+        {
+            x.Images_Url = $"{imageServerUrl}/{x.Images_Url}";
+            return x;
+        });
     }
 }
