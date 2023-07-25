@@ -1,5 +1,6 @@
 using ApiApp.Infratructure.Configs;
 using ApiApp.Infratructure.Database;
+using ApiApp.Infratructure.SeedData;
 using ApiApp.Infratructure.Services;
 using Microsoft.OpenApi.Models;
 
@@ -56,5 +57,17 @@ app.UseCors("CorsPolicy");
 app.UseAuthorization();
 
 app.MapControllers();
+
+var jsontext = System.IO.File.ReadAllText(@"data.json");
+Seeding.SeedData(jsontext);
+
+// app.UseMvc(routes =>
+// {
+//     // routes.MapRoute(
+//     //     name: "default",
+//     //     template: "{controller=Home}/{action=Index}/{id?}");
+//     // });
+
+// });
 
 app.Run();
