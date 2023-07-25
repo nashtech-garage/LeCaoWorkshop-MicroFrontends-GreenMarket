@@ -2,6 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -11,15 +16,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
 using System;
-using Order.Data;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Common.Data.SeedData;
 
-namespace Order.Core
+namespace Common.Core
 {
     public class Startup
     {
@@ -41,42 +43,45 @@ namespace Order.Core
             var connectionString = Configuration.GetConnectionString("OrderDatabase");
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
+            services.AddDbContext<CommonDbContext>(options =>
+                    options.UseSqlite(connectionString, x => x.MigrationsAssembly(migrationAssembly)));
+
             if (CurrentEnvironment.IsDevelopment())
             {
-                services.AddDbContext<OrderDbContext>(options =>
-                    options.UseSqlite(connectionString, x => x.MigrationsAssembly("Order.SqliteMigrations")));
+                // services.AddDbContext<CommonDbContext>(options =>
+                //     options.UseSqlite(connectionString, x => x.MigrationsAssembly("Order.SqliteMigrations")));
             }
             else
             {
-                services.AddDbContext<OrderDbContext>(options =>
-                    options.UseMySql(connectionString, new MySqlServerVersion(new Version(5, 7, build: 22)), x =>
-                    x.MigrationsAssembly("Order.MySqlMigrations")
-                        .EnableRetryOnFailure(
-                            maxRetryCount: 5,
-                            maxRetryDelay: System.TimeSpan.FromSeconds(30),
-                            errorNumbersToAdd: null
-                    )));
+                // services.AddDbContext<CommonDbContext>(options =>
+                //     options.UseMySql(connectionString, new MySqlServerVersion(new Version(5, 7, build: 22)), x =>
+                //     x.MigrationsAssembly("Order.MySqlMigrations")
+                //         .EnableRetryOnFailure(
+                //             maxRetryCount: 5,
+                //             maxRetryDelay: System.TimeSpan.FromSeconds(30),
+                //             errorNumbersToAdd: null
+                //     )));
             }
 
-            services
-                .AddMvcCore(options =>
-                {
-                    options.Filters.Add(new AuthorizeFilter());
-                })
-                .AddAuthorization();
+            // services
+            //     .AddMvcCore(options =>
+            //     {
+            //         options.Filters.Add(new AuthorizeFilter());
+            //     })
+            //     .AddAuthorization();
 
-            var IdentityApiUrl = Configuration.GetValue<string>("IdentityApiUrl");
+            // var IdentityApiUrl = Configuration.GetValue<string>("IdentityApiUrl");
 
-            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-                    .AddIdentityServerAuthentication(options =>
-                    {
-                        options.Authority = IdentityApiUrl;
-                        options.RequireHttpsMetadata = false;
+            // services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+            //         .AddIdentityServerAuthentication(options =>
+            //         {
+            //             options.Authority = IdentityApiUrl;
+            //             options.RequireHttpsMetadata = false;
 
-                        options.ApiName = "orderAPI";
-                        options.ApiSecret = "secret";
-                        options.LegacyAudienceValidation = true;
-                    });
+            //             options.ApiName = "orderAPI";
+            //             options.ApiSecret = "secret";
+            //             options.LegacyAudienceValidation = true;
+            //         });
 
             services.AddCors(options =>
             {
@@ -97,7 +102,7 @@ namespace Order.Core
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, OrderDbContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, CommonDbContext context)
         {
             if (env.IsDevelopment())
             {
@@ -114,6 +119,9 @@ namespace Order.Core
 
             context.Database.Migrate();
 
+            var jsontext = System.IO.File.ReadAllText(@"data.json");
+            Seeding.SeedData(jsontext, app.ApplicationServices);
+
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
@@ -122,8 +130,8 @@ namespace Order.Core
 
             app.UseCors("CorsPolicy");
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            // app.UseAuthentication();
+            // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

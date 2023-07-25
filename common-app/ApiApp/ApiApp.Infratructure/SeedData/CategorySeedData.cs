@@ -24,7 +24,7 @@ namespace ApiApp.Infratructure.SeedData
             Console.WriteLine("=== Categories ===");
             foreach (var category in jsonEntity.data.categories)
             {
-                Console.WriteLine($"{category.Id} - {category.Name} - {category.Image_Url}");
+                Console.WriteLine($"{category.id} - {category.name} - {category.image_url}");
             }
 
             Console.WriteLine("=== Products ===");
