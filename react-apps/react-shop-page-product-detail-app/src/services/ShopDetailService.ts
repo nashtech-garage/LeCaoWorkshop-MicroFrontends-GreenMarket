@@ -1,16 +1,73 @@
 const ShopDetailService = {
     async getProductById(id:number) : Promise<IShopDetailInfo> {
-        // const apiGetInfo = `${process.env.API_ENDPOINT}/data/data.json`;
-        const apiGetInfo = `${process.env.COMMON_API_URL}/api/Product?id=${id}`;
+        const apiGetInfo = `${process.env.API_ENDPOINT}/data/data.json`;
         const getShopDetailInfo = await fetch(apiGetInfo);
         const shopDetailInfo = await getShopDetailInfo.json();
-        const product: IShopDetailInfo = shopDetailInfo;
-        console.log(product);
-        return product;
+        const products: Array<IShopDetailInfo> = shopDetailInfo.data.products;
 
-        // const filteredById = Object.values(products).find(x => x.id === id);
-        // console.log(filteredById);
-        // return filteredById;
+        const filteredById = Object.values(products).find(x => x.id === id);
+        console.log(filteredById);
+        
+        
+        return filteredById;
+    },
+
+    addProductToShoppingCart(product: any, quantity: number) {
+        const currentUser = JSON.parse(localStorage.getItem('auth-user') ?? "{}");
+
+        let currentUserId = currentUser.sub;
+        let currentUserName = currentUser.email;
+
+        const channel = new BroadcastChannel('CART_HEADER_CHANNEL');
+        
+        if (!currentUserId) {
+            channel.postMessage({});
+            channel.close();
+            return;
+        }
+
+        const localStorageKey = currentUserId;
+        const discount = product.discount;
+        const price = product.price;
+
+        const newCartItem = {
+            id: product.id,
+            price: (discount <= 0 || discount > 100) ? price : price * (1 - (discount > 1 ? discount / 100 : discount)),
+            quantity: quantity < 0 ? 0 : quantity,
+            name: product.name,
+            image_link: product.main_image_url
+        };
+
+        let shoppingCart = JSON.parse(localStorage.getItem(localStorageKey) ?? "{}");
+        if (Object.keys(shoppingCart).length === 0) {
+            shoppingCart = {
+                cart_data: [newCartItem],
+                discount_codes: [],
+                total: 0,
+                user_id: currentUserId,
+                user_name: currentUserName
+            };
+        } else {
+            const cardProduct = shoppingCart.cart_data.find(p => p.id === product.id);
+            if (cardProduct) {
+                newCartItem.quantity += cardProduct.quantity;
+                shoppingCart.cart_data = shoppingCart.cart_data.filter(p => p.id !== product.id);
+            }
+            shoppingCart.cart_data.push(newCartItem);
+        }
+
+        shoppingCart.total = shoppingCart.cart_data.reduce((sum, item) => {
+            return (item && item.price && item.quantity)
+                ? sum + (item.price * item.quantity)
+                : sum;
+        }, 0);
+
+        localStorage.setItem(localStorageKey, JSON.stringify(shoppingCart));
+        
+        channel.postMessage({ 
+            type: 'ADD_CART_ITEM', path: window.location.href 
+        });
+        channel.close();
     }
 }
 

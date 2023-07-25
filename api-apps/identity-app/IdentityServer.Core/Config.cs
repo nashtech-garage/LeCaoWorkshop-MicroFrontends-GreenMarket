@@ -15,40 +15,35 @@ namespace IdentityServer.Core
             };
         }
 
-        public static IEnumerable<ApiResource> GetApiResources()
-        {
-            return new List<ApiResource>
+        public static IEnumerable<ApiResource> GetApiResources =>
+            new ApiResource[]
             {
-                new ApiResource("resourceapi", "Resource API")
+                // new ApiResource("orderAPI", "Order API")
+            };
+
+        public static IEnumerable<ApiScope> GetScopes =>
+           new ApiScope[]
+           {
+               new ApiScope("orderAPI", "Order API")
+           };
+
+        public static IEnumerable<Client> GetClients =>
+            new Client[]
+            {
+                new Client
                 {
-                    Scopes = new List<string>{ "api.read"}
-                }
-            };
-        }
-
-        public static IEnumerable<ApiScope> GetScopes()
-        {
-            return new ApiScope[]
-            {
-                new ApiScope("api.read")
-            };
-        }
-
-        public static IEnumerable<Client> GetClients()
-        {
-            return new[]
-            {
-                new Client {
                     RequireConsent = false,
-                    ClientId = "microFE",
-                    ClientName = "Micro Frontent",
-                    ClientSecrets = {new Secret("secret".Sha256())},
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
-                    AllowedScopes = {"api.read"},
+                    ClientId = "orderClient",
+                    ClientName = "Order Client",
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    AllowedScopes = { "orderAPI" },
                     AllowAccessTokensViaBrowser = true,
-                    AccessTokenLifetime = 3600
+                    AccessTokenLifetime = 3600,
                 }
             };
-        }
     }
 }

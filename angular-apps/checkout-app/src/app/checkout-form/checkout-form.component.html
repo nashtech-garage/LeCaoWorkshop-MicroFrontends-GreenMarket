@@ -1,316 +1,231 @@
 <div class="checkout">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <h6>
-          <span class="icon_tag_alt"></span> Have a coupon?
-          <a href="#">Click here</a> to enter your code
-        </h6>
-      </div>
-    </div>
-    <div class="checkout__form">
+    <div class="checkout__form" *ngIf="!submitted">
       <h4>Billing Details</h4>
-      <form (ngSubmit)="onSubmit()" [formGroup]="checkOutForm" class="">
+      <form
+        name="checkoutForm"
+        (ngSubmit)="f.form.valid && onCheckoutSubmit()"
+        #f="ngForm"
+        novalidate
+      >
         <div class="row">
           <div class="col-lg-8 col-md-6">
             <div class="row">
-              <div class="col-6 checkout__input">
-                <p>First Name<span>*</span></p>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="firstName"
-                  formControlName="firstName"
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="(checkOutFormControl.firstName.touched || submitted) && checkOutFormControl.firstName.errors?.['required']"
-                >
-                  First Name is required
-                </span>
-              </div>
-              <div class="col-6 checkout__input">
-                <p>Last Name<span>*</span></p>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lastName"
-                  formControlName="lastName"
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="(checkOutFormControl.lastName.touched || submitted) && checkOutFormControl.lastName.errors?.['required']"
-                >
-                  Last Name is required
-                </span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 checkout__input">
-                <p>Country<span>*</span></p>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="country"
-                  formControlName="country"
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="(checkOutFormControl.country.touched || submitted) && checkOutFormControl.country.errors?.['required']"
-                >
-                  Country is required
-                </span>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12 checkout__input">
-                <p>Address<span>*</span></p>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="streetAddress"
-                  placeholder="Street Address"
-                  formControlName="streetAddress"
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="(checkOutFormControl.streetAddress.touched || submitted) && checkOutFormControl.streetAddress.errors?.['required']"
-                >
-                  Street Address is required
-                </span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 checkout__input">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="optionAddress"
-                  placeholder="Apartment, suite, unite etc(option)"
-                  formControlName="optionAddress"
-                />
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12 checkout__input">
-                <p>Town/City<span>*</span></p>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="city"
-                  formControlName="city"
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="(checkOutFormControl.city.touched || submitted) && checkOutFormControl.city.errors?.['required']"
-                >
-                  Town/City is required
-                </span>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12 checkout__input">
-                <p>Country/State<span>*</span></p>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="state"
-                  formControlName="state"
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="(checkOutFormControl.state.touched || submitted) && checkOutFormControl.state.errors?.['required']"
-                >
-                  Country/Stat is required
-                </span>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12 checkout__input">
-                <p>Postcode/ZIP<span>*</span></p>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="postCode"
-                  formControlName="postCode"
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="(checkOutFormControl.postCode.touched || submitted) && checkOutFormControl.postCode.errors?.['required']"
-                >
-                  Postcode/ZIP is required
-                </span>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-6 checkout__input">
-                <p>Phone<span>*</span></p>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="phone"
-                  formControlName="phone"
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="(checkOutFormControl.phone.touched || submitted) && checkOutFormControl.phone.errors?.['required']"
-                >
-                  Phone is required
-                </span>
-              </div>
-              <div class="col-6 checkout__input">
-                <p>Email<span>*</span></p>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  formControlName="email"
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="(checkOutFormControl.email.touched || submitted) && checkOutFormControl.email.errors?.['required']"
-                >
-                  Email is required
-                </span>
-                <span
-                  class="text-danger"
-                  *ngIf="(checkOutFormControl.email.touched || submitted) && checkOutFormControl.email.errors?.['email']"
-                >
-                  Email is incorrect format
-                </span>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12 checkout__input__checkbox">
-                <label for="newAccount"
-                  >Create an account?
+              <div class="col-lg-6">
+                <div class="checkout__input">
+                  <p>Fist Name<span>*</span></p>
                   <input
-                    type="checkbox"
-                    value=""
-                    id="newAccount"
-                    formControlName="newAccount"
+                    type="text"
+                    class="form-control"
+                    name="firstName"
+                    [(ngModel)]="checkoutForm.firstName"
+                    required
+                    #firstName="ngModel"
                   />
-                  <span class="checkmark"></span>
-                </label>
-                <p>
-                  Create an account by entering the information bellow. If you
-                  are a returning customer please login at the top of the page.
-                </p>
+                  <div
+                    class="alert alert-danger"
+                    role="alert"
+                    *ngIf="firstName.errors && f.submitted"
+                  >
+                    FirstName is required!
+                  </div>
+                </div>
               </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12 checkout__input">
-                <p>Account Password<span>*</span></p>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="accountPassword"
-                  formControlName="accountPassword"
-                />
-                <span
-                  class="text-danger"
-                  *ngIf="(checkOutFormControl.accountPassword.touched || submitted) && checkOutFormControl.accountPassword.errors?.['required']"
-                >
-                  Account Password is required
-                </span>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12 checkout__input__checkbox">
-                <label for="shipToDifferentAccount">
-                  Ship to a different address?
+              <div class="col-lg-6">
+                <div class="checkout__input">
+                  <p>Last Name<span>*</span></p>
                   <input
-                    type="checkbox"
-                    id="shipToDifferentAccount"
-                    formControlName="shipToDifferentAccount"
+                    type="text"
+                    class="form-control"
+                    name="lastName"
+                    [(ngModel)]="checkoutForm.lastName"
+                    required
+                    #lastName="ngModel"
                   />
-                  <span class="checkmark"></span>
-                </label>
+                  <div
+                    class="alert alert-danger"
+                    role="alert"
+                    *ngIf="lastName.errors && f.submitted"
+                  >
+                    LastName is required!
+                  </div>
+                </div>
               </div>
             </div>
-
+            <div class="checkout__input">
+              <p>Country<span>*</span></p>
+              <input
+                type="text"
+                class="form-control"
+                name="country"
+                [(ngModel)]="checkoutForm.country"
+                required
+                #country="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="country.errors && f.submitted"
+              >
+                Country is required!
+              </div>
+            </div>
+            <div class="checkout__input">
+              <p>Address<span>*</span></p>
+              <input
+                type="text"
+                class="form-control"
+                name="address"
+                [(ngModel)]="checkoutForm.address"
+                required
+                #address="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="address.errors && f.submitted"
+              >
+                Address is required!
+              </div>
+            </div>
+            <div class="checkout__input">
+              <p>Town/City<span>*</span></p>
+              <input
+                type="text"
+                class="form-control"
+                name="city"
+                [(ngModel)]="checkoutForm.city"
+                required
+                #city="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="city.errors && f.submitted"
+              >
+                Town/City is required!
+              </div>
+            </div>
+            <div class="checkout__input">
+              <p>Country/State<span>*</span></p>
+              <input
+                type="text"
+                class="form-control"
+                name="state"
+                [(ngModel)]="checkoutForm.state"
+                required
+                #state="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="state.errors && f.submitted"
+              >
+                Country/State is required!
+              </div>
+            </div>
+            <div class="checkout__input">
+              <p>Postcode/ZIP<span>*</span></p>
+              <input
+                type="text"
+                class="form-control"
+                name="postcode"
+                [(ngModel)]="checkoutForm.postcode"
+                required
+                #postcode="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="postcode.errors && f.submitted"
+              >
+                Postcode/ZIP is required!
+              </div>
+            </div>
             <div class="row">
-              <div class="col-12 checkout__input">
-                <p>Order notes<span>*</span></p>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="orderNotes"
-                  placeholder="Notes about your order, e.g. special note for delivery"
-                  formControlName="orderNotes"
-                />
+              <div class="col-lg-6">
+                <div class="checkout__input">
+                  <p>Phone<span>*</span></p>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="phone"
+                    [(ngModel)]="checkoutForm.phone"
+                    required
+                    #phone="ngModel"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    role="alert"
+                    *ngIf="phone.errors && f.submitted"
+                  >
+                    Phone is required!
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="checkout__input">
+                  <p>Email<span>*</span></p>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="email"
+                    [(ngModel)]="checkoutForm.email"
+                    required
+                    #email="ngModel"
+                  />
+                  <div
+                    class="alert alert-danger"
+                    role="alert"
+                    *ngIf="email.errors && f.submitted"
+                  >
+                    Email is required!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="checkout__input">
+              <p>Order notes<span>*</span></p>
+              <input
+                type="text"
+                class="form-control"
+                name="orderNotes"
+                [(ngModel)]="checkoutForm.orderNotes"
+                required
+                #orderNotes="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="orderNotes.errors && f.submitted"
+              >
+                Order notes is required!
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 checkout__order">
-            <h4>Your Order</h4>
-            <hr />
-            <div class="row">
-              <div class="col-12 checkout__order__products">
-                Products
-                <span>Total</span>
+          <div class="col-lg-4 col-md-6">
+            <div class="checkout__order">
+              <h4>Your Order</h4>
+              <div class="checkout__order__products">
+                Products <span>Total</span>
               </div>
-              <ul class="col-12" *ngFor="let product of products">
+              <ul *ngFor="let product of curCartData.cart_data">
                 <li>
                   {{ product.name }}
-                  <span>{{ product.price }}</span>
+                  <span>{{ product.price * product.quantity }}</span>
                 </li>
               </ul>
-              <div class="col-12 checkout__order__subtotal">
-                Subtotal <span>{{ subTotal }}</span>
-              </div>
-              <div class="col-12 checkout__order__total">
-                Total <span>{{ total }}</span>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12 checkout__input__checkbox">
-                <label for="createAccount">
-                  Create an account?
-                  <input
-                    type="checkbox"
-                    id="createAccount"
-                    formControlName="createAccount"
-                  />
-                  <span class="checkmark"></span>
-                </label>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adip elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-              </div>
-              <div class="col-12 checkout__input__checkbox">
-                <label for="checkPayment">
-                  Check Payment
-                  <input
-                    type="checkPayment"
-                    id="checkPayment"
-                    formControlName="checkPayment"
-                  />
-                  <span class="checkmark"></span>
-                </label>
-              </div>
-              <div class="col-12 checkout__input__checkbox">
-                <label for="paypal">
-                  Paypal
-                  <input type="checkbox" id="paypal" formControlName="paypal" />
-                  <span class="checkmark"></span>
-                </label>
+              <div class="checkout__order__total">
+                Total <span>{{ curCartData.total }}</span>
               </div>
               <button type="submit" class="site-btn">PLACE ORDER</button>
             </div>
           </div>
         </div>
       </form>
+    </div>
+    <div class="checkout__loading" *ngIf="submitted">
+      <img src="{{ apiUrl }}img/loading.gif" />
     </div>
   </div>
 </div>

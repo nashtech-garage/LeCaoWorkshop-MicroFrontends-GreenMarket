@@ -12,7 +12,7 @@
           <a href="#"><i class="fa fa-retweet"></i></a>
         </li>
         <li>
-          <a href="#"><i class="fa fa-shopping-cart"></i></a>
+          <a href="#" @click.prevent="addProductToShoppingCart(product)"><i class="fa fa-shopping-cart"></i></a>
         </li>
       </ul>
     </div>
@@ -25,7 +25,11 @@
   </div>
 </template>
 <script>
+import addProductToShoppingCart from "@/services/common-functions";
 export default {
+  methods: {
+    addProductToShoppingCart
+  },
   props: {
     product: {
       required: true,

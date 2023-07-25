@@ -3,7 +3,6 @@
 -----------------------*/
 
 .checkout {
-	padding-top: 80px;
 	padding-bottom: 60px;
 }
 
@@ -37,6 +36,11 @@
 
 .checkout__form p {
 	column-rule: #b2b2b2;
+}
+
+.checkout__loading {
+  display: flex;
+  justify-content: center;
 }
 
 .checkout__input {
