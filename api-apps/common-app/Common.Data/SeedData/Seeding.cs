@@ -24,10 +24,51 @@ namespace Common.Data.SeedData
                 foreach (var category in jsonEntity.data.categories)
                 {
                     Console.WriteLine($"{category.id} - {category.name} - {category.image_url}");
-                    var categoryItem = context.Categories.SingleOrDefault(c => c.id == category.id);
+                    var categoryItem = context.categories.SingleOrDefault(c => c.id == category.id);
                     if (categoryItem == null)
                     {
-                        context.Categories.Add(category);
+                        context.categories.Add(category);
+                    }
+                }
+
+                Console.WriteLine("=== Products ===");
+                foreach (var product in jsonEntity.data.products)
+                {
+                    Console.WriteLine($"{product.id} - {product.name} - {product.price}");
+                    var productItem = context.products.SingleOrDefault(c => c.id == product.id);
+                    if (productItem == null)
+                    {
+                        product.images_urls_string = string.Join(",", product.images_urls);
+                        context.products.Add(product);
+                    }
+                }
+
+                Console.WriteLine("=== Blogs ===");
+                foreach (var blog in jsonEntity.data.blogs)
+                {
+                    Console.WriteLine($"{blog.id} - {blog.title} - {blog.images_url}");
+                    var blogItem = context.blogs.SingleOrDefault(c => c.id == blog.id);
+                    if (blogItem == null)
+                    {
+                        context.blogs.Add(blog);
+                    }
+                }
+
+                Console.WriteLine("=== MainHeroBannerEntity ===");
+                var mainHeroBannerItem = context.mainHeroBannerEntity.SingleOrDefault(c => c.Title == jsonEntity.data.mainHeroBanner.Title);
+                if (mainHeroBannerItem == null)
+                {
+                    context.mainHeroBannerEntity.Add(jsonEntity.data.mainHeroBanner);
+                }
+
+                Console.WriteLine("=== Coupon ===");
+                foreach (var coupon in jsonEntity.data.coupon)
+                {
+                    Console.WriteLine($"{coupon.code} - {coupon.description} - {coupon.discount_amount}");
+                    var couponItem = context.coupons.SingleOrDefault(c => c.code == coupon.code);
+                    if (couponItem == null)
+                    {
+                        context.coupons.Add(coupon);
                     }
                 }
 

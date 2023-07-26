@@ -20,6 +20,8 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Common.Data.SeedData;
+using Common.Infrastructure.GenericRepository;
+using Common.Infrastructure.AsyncGenericRepository;
 
 namespace Common.Core
 {
@@ -40,27 +42,24 @@ namespace Common.Core
         {
             services.AddControllersWithViews();
 
-            var connectionString = Configuration.GetConnectionString("OrderDatabase");
+            var connectionString = Configuration.GetConnectionString("CommonDatabase");
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
-
-            services.AddDbContext<CommonDbContext>(options =>
-                    options.UseSqlite(connectionString, x => x.MigrationsAssembly(migrationAssembly)));
 
             if (CurrentEnvironment.IsDevelopment())
             {
-                // services.AddDbContext<CommonDbContext>(options =>
-                //     options.UseSqlite(connectionString, x => x.MigrationsAssembly("Order.SqliteMigrations")));
+                services.AddDbContext<CommonDbContext>(options =>
+                    options.UseSqlite(connectionString, x => x.MigrationsAssembly("Common.SqliteMigrations")));
             }
             else
             {
-                // services.AddDbContext<CommonDbContext>(options =>
-                //     options.UseMySql(connectionString, new MySqlServerVersion(new Version(5, 7, build: 22)), x =>
-                //     x.MigrationsAssembly("Order.MySqlMigrations")
-                //         .EnableRetryOnFailure(
-                //             maxRetryCount: 5,
-                //             maxRetryDelay: System.TimeSpan.FromSeconds(30),
-                //             errorNumbersToAdd: null
-                //     )));
+                services.AddDbContext<CommonDbContext>(options =>
+                    options.UseSqlServer(connectionString, x =>
+                        x.MigrationsAssembly(migrationAssembly)
+                        .EnableRetryOnFailure(
+                            maxRetryCount: 5,
+                            maxRetryDelay: System.TimeSpan.FromSeconds(30),
+                            errorNumbersToAdd: null
+                        )));
             }
 
             // services
@@ -82,6 +81,9 @@ namespace Common.Core
             //             options.ApiSecret = "secret";
             //             options.LegacyAudienceValidation = true;
             //         });
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IAsyncGenericRepository<>), typeof(AsyncGenericRepository<>));
 
             services.AddCors(options =>
             {
