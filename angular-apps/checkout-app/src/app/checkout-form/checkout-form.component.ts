@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CheckoutFormComponent implements OnInit{
   private toastChannel = new BroadcastChannel('TOAST_CHANNEL');
-  public apiUrl = environment.apiUrl;
+  public imageServerUrl = environment.imageServerUrl;
   submitted!: boolean;
 
   checkoutForm: any = {
@@ -82,7 +82,6 @@ export class CheckoutFormComponent implements OnInit{
     this.orderService.checkout(orderData).subscribe(
       data => {
         this.submitted = false;
-        console.log(data);
         this.toastChannel.postMessage({
           type: "success",
           message: "Order created successfully"

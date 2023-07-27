@@ -5,6 +5,9 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
+import { Category } from './models/category.model';
+import { Product } from './models/product.model';
+import { Blog } from './models/blog.model';
 
 @Component({
   selector: 'app-breadcrumb-root',
@@ -15,11 +18,8 @@ import { lastValueFrom } from 'rxjs';
 export class AppComponent {
   title = 'breadcrumb-app';
 
-  private categoryData = [];
-  private productData = [];
-  private blogData = [];
-
-  public apiUrl = environment.apiUrl;
+  public imageServerUrl = environment.imageServerUrl;
+  public commonApiUrl = environment.commonApiUrl;
   public isBlogDetail: boolean = false;
 
   public navigationGroup: NavigationGroupModel = {
@@ -134,7 +134,7 @@ export class AppComponent {
     private http: HttpClient){
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.loadData(event.url)
+        this.loadData(event.url);
       }});
   }
 
@@ -143,10 +143,6 @@ export class AppComponent {
   }
 
   async loadData(url: string){
-    if (this.categoryData.length == 0 || this.productData.length == 0 || this.blogData.length == 0) {
-      await this.fetchData(url);
-    }
-
     const currentId = this.route.snapshot.queryParamMap.get('id')!;
     this.isBlogDetail = false;
     this.resetNavigationGroup();
@@ -154,39 +150,56 @@ export class AppComponent {
 
     if(url.includes("shops?id=")) {
       this.navigationGroup = this.getNavigationByPath("/shops")!;
-      this.getBreadcrumbData(currentId, BreadcrumbType.Shop);
+      await this.getBreadcrumbData(currentId, BreadcrumbType.Shop);
     }
 
     if(url.includes("/shop-detail?id=")){
       this.navigationGroup = this.getNavigationByPath("/shop-detail")!;
-      this.getBreadcrumbData(currentId, BreadcrumbType.ShopDetail);
+      await this.getBreadcrumbData(currentId, BreadcrumbType.ShopDetail);
     }
 
     if(url.includes("/blog-detail?id=")){
       this.isBlogDetail = true;
       this.navigationGroup = this.getNavigationByPath("/blog-detail")!;
-      this.getBreadcrumbData(currentId, BreadcrumbType.BlogDetail);
+      await this.getBreadcrumbData(currentId, BreadcrumbType.BlogDetail);
     }
   }
 
-  async fetchData(url: string) {
-    const apiData = `${this.apiUrl}data/data.json`;
-
-    await lastValueFrom(this.http.get<any>(apiData))
+  async fetchProductData(id: string) {
+    const productApiURL = `${this.commonApiUrl}api/Product?id=${id}`;
+    var result: Product = {} as Product;
+    await lastValueFrom(this.http.get<any>(productApiURL))
             .then((res) => {
-              const { categories, products, blogs } = res.data;
-
-              this.categoryData = categories;
-              this.productData = products;
-              this.blogData = blogs;
+              result = res;
             });
+    return result;
   }
 
-  getBreadcrumbData(id: string, type: BreadcrumbType) {
+  async fetchCategoryData(id: string) {
+    const categoryApiURL = `${this.commonApiUrl}api/Category?id=${id}`;
+    var result: Category = {} as Category;
+    await lastValueFrom(this.http.get<any>(categoryApiURL))
+            .then((res) => {
+              result = res;
+            });
+    return result;
+  }
+
+  async fetchBlogData(id: string) {
+    const blogApiURL = `${this.commonApiUrl}api/Blog?id=${id}`;
+    var result: Blog = {} as Blog;
+    await lastValueFrom(this.http.get<any>(blogApiURL))
+            .then((res) => {
+              result = res;
+            });
+    return result;
+  }
+
+  async getBreadcrumbData(id: string, type: BreadcrumbType) {
 
     switch (type) {
       case BreadcrumbType.Shop:
-        const data = this.getDataById(id, this.categoryData);
+        const data = await this.fetchCategoryData(id);
         this.navigationGroup.pageTitle = data.name;
         if(this.navigationGroup.items.length == 2) {
           this.navigationGroup.items[1].label = data.name;
@@ -194,8 +207,8 @@ export class AppComponent {
         break;
 
       case BreadcrumbType.ShopDetail:
-        const product = this.getDataById(id, this.productData);
-        const category = this.getDataById(product.category_id, this.categoryData);
+        const product = await this.fetchProductData(id);
+        const category = await this.fetchCategoryData(product.category_id.toString());
 
         this.navigationGroup.pageTitle = product.name;
 
@@ -229,7 +242,7 @@ export class AppComponent {
         break;
 
       case BreadcrumbType.BlogDetail:
-        const blog = this.getDataById(id, this.blogData);
+        const blog = await this.fetchBlogData(id);
         this.navigationGroup.pageTitle = blog.title;
         if(this.navigationGroup.items.length == 2) {
           this.navigationGroup.items = [];
@@ -266,14 +279,5 @@ export class AppComponent {
     }
 
     return null;
-  }
-
-  getDataById(id:string, data:Array<any>) {
-    const result = data.filter(x => x.id == id);
-    if(!result || result.length === 0){
-      throw new TypeError("Item not found!");
-    }
-
-    return result[0];
   }
 }

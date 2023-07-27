@@ -13,7 +13,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  api = environment.apiUrl;
   title = 'main-categories-app';
   customOptions: OwlOptions = {
     loop: true,
@@ -57,12 +56,12 @@ export class AppComponent implements OnInit {
   }
 
   fetch() {
-    const apiData = `${environment.apiUrl}data/data.json`;
+    const apiData = `${environment.commonApiUrl}api/Category/all`;
     const http$ = this.http.get<any>(apiData);
 
     http$.subscribe(
       res => {
-        this.categories = res.data.categories
+        this.categories = res;
       },
       err => throwError(err)
     )

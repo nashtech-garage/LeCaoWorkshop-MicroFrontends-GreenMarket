@@ -1,11 +1,9 @@
 const BlogDetailInfoService = {
     async getBlogDetailInfoById(id:number) : Promise<IBlogDetailInfo> {
-        const apiGetInfo = `${process.env.API_ENDPOINT}/data/data.json`;
+        const apiGetInfo = `${process.env.COMMON_API_URL}/api/Blog?id=${id}`;
         const getBlogDetailInfo = await fetch(apiGetInfo);
         const blogDetailInfo = await getBlogDetailInfo.json();
-        const blogs: Array<IBlogDetailInfo> = blogDetailInfo.data.blogs;
-        const filteredById = Object.values(blogs).find(x => x.id === id);
-        return filteredById;
+        return blogDetailInfo;
     }
 }
 
