@@ -6,7 +6,7 @@ import BannerService from "../../services/BannerService";
 export default function HeroBanner() {
   const [bannerInfo, setBannerInfo] = useState<IBannerInfo>({});
   const bgStyleImage = {
-    backgroundImage: `url(${bannerInfo?.image_Link})`,
+    backgroundImage: `url(${bannerInfo?.imageLink})`,
   };
   const bgStyleColor = {
     backgroundColor: "#f5f5f5",
@@ -23,10 +23,10 @@ export default function HeroBanner() {
   return (
     <div
       className={`${Styles.hero__item} ${Styles.set__bg}`}
-      style={bannerInfo?.image_Link ? bgStyleImage : bgStyleColor}
+      style={bannerInfo?.imageLink ? bgStyleImage : bgStyleColor}
     >
       <div className={Styles.hero__text}>
-        <span>{bannerInfo?.category_Name}</span>
+        <span>{bannerInfo?.categoryName}</span>
         <h2>{bannerInfo?.title}</h2>
         <p>{bannerInfo?.content}</p>
         <Link to={`/shops`} className={Styles.primary__btn}>

@@ -2,7 +2,7 @@
   <div class="product__item">
     <div
       class="product__item__pic set-bg"
-      :style="{ 'background-image': 'url(' + product.main_Image_Url + ')' }"
+      :style="{ 'background-image': 'url(' + product.main_image_url + ')' }"
     >
       <ul class="product__item__pic__hover">
         <li>
@@ -12,7 +12,9 @@
           <a href="#"><i class="fa fa-retweet"></i></a>
         </li>
         <li>
-          <a href="#" @click.prevent="addProductToShoppingCart(product)"><i class="fa fa-shopping-cart"></i></a>
+          <a href="#" @click.prevent="addProductToShoppingCart(product)"
+            ><i class="fa fa-shopping-cart"></i
+          ></a>
         </li>
       </ul>
     </div>
@@ -28,7 +30,7 @@
 import addProductToShoppingCart from "@/services/common-functions";
 export default {
   methods: {
-    addProductToShoppingCart
+    addProductToShoppingCart,
   },
   props: {
     product: {

@@ -1,12 +1,12 @@
 <template>
   <div class="blog__item">
     <div class="blog__item__pic">
-      <img :src="blog.images_Url" alt="" />
+      <img :src="blog.images_url" alt="" />
     </div>
     <div class="blog__item__text">
       <ul>
-        <li><i class="fa fa-calendar-o"></i> {{ blog.created_Date }}</li>
-        <li><i class="fa fa-comment-o"></i> {{ blog.comments_Count }}</li>
+        <li><i class="fa fa-calendar-o"></i> {{ blog.created_date }}</li>
+        <li><i class="fa fa-comment-o"></i> {{ blog.comments_count }}</li>
       </ul>
       <h5>
         <router-link :to="'/blog-detail?id=' + blog.id">

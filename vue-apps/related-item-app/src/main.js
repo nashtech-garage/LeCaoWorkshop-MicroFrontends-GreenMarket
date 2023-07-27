@@ -6,7 +6,7 @@ import router from './router';
 import App from './App.vue';
 
 const axiosOptions = {
-  baseUrl: process.env.VUE_APP_API,
+  baseUrl: process.env.VUE_APP_COMMON_API_URL,
   token: ''
 }
 

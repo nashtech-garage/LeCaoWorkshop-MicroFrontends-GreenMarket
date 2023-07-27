@@ -1,24 +1,34 @@
 <td class="shopping__cart__item">
-  <img src="{{apiEndpoint}}/{{product.image_link}}" alt="" width="100" height="100"/>
-  <h5>{{product.name}}</h5>
+  <img src="{{ product.image_link }}" alt="" width="100" height="100" />
+  <h5>{{ product.name }}</h5>
 </td>
 <td class="shopping__cart__price" style="width: 150px">
-  {{product.price | currency:'USD':'symbol':'2.2-2'}}
-  <span style="text-decoration: line-through; margin-left: 10px" *ngIf="product.price != product.priceOriginal">
-    {{product.priceOriginal | currency:'USD':'symbol':'2.2-2'}}
+  {{ product.price | currency : "USD" : "symbol" : "2.2-2" }}
+  <span
+    style="text-decoration: line-through; margin-left: 10px"
+    *ngIf="product.price != product.priceOriginal"
+  >
+    {{ product.priceOriginal | currency : "USD" : "symbol" : "2.2-2" }}
   </span>
 </td>
 <td class="shopping__cart__quantity">
   <div class="quantity">
     <div class="pro-qty">
       <span class="dec qtybtn" (click)="decreaseQuantity()">-</span>
-      <input type="number" value="{{product.quantity}}" (input)="updateQuantity($event)">
+      <input
+        type="number"
+        value="{{ product.quantity }}"
+        (input)="updateQuantity($event)"
+      />
       <span class="inc qtybtn" (click)="increaseQuantity()">+</span>
     </div>
   </div>
 </td>
 <td class="shopping__cart__total">
-  {{ ((product.price ?? 0) * (product.quantity ?? 0)) | currency:'USD':'symbol':'2.2-2' }}
+  {{
+    (product.price ?? 0) * (product.quantity ?? 0)
+      | currency : "USD" : "symbol" : "2.2-2"
+  }}
 </td>
 <td class="shopping__cart__item__close">
   <span class="icon_close" (click)="removeItem()"></span>

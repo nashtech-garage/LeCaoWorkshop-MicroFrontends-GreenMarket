@@ -10,11 +10,10 @@ interface IShopDetailInfo {
     color?: string,
     discount?: number,
     availability?: boolean,
-    main_Image_Url?: string,
-    images_Urls?: string,
-    images_Urls_Array?: Array<string>,
+    main_image_url?: string,
+    images_urls?: Array<string>,
     is_featured?: boolean,
     count?: number,
     is_latest?: boolean,
-    review_Count?: number
+    review_count?: number
 }

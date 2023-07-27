@@ -12,10 +12,10 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getAllProducts(): Observable<Product[]> {
-    return this.http.get<any>(`${environment.apiEndpoint}/data/data.json`)
+    return this.http.get<any>(`${environment.commonApiUrl}/api/Product/all`)
       .pipe(
         map(response => {
-          return response.data.products.map((product: any) => {
+          return response.map((product: any) => {
             return {
               Id: product.id,
               Name: product.name,
@@ -29,10 +29,10 @@ export class ApiService {
   }
 
   getCoupons(): Observable<Coupon[]> {
-    return this.http.get<any>(`${environment.apiEndpoint}/data/data.json`)
+    return this.http.get<any>(`${environment.commonApiUrl}/api/Coupon/all`)
       .pipe(
         map(response => {
-          return response.data.coupon.map((coupon: any) => {
+          return response.map((coupon: any) => {
             return {
               Code: coupon.code,
               Description: coupon.description,

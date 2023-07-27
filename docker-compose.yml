@@ -8,12 +8,12 @@ services:
       - ACCEPT_EULA=Y
     ports:
       - "5433:1433"
-    command: /bin/bash ./entrypoint.sh
+    # command: /bin/bash ./entrypoint.sh
     volumes:
       - mf-sqldata:/var/opt/mssql
-      - ./common-app/data/common-database/docker-entrypoint.sh:/entrypoint.sh
-      - ./common-app/data/common-database/docker-db-init.sh:/db-init.sh
-      - ./common-app/data/common-database/initial-db.sql:/initial-db.sql
+      #- ./common-app/data/common-database/docker-entrypoint.sh:/entrypoint.sh
+      #- ./common-app/data/common-database/docker-db-init.sh:/db-init.sh
+      #- ./common-app/data/common-database/initial-db.sql:/initial-db.sql
 
   mysqldb:
     image: mysql:5.7.22
@@ -51,6 +51,20 @@ services:
       - api-apps-identity-app
     ports:
       - "5080:80"
+
+  api-apps-common-app:
+    image: mf-api-apps-common-app
+    build:
+      context: .
+      dockerfile: ./api-apps/common-app/Common.Core/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - PORT=80
+    depends_on:
+      - sqldata
+    ports:
+      - "5020:80"
 
   angular-apps-breadcrumb-app:
     image: mf-angular-apps-breadcrumb-app

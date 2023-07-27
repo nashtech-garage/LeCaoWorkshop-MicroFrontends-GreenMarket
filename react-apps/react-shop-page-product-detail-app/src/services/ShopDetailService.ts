@@ -1,15 +1,9 @@
 const ShopDetailService = {
     async getProductById(id:number) : Promise<IShopDetailInfo> {
-        const apiGetInfo = `${process.env.API_ENDPOINT}/data/data.json`;
+        const apiGetInfo = `${process.env.COMMON_API_URL}/api/Product?id=${id}`;
         const getShopDetailInfo = await fetch(apiGetInfo);
         const shopDetailInfo = await getShopDetailInfo.json();
-        const products: Array<IShopDetailInfo> = shopDetailInfo.data.products;
-
-        const filteredById = Object.values(products).find(x => x.id === id);
-        console.log(filteredById);
-        
-        
-        return filteredById;
+        return shopDetailInfo;
     },
 
     addProductToShoppingCart(product: any, quantity: number) {
@@ -19,7 +13,7 @@ const ShopDetailService = {
         let currentUserName = currentUser.email;
 
         const channel = new BroadcastChannel('CART_HEADER_CHANNEL');
-        
+
         if (!currentUserId) {
             channel.postMessage({});
             channel.close();
@@ -63,9 +57,9 @@ const ShopDetailService = {
         }, 0);
 
         localStorage.setItem(localStorageKey, JSON.stringify(shoppingCart));
-        
-        channel.postMessage({ 
-            type: 'ADD_CART_ITEM', path: window.location.href 
+
+        channel.postMessage({
+            type: 'ADD_CART_ITEM', path: window.location.href
         });
         channel.close();
     }

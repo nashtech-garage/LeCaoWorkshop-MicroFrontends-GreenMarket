@@ -208,7 +208,7 @@ export class AppComponent {
 
       case BreadcrumbType.ShopDetail:
         const product = await this.fetchProductData(id);
-        const category = await this.fetchCategoryData(product.category_Id.toString());
+        const category = await this.fetchCategoryData(product.category_id.toString());
 
         this.navigationGroup.pageTitle = product.name;
 
@@ -248,9 +248,9 @@ export class AppComponent {
           this.navigationGroup.items = [];
 
           const listInfo = [
-            `By ${blog.created_By}`,
-            blog.created_Date,
-            `${blog.comments_Count} Comments`
+            `By ${blog.created_by}`,
+            blog.created_date,
+            `${blog.comments_count} Comments`
           ];
 
           listInfo.forEach(itemInfo => {
