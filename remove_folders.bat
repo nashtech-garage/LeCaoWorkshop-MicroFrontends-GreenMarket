@@ -1,6 +1,6 @@
 @ECHO OFF
 
-ECHO Start remove folders 
+ECHO Start remove folders
 
 RMDIR /s /q root-config\dist
 RMDIR /s /q root-config\node_modules

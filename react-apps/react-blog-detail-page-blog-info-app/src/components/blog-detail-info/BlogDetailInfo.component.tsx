@@ -11,8 +11,8 @@ export default function BlogDetailInfo() {
   const queryParameters = new URLSearchParams(window.location.search);
   const id = +queryParameters.get("id");
 
-  const imgSrc = (url) => `${process.env.API_ENDPOINT}/${url}`;
-  const imgAuthor = `${process.env.API_ENDPOINT}/img/blog/details/details-author.jpg`;
+  const imgSrc = (url) => `${url}`;
+  const imgAuthor = `${process.env.IMAGE_SERVER_URL}/img/blog/details/details-author.jpg`;
 
   useEffect(() => {
     BlogDetailInfoService.getBlogDetailInfoById(id)
