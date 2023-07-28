@@ -8,12 +8,8 @@ services:
       - ACCEPT_EULA=Y
     ports:
       - "5433:1433"
-    # command: /bin/bash ./entrypoint.sh
     volumes:
       - mf-sqldata:/var/opt/mssql
-      #- ./common-app/data/common-database/docker-entrypoint.sh:/entrypoint.sh
-      #- ./common-app/data/common-database/docker-db-init.sh:/db-init.sh
-      #- ./common-app/data/common-database/initial-db.sql:/initial-db.sql
 
   mysqldb:
     image: mysql:5.7.22
@@ -201,6 +197,15 @@ services:
     ports:
       - "6002:80"
 
+  vue-apps-mainpage-banner-app:
+    image: mf-vue-apps-mainpage-banner-app
+    build:
+      context: .
+      dockerfile: ./vue-apps/mainpage-banner-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "9007:80"
+
   vue-apps-mainpage-blog-app:
     image: mf-vue-apps-mainpage-blog-app
     build:
@@ -228,11 +233,11 @@ services:
     ports:
       - "1001:80"
 
-  common-app:
-    image: mf-common-app
+  images-app:
+    image: mf-images-app
     build:
       context: .
-      dockerfile: ./common-app/Dockerfile
+      dockerfile: ./images-app/Dockerfile
     restart: on-failure
     ports:
       - "5000:80"
