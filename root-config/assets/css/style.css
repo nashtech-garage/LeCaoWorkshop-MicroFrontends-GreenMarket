@@ -1211,7 +1211,7 @@ ol {
   Blog
 -----------------------*/
 
-/* .blog__item {
+.blog__item {
 	margin-bottom: 60px;
 }
 
@@ -1284,7 +1284,7 @@ ol {
 	background: #000000;
 	opacity: 0.1;
 	content: "";
-} */
+}
 
 /*---------------------
   Blog Sidebar
@@ -2189,6 +2189,10 @@ ol {
 }
 
 #single-spa-application\:\@app\/angular-apps\/shopping-cart-page-app {
+	/* height: 1000px; */
+}
+
+#single-spa-application\:\@app\/angular-apps\/blog-page-app {
 	/* height: 1000px; */
 }
 

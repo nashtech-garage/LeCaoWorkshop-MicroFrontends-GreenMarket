@@ -19,6 +19,20 @@ services:
     ports:
       - "3306:3306"
 
+  api-apps-common-app:
+    image: mf-api-apps-common-app
+    build:
+      context: .
+      dockerfile: ./api-apps/common-app/Common.Core/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - PORT=80
+    depends_on:
+      - sqldata
+    ports:
+      - "5020:80"
+
   api-apps-identity-app:
     image: mf-api-apps-identity-app
     build:
@@ -48,19 +62,14 @@ services:
     ports:
       - "5080:80"
 
-  api-apps-common-app:
-    image: mf-api-apps-common-app
+  angular-apps-blog-page-app:
+    image: mf-angular-blog-page-app
     build:
       context: .
-      dockerfile: ./api-apps/common-app/Common.Core/Dockerfile
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://0.0.0.0:80
-      - PORT=80
-    depends_on:
-      - sqldata
+      dockerfile: ./angular-apps/blog-page-app/Dockerfile
+    restart: on-failure
     ports:
-      - "5020:80"
+      - "9009:80"
 
   angular-apps-breadcrumb-app:
     image: mf-angular-apps-breadcrumb-app
@@ -196,6 +205,15 @@ services:
     restart: on-failure
     ports:
       - "6002:80"
+
+  vue-apps-detailpage-blog-app:
+    image: mf-vue-apps-detailpage-blog-app
+    build:
+      context: .
+      dockerfile: ./vue-apps/detailpage-blog-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "9008:80"
 
   vue-apps-mainpage-banner-app:
     image: mf-vue-apps-mainpage-banner-app

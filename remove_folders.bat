@@ -5,6 +5,10 @@ ECHO Start remove folders
 RMDIR /s /q root-config\dist
 RMDIR /s /q root-config\node_modules
 
+RMDIR /s /q angular-apps\blog-page-app\.angular
+RMDIR /s /q angular-apps\blog-page-app\dist
+RMDIR /s /q angular-apps\blog-page-app\node_modules
+
 RMDIR /s /q angular-apps\breadcrumb-app\.angular
 RMDIR /s /q angular-apps\breadcrumb-app\dist
 RMDIR /s /q angular-apps\breadcrumb-app\node_modules
@@ -34,7 +38,6 @@ RMDIR /s /q angular-apps\shopping-cart-page-app\dist
 RMDIR /s /q angular-apps\shopping-cart-page-app\node_modules
 
 
-
 RMDIR /s /q react-apps\common-contact-app\dist
 RMDIR /s /q react-apps\common-contact-app\node_modules
 
@@ -57,9 +60,14 @@ RMDIR /s /q react-apps\react-shop-page-product-detail-app\dist
 RMDIR /s /q react-apps\react-shop-page-product-detail-app\node_modules
 
 
-
 RMDIR /s /q vue-apps\contact-map-app\dist
 RMDIR /s /q vue-apps\contact-map-app\node_modules
+
+RMDIR /s /q vue-apps\detailpage-blog-app\dist
+RMDIR /s /q vue-apps\detailpage-blog-app\node_modules
+
+RMDIR /s /q vue-apps\mainpage-banner-app\dist
+RMDIR /s /q vue-apps\mainpage-banner-app\node_modules
 
 RMDIR /s /q vue-apps\mainpage-blog-app\dist
 RMDIR /s /q vue-apps\mainpage-blog-app\node_modules
