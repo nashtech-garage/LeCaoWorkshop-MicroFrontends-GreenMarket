@@ -1,51 +1,109 @@
 <template>
-    <div class="blog__item">
-        <div class="blog__item__pic">
-            <img :src="imgHostUrl + blog.images_url" alt="">
-        </div>
-        <div class="blog__item__text">
-            <ul>
-                <li><i class="fa fa-calendar-o"></i> {{ blog.created_date }}</li>
-                <li><i class="fa fa-comment-o"></i> {{ blog.comments_count }}</li>
-            </ul>
-            <h5><a href="#">{{ blog.tittle }}</a></h5>
-            <p>{{ blog.description_short }}</p>
-        </div>
+  <div class="blog__item">
+    <div class="blog__item__pic">
+      <img :src="blog.images_url" alt="" />
     </div>
+    <div class="blog__item__text">
+      <ul>
+        <li><i class="fa fa-calendar-o"></i> {{ blog.created_date }}</li>
+        <li><i class="fa fa-comment-o"></i> {{ blog.comments_count }}</li>
+      </ul>
+      <h5>
+        <router-link :to="'/blog-detail?id=' + blog.id">
+          {{ blog.title }}
+        </router-link>
+      </h5>
+      <p>{{ blog.description_short }}</p>
+    </div>
+  </div>
 </template>
-  
-  <script>
-  export default {
-    name: 'MainPageBlog',
-    props: {
-        blog: {
-            required: true,
-            type: Object
-        }
+
+<script>
+export default {
+  name: "MainPageBlog",
+  props: {
+    blog: {
+      required: true,
+      type: Object,
     },
-    computed: {
-        imgHostUrl() {
-            return process.env.VUE_APP_COMMON_URL;
-        }
-    }
-  }
-  </script>
-  
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
-  <style scoped>
-  h3 {
-    margin: 40px 0 0;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-  a {
-    color: #42b983;
-  }
-  </style>
-  
+  },
+  computed: {},
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.blog__item {
+}
+
+.blog__item__pic img {
+  min-width: 100%;
+}
+
+.blog__item__text {
+  padding-top: 25px;
+}
+
+.blog__item__text ul {
+  margin-bottom: 15px;
+}
+
+.blog__item__text ul li {
+  font-size: 16px;
+  color: #b2b2b2;
+  list-style: none;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.blog__item__text ul li:last-child {
+  margin-right: 0;
+}
+
+.blog__item__text h5 {
+  margin-bottom: 12px;
+}
+
+.blog__item__text h5 a {
+  font-size: 20px;
+  color: #1c1c1c;
+  font-weight: 700;
+}
+
+.blog__item__text p {
+  margin-bottom: 25px;
+}
+
+.blog__item__text .blog__btn {
+  display: inline-block;
+  font-size: 14px;
+  color: #1c1c1c;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid #b2b2b2;
+  padding: 14px 20px 12px;
+  border-radius: 25px;
+}
+
+.blog__item__text .blog__btn span {
+  position: relative;
+  top: 1px;
+  margin-left: 5px;
+}
+
+.blog__pagination {
+  padding-top: 5px;
+  position: relative;
+}
+
+.blog__pagination:before {
+  position: absolute;
+  left: 0;
+  top: -29px;
+  height: 1px;
+  width: 100%;
+  background: #000000;
+  opacity: 0.1;
+  content: "";
+}
+</style>

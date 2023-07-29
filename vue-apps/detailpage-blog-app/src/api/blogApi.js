@@ -1,8 +1,7 @@
 export default {
-    getBlogs: async function(axios) {
-        let url = process.env.VUE_APP_COMMON_URL + '/data/data.json';
-        console.log(url);
-        let result = await axios.get(url);
-        return result.data.data.blog;
-    }
-}
+  getBlogs: async function (axios) {
+    let url = process.env.VUE_APP_COMMON_API_URL + "/api/Blog/all";
+    let result = await axios.get(url);
+    return result.data;
+  },
+};
