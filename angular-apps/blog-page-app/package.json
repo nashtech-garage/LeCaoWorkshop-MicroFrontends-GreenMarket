@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:single-spa:blog-page-app": "ng build blog-page-app --configuration production",
-    "serve:single-spa:blog-page-app": "ng s --project blog-page-app --disable-host-check --port 9008 --live-reload false"
+    "serve:single-spa:blog-page-app": "ng s --project blog-page-app --disable-host-check --port 9009 --live-reload false"
   },
   "private": true,
   "dependencies": {

@@ -9,7 +9,10 @@ import { Category } from './models/category.model';
 })
 export class AppComponent implements OnInit {
   blogs: any[] = [];
+  filterBlogs: any[] = [];
+  recentBlogs: any[] = [];
   categories: Category[] = [];
+  searchValue: string = '';
 
   constructor(
     private blogService: BlogService
@@ -22,22 +25,42 @@ export class AppComponent implements OnInit {
   fetch() {
     this.blogService.GetAllBlogs().subscribe((data) => {
       this.blogs = data;
-      let tags = [...new Set(this.blogs.map(category => category.Tags))];
-      tags.forEach(element => {
-        tags = element.split(',').map((item: string) => item.trim());
+      this.filterBlogs = data;
+      this.recentBlogs = data.slice(0, 3);
+
+      let categoryNames: string[] = [];
+      this.blogs.forEach(x => {
+        categoryNames.push(...x.Tags.split(','));
       });
-      tags.forEach(element => {
-        const countByTag = this.blogs.filter(x => x.Tags.includes(element)).length;
-        this.categories.push({categoryName: element, count: countByTag});
-      })
+
+      categoryNames.map(s => s.trim());
+      categoryNames = [...new Set(categoryNames)];
+
+      categoryNames.forEach(x=> {
+        this.categories.push(
+          {
+            categoryName: x,
+            count: this.blogs.filter(y => y.Tags.includes(x)).length
+          }
+        );
+      });
+
+      this.categories.unshift({
+        categoryName: "All",
+        count: 0
+      });
     })
   }
 
-  onSearch(event: any) {
-    this.blogs = this.blogs.filter(x => x.Title.includes(event.target.value));
+  onSearch() {
+    this.filterBlogs = this.blogs.filter(x => x.Title.includes(this.searchValue) || x.Tags.includes(this.searchValue));
   }
 
-  searchByCategory(event: any) {
-    this.blogs = this.blogs.filter(x => x.Tags.includes(event.target.value));
+  searchByCategory(name: string) {
+    if (name == "All") {
+      this.filterBlogs = this.blogs;
+    }else{
+      this.filterBlogs = this.blogs.filter(x => x.Tags.includes(name));
+    }
   }
 }

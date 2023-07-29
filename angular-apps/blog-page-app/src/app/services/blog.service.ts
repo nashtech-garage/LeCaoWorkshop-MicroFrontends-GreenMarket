@@ -11,10 +11,10 @@ export class BlogService {
   constructor(private http: HttpClient) { }
 
   GetAllBlogs(): Observable<Blog[]> {
-    return this.http.get<any>(`${environment.apiUrl}/data/data.json`)
+    return this.http.get<any>(`${environment.commonApiUrl}api/Blog/all`)
       .pipe(
         map(res => {
-          return res.data.blogs.map((blog: Blog) => {
+          return res.map((blog: Blog) => {
             return {
               Id: blog.id,
               Title: blog.title,

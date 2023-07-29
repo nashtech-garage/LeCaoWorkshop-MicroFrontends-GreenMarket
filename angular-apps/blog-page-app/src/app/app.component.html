@@ -1,42 +1,94 @@
-<section class="from-blog spad">
+<section class="from-blog">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12">
-        <div class="section-title from-blog__title">
-          <h2>From The Blog</h2>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-4">
-        <input type="search" class="form-control" width="60%" style="border-radius: 15px;" placeholder="SEARCH..." (keyup.enter)="onSearch($event)"/>
-        <br/>
-        <header style="font-weight: bold; font-size: 30px;">Categories</header>
-        <br/>
-        <div *ngFor="let category of categories">
-          <div *ngIf="category.categoryName == 'All'">
-            <a style="color: gray; font-size: xx-large; margin-bottom: 10px;" href="" (click)="searchByCategory($event)">{{category.categoryName}}</a><br/>
+      <div class="col-lg-4 col-md-4">
+        <div class="blog__sidebar">
+          <div class="blog__sidebar__search">
+            <div>
+              <input
+                type="text"
+                [(ngModel)]="searchValue"
+                name="searchValue"
+                placeholder="Search..."
+              />
+              <button (click)="onSearch()">
+                <span class="icon_search"></span>
+              </button>
+            </div>
           </div>
-          <div *ngIf="category.categoryName != 'All'">
-            <a style="color: gray; font-size: xx-large; margin-bottom: 10px;" href="" (click)="searchByCategory($event)">{{category.categoryName}} ({{category.count}})</a><br/>
+          <div class="blog__sidebar__item">
+            <h4>Categories</h4>
+            <ul *ngFor="let category of categories">
+              <li *ngIf="category.categoryName == 'All'">
+                <a (click)="searchByCategory(category.categoryName)">{{
+                  category.categoryName
+                }}</a>
+              </li>
+              <li *ngIf="category.categoryName != 'All'">
+                <a (click)="searchByCategory(category.categoryName)"
+                  >{{ category.categoryName }} ({{ category.count }})</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="blog__sidebar__item">
+            <h4>Recent News</h4>
+            <div class="blog__sidebar__recent">
+              <a
+                *ngFor="let recentItem of recentBlogs"
+                class="blog__sidebar__recent__item"
+                [routerLink]="['/blog-detail']"
+                [queryParams]="{ id: recentItem.Id }"
+              >
+                <div class="blog__sidebar__recent__item__pic">
+                  <img src="{{ recentItem.ImageUrl }}" alt="" />
+                </div>
+                <div class="blog__sidebar__recent__item__text">
+                  <h6>
+                    {{ recentItem.Title }}
+                  </h6>
+                  <span>{{ recentItem.CreatedDate }}</span>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
-        <br/>
-        <br/>
-        <header style="font-weight: bold; font-size: 30px;">Recent News</header>
       </div>
       <div class="col-lg-8 col-md-8 col-sm-8">
-        <div class="blog__item" *ngFor="let blog of blogs">
-          <div class="blog__item__pic">
-            <img src={{blog.ImageUrl}} alt="" />
-          </div>
-          <div class="blog__item__text">
-            <ul>
-              <li><i class="fa fa-calendar-o"></i>{{blog.CreatedDate}}</li>
-              <li><i class="fa fa-comment-o"></i>{{blog.CommentCount}}</li>
-            </ul>
-            <h5><a href="#">{{blog.Title}}</a></h5>
-            <p>{{blog.DescriptionShort}}</p>
+        <div class="row">
+          <div
+            class="col-lg-6 col-md-6 col-sm-6"
+            *ngFor="let blog of filterBlogs"
+          >
+            <div class="blog__item">
+              <div class="blog__item__pic">
+                <img src="{{ blog.ImageUrl }}" alt="" />
+              </div>
+              <div class="blog__item__text">
+                <ul>
+                  <li>
+                    <i class="fa fa-calendar-o"></i> {{ blog.CreatedDate }}
+                  </li>
+                  <li>
+                    <i class="fa fa-comment-o"></i>{{ blog.CommentCount }}
+                  </li>
+                </ul>
+                <h5>
+                  <a
+                    [routerLink]="['/blog-detail']"
+                    [queryParams]="{ id: blog.Id }"
+                    >{{ blog.Title }}</a
+                  >
+                </h5>
+                <p>{{ blog.DescriptionShort }}</p>
+                <a
+                  class="blog__btn"
+                  [routerLink]="['/blog-detail']"
+                  [queryParams]="{ id: blog.Id }"
+                  >READ MORE <span class="arrow_right"></span
+                ></a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
