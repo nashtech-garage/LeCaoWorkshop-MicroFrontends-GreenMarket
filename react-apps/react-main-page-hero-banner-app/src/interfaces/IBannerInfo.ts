@@ -1,6 +1,6 @@
 interface IBannerInfo {
-    CategoryName?: string,
-    Title?: string,
-    Content?: string,
-    ImageLink?: string
+    categoryName?: string,
+    title?: string,
+    content?: string,
+    imageLink?: string
 }

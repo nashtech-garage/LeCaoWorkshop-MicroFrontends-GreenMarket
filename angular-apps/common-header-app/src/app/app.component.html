@@ -23,12 +23,39 @@
               <div>English</div>
               <span class="arrow_carrot-down"></span>
               <ul>
-                <li><a href="#">Spanis</a></li>
+                <li><a href="#">Spanish</a></li>
                 <li><a href="#">English</a></li>
               </ul>
             </div>
             <div class="header__top__right__auth">
-              <a href="#"><i class="fa fa-user"></i> Login</a>
+              <a
+                *ngIf="!isLoggedIn"
+                data-toggle="modal"
+                data-target="#loginModal"
+              >
+                <i class="fa fa-user"></i>Login
+              </a>
+              <a
+                *ngIf="!isLoggedIn"
+                data-toggle="modal"
+                data-target="#signUpModal"
+              >
+                <i class="fa fa-plus"></i>Sign Up
+              </a>
+              <div
+                class="header__top__right__auth__logged__in"
+                *ngIf="isLoggedIn"
+              >
+                <span>
+                  {{ currentUsername }}
+                </span>
+                <span class="arrow_carrot-down"></span>
+                <ul>
+                  <li>
+                    <a (click)="logout()">Logout</a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -39,7 +66,15 @@
     <div class="row">
       <div class="col-lg-3">
         <div class="header__logo">
-          <a href="./index.html"><img src="assets/img/logo.png" alt="" /></a>
+          <a
+            aria-current="page"
+            routerLink="/"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <img src="assets/img/logo.png" alt="" />
+          </a>
         </div>
       </div>
       <div class="col-lg-6">
@@ -99,10 +134,18 @@
               <a href="#"><i class="fa fa-heart"></i> <span>1</span></a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a>
+              <a [routerLink]="['/cart']"
+                ><i class="fa fa-shopping-bag"></i>
+                <span>{{ this.cartNumberProduct }}</span></a
+              >
             </li>
           </ul>
-          <div class="header__cart__price">item: <span>$150.00</span></div>
+          <div class="header__cart__price">
+            Total:
+            <span>{{
+              this.cartTotal | currency : "USD" : "symbol" : "2.2-2"
+            }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -111,3 +154,217 @@
     </div>
   </div>
 </header>
+
+<!-- Login Modal -->
+<div
+  class="modal fade"
+  id="loginModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="loginModalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <button
+          #closeLoginButton
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-title text-center">
+          <h4>Login</h4>
+        </div>
+        <div class="d-flex flex-column text-center">
+          <form
+            *ngIf="!isLoggedIn"
+            name="loginForm"
+            (ngSubmit)="f.form.valid && onLoginSubmit()"
+            #f="ngForm"
+            novalidate
+          >
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="text"
+                class="form-control"
+                name="email"
+                [(ngModel)]="loginForm.email"
+                required
+                #email="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="email.errors && f.submitted"
+              >
+                Email is required!
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                [(ngModel)]="loginForm.password"
+                required
+                minlength="6"
+                #password="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="password.errors && f.submitted"
+              >
+                <div *ngIf="password.errors?.['required']">
+                  Password is required
+                </div>
+                <div *ngIf="password.errors?.['minlength']">
+                  Password must be at least 6 characters
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-block btn-login">Login</button>
+            </div>
+            <div class="form-group">
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.submitted && isLoginFailed"
+              >
+                Login failed: {{ errorMessage }}
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <div class="signup-section">
+          Not a member yet?
+          <a href="#"> Sign Up</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SignUp Modal -->
+<div
+  class="modal fade"
+  id="signUpModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="signUpModalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <button
+          #closeSignUpButton
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-title text-center">
+          <h4>SignUp</h4>
+        </div>
+        <div class="d-flex flex-column text-center">
+          <form
+            *ngIf="!isLoggedIn"
+            name="signUpForm"
+            (ngSubmit)="f.form.valid && onSignUpSubmit()"
+            #f="ngForm"
+            novalidate
+          >
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                [(ngModel)]="signUpForm.name"
+                required
+                #email="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="email.errors && f.submitted"
+              >
+                Name is required!
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="text"
+                class="form-control"
+                name="email"
+                [(ngModel)]="signUpForm.email"
+                required
+                #email="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="email.errors && f.submitted"
+              >
+                Email is required!
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                [(ngModel)]="signUpForm.password"
+                required
+                minlength="6"
+                #password="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="password.errors && f.submitted"
+              >
+                <div *ngIf="password.errors?.['required']">
+                  Password is required
+                </div>
+                <div *ngIf="password.errors?.['minlength']">
+                  Password must be at least 6 characters
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-block btn-login">SignUp</button>
+            </div>
+            <div class="form-group">
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="f.submitted && isLoginFailed"
+              >
+                SignUp failed: {{ errorMessage }}
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

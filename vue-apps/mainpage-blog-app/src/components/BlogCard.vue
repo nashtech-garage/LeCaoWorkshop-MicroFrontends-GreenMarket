@@ -1,7 +1,7 @@
 <template>
   <div class="blog__item">
     <div class="blog__item__pic">
-      <img :src="imgHostUrl + blog.images_url" alt="" />
+      <img :src="blog.images_url" alt="" />
     </div>
     <div class="blog__item__text">
       <ul>
@@ -26,11 +26,7 @@ export default {
       type: Object,
     },
   },
-  computed: {
-    imgHostUrl() {
-      return process.env.VUE_APP_COMMON_URL;
-    },
-  },
+  computed: {},
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

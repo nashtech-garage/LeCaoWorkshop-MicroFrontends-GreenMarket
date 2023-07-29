@@ -73,7 +73,7 @@
                   class="latest-product__item"
                 >
                   <div class="latest-product__item__pic">
-                    <img :src="imgHostUrl + product.main_image_url" alt="" />
+                    <img :src="product.main_image_url" alt="" />
                   </div>
                   <div class="latest-product__item__text">
                     <h6>{{ product.name }}</h6>
@@ -153,9 +153,6 @@ export default {
     },
   },
   computed: {
-    imgHostUrl() {
-      return process.env.VUE_APP_COMMON_URL;
-    },
     priceMinDisplay() {
       return `$${this.priceRange[0]}`;
     },

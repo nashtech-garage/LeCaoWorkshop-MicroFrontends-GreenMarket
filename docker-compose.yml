@@ -1,123 +1,256 @@
-version: '3.4'
+version: "3.4"
 
 services:
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "5433:1433"
+    volumes:
+      - mf-sqldata:/var/opt/mssql
+
+  mysqldb:
+    image: mysql:5.7.22
+    environment:
+      MYSQL_DATABASE: order
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+
+  api-apps-identity-app:
+    image: mf-api-apps-identity-app
+    build:
+      context: .
+      dockerfile: ./api-apps/identity-app/IdentityServer.Core/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - PORT=80
+    depends_on:
+      - sqldata
+    ports:
+      - "5050:80"
+
+  api-apps-order-app:
+    image: mf-api-apps-order-app
+    build:
+      context: .
+      dockerfile: ./api-apps/order-app/Order.Core/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - PORT=80
+    depends_on:
+      - mysqldb
+      - api-apps-identity-app
+    ports:
+      - "5080:80"
+
+  api-apps-common-app:
+    image: mf-api-apps-common-app
+    build:
+      context: .
+      dockerfile: ./api-apps/common-app/Common.Core/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - PORT=80
+    depends_on:
+      - sqldata
+    ports:
+      - "5020:80"
+
+  angular-apps-breadcrumb-app:
+    image: mf-angular-apps-breadcrumb-app
+    build:
+      context: .
+      dockerfile: ./angular-apps/breadcrumb-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "5004:80"
 
   angular-apps-checkout-app:
     image: mf-angular-apps-checkout-app
     build:
-      context: ./angular-apps/checkout-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./angular-apps/checkout-app/Dockerfile
+    restart: on-failure
     ports:
-      - '4001:80'
+      - "4001:80"
 
   angular-apps-common-header-app:
     image: mf-angular-apps-common-header-app
     build:
-      context: ./angular-apps/common-header-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./angular-apps/common-header-app/Dockerfile
+    restart: on-failure
     ports:
-      - '5001:80'
+      - "5001:80"
 
   angular-apps-contact-form-app:
     image: mf-angular-apps-contact-form-app
     build:
-      context: ./angular-apps/contact-form-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./angular-apps/contact-form-app/Dockerfile
+    restart: on-failure
     ports:
-      - '6003:80'
+      - "6003:80"
 
   angular-apps-main-categories-app:
     image: mf-angular-apps-main-categories-app
     build:
-      context: ./angular-apps/main-categories-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./angular-apps/main-categories-app/Dockerfile
+    restart: on-failure
     ports:
-      - '9002:80'
+      - "9002:80"
+
+  angular-apps-main-lasted-product-app:
+    image: mf-angular-apps-main-lasted-product-app
+    build:
+      context: .
+      dockerfile: ./angular-apps/main-lasted-product-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "9004:80"
 
   angular-apps-shopping-cart-page-app:
     image: mf-angular-shopping-cart-page-app
     build:
-      context: ./angular-apps/shopping-cart-page-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./angular-apps/shopping-cart-page-app/Dockerfile
+    restart: on-failure
     ports:
-      - '3001:80'
+      - "3001:80"
 
   react-apps-common-contact-app:
     image: mf-react-apps-common-contact-app
     build:
-      context: ./react-apps/common-contact-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./react-apps/common-contact-app/Dockerfile
+    restart: on-failure
     ports:
-      - '6001:80'
+      - "6001:80"
 
   react-apps-common-footer-app:
     image: mf-react-apps-common-footer-app
     build:
-      context: ./react-apps/common-footer-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./react-apps/common-footer-app/Dockerfile
+    restart: on-failure
     ports:
-      - '5005:80'
+      - "5005:80"
 
   react-apps-common-hero-search-app:
     image: mf-react-apps-common-hero-search-app
     build:
-      context: ./react-apps/common-hero-search-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./react-apps/common-hero-search-app/Dockerfile
+    restart: on-failure
     ports:
-      - '5003:80'
+      - "5003:80"
 
   react-apps-main-featured-product-app:
     image: mf-react-apps-main-featured-product-app
     build:
-      context: ./react-apps/main-featured-product-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./react-apps/main-featured-product-app/Dockerfile
+    restart: on-failure
     ports:
-      - '9003:80'
+      - "9003:80"
+
+  react-apps-blog-detail-page-blog-info-app:
+    image: mf-react-apps-blog-detail-page-blog-info-app
+    build:
+      context: .
+      dockerfile: ./react-apps/react-blog-detail-page-blog-info-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "8001:80"
 
   react-apps-main-page-hero-banner-app:
     image: mf-react-apps-main-page-hero-banner-app
     build:
-      context: ./react-apps/react-main-page-hero-banner-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./react-apps/react-main-page-hero-banner-app/Dockerfile
+    restart: on-failure
     ports:
-      - '9001:80'
+      - "9001:80"
 
   react-apps-shop-page-product-detail-app:
     image: mf-react-apps-shop-page-product-detail-app
     build:
-      context: ./react-apps/react-shop-page-product-detail-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./react-apps/react-shop-page-product-detail-app/Dockerfile
+    restart: on-failure
     ports:
-      - '9006:80'
+      - "9006:80"
 
   vue-apps-contact-map-app:
     image: mf-vue-apps-contact-map-app
     build:
-      context: ./vue-apps/contact-map-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./vue-apps/contact-map-app/Dockerfile
+    restart: on-failure
     ports:
-      - '6002:80'
+      - "6002:80"
+
+  vue-apps-mainpage-banner-app:
+    image: mf-vue-apps-mainpage-banner-app
+    build:
+      context: .
+      dockerfile: ./vue-apps/mainpage-banner-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "9007:80"
+
+  vue-apps-mainpage-blog-app:
+    image: mf-vue-apps-mainpage-blog-app
+    build:
+      context: .
+      dockerfile: ./vue-apps/mainpage-blog-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "9005:80"
 
   vue-apps-related-item-app:
     image: mf-vue-apps-related-item-app
     build:
-      context: ./vue-apps/related-item-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./vue-apps/related-item-app/Dockerfile
+    restart: on-failure
     ports:
-      - '2002:80'
+      - "2002:80"
 
-  common-app:
-    image: mf-common-app
+  vue-apps-shop-page-products-grid-app:
+    image: mf-vue-apps-shop-page-products-grid-app
     build:
-      context: ./common-app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./vue-apps/vue-shop-page-products-grid-app/Dockerfile
+    restart: on-failure
     ports:
-      - '5000:80'
+      - "1001:80"
+
+  images-app:
+    image: mf-images-app
+    build:
+      context: .
+      dockerfile: ./images-app/Dockerfile
+    restart: on-failure
+    ports:
+      - "5000:80"
 
   root-config:
     image: mf-root-config
     build:
-      context: ./root-config
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./root-config/Dockerfile
+    restart: on-failure
     ports:
-      - '9000:80'
+      - "9000:80"
+
+volumes:
+  mf-sqldata:
+    external: false

@@ -9,7 +9,14 @@ export class ShoppingCartService {
   private cartSummaryBehavior = new BehaviorSubject<boolean>(false);
   public cartSummaryState: Observable<boolean> = this.cartSummaryBehavior.asObservable();
 
-  private readonly LOCAL_STORAGE_CART_DATA_KEY = 'user_id'; // Todo: Handle get current user_id and update this
+  private readonly LOCAL_STORAGE_CART_DATA_KEY = '';
+
+  constructor() {
+    const currentUser = JSON.parse(localStorage.getItem('auth-user') ?? "{}");
+    if (currentUser) {
+      this.LOCAL_STORAGE_CART_DATA_KEY = currentUser.sub;
+    }
+  }
 
   updateCartSummary(isUpdate: boolean = true) {
     this.cartSummaryBehavior

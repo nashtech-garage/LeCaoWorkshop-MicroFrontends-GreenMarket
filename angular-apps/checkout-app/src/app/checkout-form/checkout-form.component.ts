@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ProductModel } from '../model/product-model';
+import { ShoppingCartService } from '../services/shopping-cart.service';
+import { OrderService } from '../services/order.service';
+import { Order } from '../model/order.model';
+import { OrderDetail } from '../model/order-detail.model';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout-form',
@@ -8,58 +12,92 @@ import { ProductModel } from '../model/product-model';
   styleUrls: ['./checkout-form.component.css']
 })
 export class CheckoutFormComponent implements OnInit{
+  private toastChannel = new BroadcastChannel('TOAST_CHANNEL');
+  public imageServerUrl = environment.imageServerUrl;
   submitted!: boolean;
 
-  checkOutForm = this.formBuilder.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    country:  ['', Validators.required],
-    streetAddress: ['', Validators.required],
-    optionAddress: [],
-    city: ['', Validators.required],
-    state: ['', Validators.required],
-    postCode: ['', Validators.required],
-    phone: ['', Validators.required],
-    email: ['', Validators.required, Validators.email],
-    newAccount: [],
-    accountPassword: ['', Validators.required],
-    shipToDifferentAccount: ['', Validators.required],
-    orderNotes: ['', Validators.required],
-    createAccount: [],
-    checkPayment: [],
-    paypal: []
-  });
+  checkoutForm: any = {
+    firstName: null,
+    lastName: null,
+    country: null,
+    address: null,
+    city: null,
+    state: null,
+    postcode: null,
+    phone: null,
+    email: null,
+    orderNotes: null
+  };
 
-  products: ProductModel[] =  [
-    { name: "Vegetable's Package", price: 10.00 },
-    { name: "Fresh Vegatable", price: 20.00 },
-    { name: "Organic Bananas", price: 30.00 },
-  ];
+  curCartData: any;
 
-  subTotal: number = 0;
-  total: number = 0;
+  constructor(
+    private cartService: ShoppingCartService,
+    private orderService: OrderService,
+    public router: Router
+  ) { }
 
-  constructor(private formBuilder: FormBuilder) { }
-  
+  destroy() {
+    this.toastChannel.close();
+  }
+
   ngOnInit(): void {
-    this.subTotal = this.products.reduce((sum, current) => sum + current.price, 0);
-    this.total = this.products.reduce((sum, current) => sum + current.price, 0)
+    this.curCartData = this.cartService.getCartData();
   }
 
-  onSubmit() {
+  onCheckoutSubmit(): void {
     this.submitted = true;
-    if (this.checkOutForm.invalid) {
-      let yourName = this.checkOutForm.getRawValue().firstName;
-      let yourEmail = this.checkOutForm.getRawValue().lastName;
-      let yourMessage = this.checkOutForm.getRawValue().email;
+    const { firstName, lastName, country, address, city, state, postcode, phone, email, orderNotes } = this.checkoutForm;
 
-      //Submit value
-
-      this.checkOutForm.reset();
+    let orderDetails: OrderDetail[] = [];
+    if (this.curCartData && this.curCartData.cart_data.length > 0) {
+      this.curCartData.cart_data.forEach((item: any) => {
+        orderDetails.push({
+          productId: item.id,
+          price: item.price,
+          priceOriginal: item.priceOriginal,
+          productName: item.name,
+          quantity: item.quantity
+         });
+      });
     }
-  }
 
-  get checkOutFormControl() {
-    return this.checkOutForm.controls;
+    const orderData: Order = {
+      userId: this.curCartData.user_id,
+      userName: this.curCartData.user_name,
+      total: this.curCartData.total,
+      firstName: firstName,
+      lastName: lastName,
+      country: country,
+      address: address,
+      city: city,
+      state: state,
+      postcode: postcode,
+      phone: phone,
+      email: email,
+      orderNotes: orderNotes,
+      orderDetails: orderDetails
+    };
+
+    this.orderService.checkout(orderData).subscribe(
+      data => {
+        this.submitted = false;
+        this.toastChannel.postMessage({
+          type: "success",
+          message: "Order created successfully"
+        });
+
+        // return to home page
+        this.router.navigate(['/']);
+      },
+      err => {
+        this.submitted = false;
+        console.log(err);
+        this.toastChannel.postMessage({
+          type: "error",
+          message: "Order created failed."
+        });
+      }
+    );
   }
 }

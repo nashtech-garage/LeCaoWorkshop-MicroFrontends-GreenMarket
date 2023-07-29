@@ -2,7 +2,9 @@
 
 ## Getting Started
 
-### Install, build, and run on local
+### On local
+
+#### Install, build, and run micro-frontend projects
 
 Move to root-config folder
 
@@ -28,11 +30,25 @@ Start project
 npm start
 ```
 
-### Install, build, and run with Docker
+#### Build, and run identity and order API projects
+
+Run projects
+
+```powershell
+run_api_projects.bat
+```
+
+### On Docker
+
+Remove all dist, node_modules folder before run docker command
+
+```powershell
+remove_folders.bat
+```
 
 Build all projects
 
-```powershell
+```
 sudo docker compose build
 ```
 
@@ -50,4 +66,11 @@ sudo docker compose down
 
 ```
 http://localhost:9000
+```
+
+## Default user and password for login
+
+```
+Username: admin@gmail.com
+Password: Iloveyou@123
 ```
