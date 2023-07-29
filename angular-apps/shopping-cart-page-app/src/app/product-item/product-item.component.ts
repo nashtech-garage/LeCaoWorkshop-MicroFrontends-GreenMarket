@@ -11,8 +11,6 @@ export class ProductItemComponent {
   @Input() product: ShoppingCartItem = {};
   @Output() remove: EventEmitter<ShoppingCartItem> = new EventEmitter();
 
-  apiEndpoint: string = environment.apiEndpoint;
-
   increaseQuantity() {
     if (this.product?.quantity || this.product?.quantity === 0) {
       this.product.quantity++;

@@ -52,22 +52,11 @@
       <!-- Featured Section End -->
 
       <!-- Banner Begin -->
-      <div class="banner">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <div class="banner__pic">
-                <img src="assets/img/banner/banner-1.jpg" alt="" />
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <div class="banner__pic">
-                <img src="assets/img/banner/banner-2.jpg" alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/vue-apps/mainpage-banner-app"
+      ></application>
       <!-- Banner End -->
 
       <!-- Latest Product Section Begin -->
@@ -139,6 +128,11 @@
         loader="mfLoader"
         error="mfError"
         name="@app/react-apps/react-blog-detail-page-blog-info-app"
+      ></application>
+      <application
+        loader="mfLoader"
+        error="mfError"
+        name="@app/vue-apps/detailpage-blog-app"
       ></application>
     </route>
 

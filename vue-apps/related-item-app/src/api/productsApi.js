@@ -1,6 +1,6 @@
 export default {
     getProducts: function(axios) {
-      let url = "/data/data.json";
+      let url = "api/Product/all";
       return axios.get(url);
     },
 }
